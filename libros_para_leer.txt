@@ -1,0 +1,4 @@
+1,El Gato Negro,Edgar Allan Poe,10
+2,La morgue,Edgar Allan Poe,50
+3,Coraline,giman,89
+4,La Sombra de insmouth,LoveCraft,100

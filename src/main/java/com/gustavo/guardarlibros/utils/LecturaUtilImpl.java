@@ -1,0 +1,253 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.gustavo.guardarlibros.utils;
+
+import com.gustavo.guardarlibros.modelo.Estado;
+import com.gustavo.guardarlibros.modelo.Lectura;
+import com.gustavo.guardarlibros.modelo.Libro;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+/**
+ *
+ * @author gustavo
+ */
+public class LecturaUtilImpl implements ILecturaUtil {
+
+    @Override
+    public void crearArchivo(Lectura nuevaLectura, boolean seMantinenLosDatos) {
+        String nombreArchivo = NombresArchivos.LECTURA.getNombreArchivo();
+
+        String contenido = String.valueOf(nuevaLectura.getId());
+        contenido += "," + String.valueOf(nuevaLectura.getLibro().getId());
+        contenido += "," + String.valueOf(nuevaLectura.getPerfil().getId());
+        contenido += "," + nuevaLectura.getPaginaActual();
+        contenido += "," + nuevaLectura.getFechaInicio();
+        contenido += "," + nuevaLectura.getMinutosLeidos();
+        contenido += "," + nuevaLectura.getEstado().toString() + "\n";
+
+        try (FileWriter writer = new FileWriter(nombreArchivo, seMantinenLosDatos)) {
+            writer.write(contenido);
+            System.out.println("Archivo '" + nombreArchivo + "' creado y escrito con éxito.");
+        } catch (IOException e) {
+            System.err.println("Ocurrió un error al crear/escribir el archivo: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public List<Lectura> leerArchivo() {
+
+        String nombreArchivo = NombresArchivos.LECTURA.getNombreArchivo();
+
+        List<String> lineas = new ArrayList<>();
+
+        File archivo = new File(nombreArchivo);
+
+        if (archivo.exists()) {
+            System.out.println("--- Leyendo archivo línea por línea ---");
+            try (BufferedReader reader = new BufferedReader(new FileReader(nombreArchivo))) {
+                String linea;
+                int numeroLinea = 1;
+                while ((linea = reader.readLine()) != null) {
+                    System.out.println("Línea " + numeroLinea + ": " + linea);
+                    lineas.add(linea);
+                    numeroLinea++;
+                }
+                System.out.println("Lectura de archivo completada.");
+                System.out.println("Tamanio: " + lineas.size());
+                System.out.println(conseguirAtributosLectura(lineas));
+            } catch (IOException e) {
+                System.err.println("Ocurrió un error al leer el archivo: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+
+        return conseguirAtributosLectura(lineas);
+    }
+
+    @Override
+    public Lectura getLecturaPorId(Integer id) {
+
+        List<Lectura> listaLectura = leerArchivo();
+
+        Optional<Lectura> lecturaEncontrada = listaLectura.stream()
+                .distinct()
+                .filter(l -> l.getId().equals(id))
+                .findFirst();
+
+        if (lecturaEncontrada.isPresent()) {
+            return lecturaEncontrada.get();
+        } else {
+            return new Lectura();
+        }
+    }
+
+    private List<Lectura> conseguirAtributosLectura(List<String> liString) {
+
+        LibroUtilImpl paraLibro = new LibroUtilImpl();
+        PerfilUtilImpl paraPerfil = new PerfilUtilImpl();
+
+        //Numero de atributos que tiene la clase lectura. se recupera cada elemento y se lo pasa al atributo correspondiente
+        int cantidadAtributosLectura = 7;
+        /*
+        Este es el orden 
+        String contenido = String.valueOf(nuevaLectura.getId());
+        contenido += "," + String.valueOf(nuevaLectura.getLibro().getId());
+        contenido += "," + String.valueOf(nuevaLectura.getPerfil().getId());
+        contenido += "," + nuevaLectura.getPaginaActual();
+        contenido += "," + nuevaLectura.getFechaInicio();
+        contenido += "," + nuevaLectura.getMinutosLeidos();
+           conteido += "," + nuevaLectura.getEstado().toString() + "\n";
+         */
+        List<Lectura> listaLecturas = liString.stream()
+                .filter(a -> !a.isEmpty())
+                .map(a -> Arrays.asList(a.split(",")))
+                .filter(a -> a.size() == cantidadAtributosLectura)
+                .map(a -> {
+
+                    Lectura lectura = new Lectura();
+                    lectura.setId(Integer.valueOf(a.get(0)));
+                    lectura.setLibro(paraLibro.getLibroPorId(Integer.valueOf(a.get(1))));
+                    lectura.setPerfil(paraPerfil.getPerfilPorId(Integer.valueOf(a.get(2))));
+                    lectura.setPaginaActual(Integer.valueOf(a.get(3)));
+                    lectura.setFechaInicio(LocalDate.parse(a.get(4)));
+                    lectura.setMinutosLeidos(Integer.valueOf(a.get(5)));
+                    lectura.setEstado(Estado.valueOf(a.get(6)));
+
+                    return lectura;
+
+                })
+                .collect(Collectors.toList());
+
+        return listaLecturas;
+    }
+
+    @Override
+    public List<Integer> getIds() {
+        List<Lectura> listaLectura = leerArchivo();
+
+        List<Integer> listadoIds = listaLectura.stream()
+                .distinct()
+                .map(Lectura::getId)
+                .collect(Collectors.toList());
+
+        return listadoIds;
+
+    }
+
+    @Override
+    public List<Lectura> getListadoLibrosPorLeerPorPerfil(Integer idPerfil) {
+        List<Lectura> listadoLectura = leerArchivo();
+
+        List<Lectura> lecturas = listadoLectura.stream()
+                .distinct()
+                .filter(l -> l.getPerfil().getId().equals(idPerfil) && l.getEstado().equals(Estado.NO_LEIDO))
+                .collect(Collectors.toList());
+
+        return lecturas;
+    }
+
+    @Override
+    public List<Lectura> getListadoLibrosEnLecturaPorPerfilYLibro(Integer idPerfil, Libro libro) {
+        List<Lectura> listadoLectura = leerArchivo();
+
+        List<Lectura> lecturas = listadoLectura.stream()
+                .distinct()
+                .filter(l -> l.getPerfil().getId().equals(idPerfil) && l.getEstado().equals(Estado.LEYENDO) && l.getLibro().equals(libro))
+                .collect(Collectors.toList());
+
+        return lecturas;
+    }
+
+    @Override
+    public List<Lectura> getListadoLibrosTerminadosPorPerfil(Integer idPerfil) {
+        List<Lectura> listadoLectura = leerArchivo();
+
+        List<Lectura> lecturas = listadoLectura.stream()
+                .distinct()
+                .filter(l -> l.getPerfil().getId().equals(idPerfil) && l.getEstado().equals(Estado.TERMINADO))
+                .collect(Collectors.toList());
+
+        return lecturas;
+    }
+
+    @Override
+    public Optional<Integer> getUltimaPaginaGuardadaPorLibroEnLectura(Integer idPerfil, Libro libro) {
+        List<Lectura> lecturas = leerArchivo();
+
+        return lecturas.stream()
+                .distinct()
+                .filter(l -> l.getPerfil().getId().equals(idPerfil) && l.getLibro().equals(libro) && l.getEstado().equals(Estado.LEYENDO))
+                .map(l -> l.getPaginaActual())
+                .sorted(Comparator.reverseOrder())
+                .findFirst();
+
+    }
+
+    @Override
+    public void actualizarEstadoYFechaDeUnaLectura(Lectura lecturaAEditar, Estado estado) {
+        List<Lectura> todasLasLecturas = leerArchivo();
+
+        List<Lectura> listaLecFiltrada = todasLasLecturas.stream()
+                .distinct()
+                .map(l -> {
+                    if (l.equals(lecturaAEditar)) {
+                        Lectura lec = new Lectura();
+                        
+                        lec.setId(l.getId());
+                        lec.setLibro(l.getLibro());
+                        lec.setPerfil(l.getPerfil());
+                        lec.setFechaInicio(LocalDate.now());
+                        lec.setMinutosLeidos(l.getMinutosLeidos());
+                        lec.setPaginaActual(l.getPaginaActual());
+                        lec.setEstado(estado);
+       
+                        return lec;
+                    }
+                    return l;
+                })
+                .collect(Collectors.toList());
+
+        crearArchivoPorLista(listaLecFiltrada, false);
+
+    }
+
+    @Override
+    public void crearArchivoPorLista(List<Lectura> listaLectura, boolean seMantinenLosDatos) {
+        String nombreArchivo = NombresArchivos.LECTURA.getNombreArchivo();
+
+        String contenido = "";
+
+        for (int i = 0; i < listaLectura.size(); i++) {
+            contenido += String.valueOf(listaLectura.get(i).getId());
+            contenido += "," + String.valueOf(listaLectura.get(i).getLibro().getId());
+            contenido += "," + String.valueOf(listaLectura.get(i).getPerfil().getId());
+            contenido += "," + listaLectura.get(i).getPaginaActual();
+            contenido += "," + listaLectura.get(i).getFechaInicio();
+            contenido += "," + listaLectura.get(i).getMinutosLeidos();
+            contenido += "," + listaLectura.get(i).getEstado().toString() + "\n";
+        }
+
+        try (FileWriter writer = new FileWriter(nombreArchivo, seMantinenLosDatos)) {
+            writer.write(contenido);
+            System.out.println("Archivo '" + nombreArchivo + "' creado y escrito con éxito.");
+        } catch (IOException e) {
+            System.err.println("Ocurrió un error al crear/escribir el archivo: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+}
