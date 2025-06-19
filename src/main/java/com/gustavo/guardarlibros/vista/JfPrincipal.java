@@ -24,6 +24,7 @@ public class JfPrincipal extends javax.swing.JFrame {
     private PerfilUtilImpl perfilUtil = new PerfilUtilImpl();
 
     private Lectura libroLecturaSeleccionada;
+    private Lectura libroLecturaTerminadasSeleccionada;
     private Perfil perfilSeleccionado;
 
     /**
@@ -171,6 +172,11 @@ public class JfPrincipal extends javax.swing.JFrame {
         tbLibrosTerminados.setModel(grillaLibrosTerminados1);
         tbLibrosTerminados.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tbLibrosTerminados.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tbLibrosTerminados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbLibrosTerminadosMouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(tbLibrosTerminados);
 
         javax.swing.GroupLayout jPaneLibrosTerminadosLayout = new javax.swing.GroupLayout(jPaneLibrosTerminados);
@@ -367,6 +373,16 @@ public class JfPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnAgregarLecturaActionPerformed
 
+    private void tbLibrosTerminadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbLibrosTerminadosMouseClicked
+        // TODO add your handling code here:
+        int filaSeleccionada = tbLibrosTerminados.getSelectedRow();
+        libroLecturaTerminadasSeleccionada = grillaLibrosTerminados1.getLectura(filaSeleccionada);
+
+        cargarTablaLecturasDeLibrosTerminados();
+
+        System.out.println("LECTURA SELECCIONADA: " + libroLecturaTerminadasSeleccionada);
+    }//GEN-LAST:event_tbLibrosTerminadosMouseClicked
+
     private void cargarElementos() {
 
         cargarCbPerfil();
@@ -434,6 +450,24 @@ public class JfPrincipal extends javax.swing.JFrame {
             System.out.println("Error al cargar la tabla libros TERMINADOS, el combobox debe tener un elemento seleccionado.");
         }
 
+    }
+
+    private void cargarTablaLecturasDeLibrosTerminados() {
+
+        if (cbPerfil.getSelectedItem() != null && libroLecturaTerminadasSeleccionada != null) {
+
+            perfilSeleccionado = (Perfil) cbPerfil.getSelectedItem();
+
+            List<Lectura> listaLibrosEnLectura = lecturaUtilImpl.getListadoLibrosEnLecturaPorPerfilYLibro(perfilSeleccionado.getId(), libroLecturaTerminadasSeleccionada.getLibro());
+
+            System.out.println("ENTRO AL CARGAR   LECTURAS DE LIBROS TERMINANDOS");
+            System.out.println(perfilSeleccionado.getId());
+
+            grillaLibrosEnLectura1.setLecturas(listaLibrosEnLectura);
+
+        } else {
+            System.out.println("Error al cargar la tabla libros EN LECTURA, el combobox debe tener un elemento seleccionado.");
+        }
     }
 
     private void cargarTablaLibrosEnLectura() {
