@@ -40,7 +40,7 @@ public class LecturaUtilImpl implements ILecturaUtil {
 
         try (FileWriter writer = new FileWriter(nombreArchivo, seMantinenLosDatos)) {
             writer.write(contenido);
-            System.out.println("Archivo '" + nombreArchivo + "' creado y escrito con éxito.");
+//            System.out.println("Archivo '" + nombreArchivo + "' creado y escrito con éxito.");
         } catch (IOException e) {
             System.err.println("Ocurrió un error al crear/escribir el archivo: " + e.getMessage());
             e.printStackTrace();

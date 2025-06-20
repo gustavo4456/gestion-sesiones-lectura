@@ -8,3 +8,7 @@
 8,galaxia,perez,200
 9,marte,jaramildo,100
 10,Un librooooooo,eL AUTO,1200
+11,agua,pez,1200
+12,casa,sssss,1200
+13,hacha,karen,1200
+14,cassssa,caca,1200

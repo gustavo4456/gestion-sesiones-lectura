@@ -331,10 +331,7 @@ public class JDialogAgregarLectura extends javax.swing.JDialog {
             Integer paginaAGuardar = Integer.valueOf(txtPagina.getText());
 
             boolean esValidaLaPaginaIngresada = paginaAGuardar >= ultimaPaginaLeida && paginaAGuardar <= paginaFinalLibro && ultimaPaginaLeida < paginaFinalLibro;
-            boolean esLaPaginaIngresaLaUltimaDelLibro = paginaAGuardar == paginaFinalLibro;
-
-            System.out.println("LA PAGINA FINAL ESSSSSSSSSS:  " + paginaFinalLibro);
-            System.out.println("LA PAGINA A GUARDAR FINAL ESSSSSSSSSS:  " + paginaFinalLibro);
+            boolean esLaPaginaIngresaLaUltimaDelLibro = paginaAGuardar.equals(paginaFinalLibro);
 
             if (esValidaLaPaginaIngresada) {
 
