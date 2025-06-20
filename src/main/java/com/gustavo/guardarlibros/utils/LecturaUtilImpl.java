@@ -62,13 +62,13 @@ public class LecturaUtilImpl implements ILecturaUtil {
                 String linea;
                 int numeroLinea = 1;
                 while ((linea = reader.readLine()) != null) {
-                   // System.out.println("Línea " + numeroLinea + ": " + linea);
+                    // System.out.println("Línea " + numeroLinea + ": " + linea);
                     lineas.add(linea);
                     numeroLinea++;
                 }
-              //  System.out.println("Lectura de archivo completada.");
-              //  System.out.println("Tamanio: " + lineas.size());
-              //  System.out.println(conseguirAtributosLectura(lineas));
+                //  System.out.println("Lectura de archivo completada.");
+                //  System.out.println("Tamanio: " + lineas.size());
+                //  System.out.println(conseguirAtributosLectura(lineas));
             } catch (IOException e) {
                 System.err.println("Ocurrió un error al leer el archivo: " + e.getMessage());
                 e.printStackTrace();
@@ -206,7 +206,7 @@ public class LecturaUtilImpl implements ILecturaUtil {
                 .map(l -> {
                     if (l.equals(lecturaAEditar)) {
                         Lectura lec = new Lectura();
-                        
+
                         lec.setId(l.getId());
                         lec.setLibro(l.getLibro());
                         lec.setPerfil(l.getPerfil());
@@ -214,7 +214,7 @@ public class LecturaUtilImpl implements ILecturaUtil {
                         lec.setMinutosLeidos(l.getMinutosLeidos());
                         lec.setPaginaActual(l.getPaginaActual());
                         lec.setEstado(estado);
-       
+
                         return lec;
                     }
                     return l;
@@ -248,6 +248,20 @@ public class LecturaUtilImpl implements ILecturaUtil {
             System.err.println("Ocurrió un error al crear/escribir el archivo: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void eliminarTodasLasLecturasPorPerfilYLibro(Integer idPerfil, Libro libro) {
+
+        List<Lectura> listadoLectura = leerArchivo();
+
+        List<Lectura> lecturas = listadoLectura.stream()
+                .distinct()
+                .filter(l -> !(l.getPerfil().getId().equals(idPerfil) && l.getEstado().equals(Estado.LEYENDO) && l.getLibro().equals(libro)))
+                .collect(Collectors.toList());
+
+        crearArchivoPorLista(lecturas, false);
+
     }
 
 }

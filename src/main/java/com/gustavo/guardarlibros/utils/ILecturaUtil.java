@@ -36,4 +36,6 @@ public interface ILecturaUtil {
 
     void actualizarEstadoYFechaDeUnaLectura(Lectura lecturaAEditar, Estado estado);
 
+    void eliminarTodasLasLecturasPorPerfilYLibro(Integer idPerfil, Libro libro);
+
 }
