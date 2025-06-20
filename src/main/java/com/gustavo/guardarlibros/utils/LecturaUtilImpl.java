@@ -57,18 +57,18 @@ public class LecturaUtilImpl implements ILecturaUtil {
         File archivo = new File(nombreArchivo);
 
         if (archivo.exists()) {
-            System.out.println("--- Leyendo archivo línea por línea ---");
+//            System.out.println("--- Leyendo archivo línea por línea ---");
             try (BufferedReader reader = new BufferedReader(new FileReader(nombreArchivo))) {
                 String linea;
                 int numeroLinea = 1;
                 while ((linea = reader.readLine()) != null) {
-                    System.out.println("Línea " + numeroLinea + ": " + linea);
+                   // System.out.println("Línea " + numeroLinea + ": " + linea);
                     lineas.add(linea);
                     numeroLinea++;
                 }
-                System.out.println("Lectura de archivo completada.");
-                System.out.println("Tamanio: " + lineas.size());
-                System.out.println(conseguirAtributosLectura(lineas));
+              //  System.out.println("Lectura de archivo completada.");
+              //  System.out.println("Tamanio: " + lineas.size());
+              //  System.out.println(conseguirAtributosLectura(lineas));
             } catch (IOException e) {
                 System.err.println("Ocurrió un error al leer el archivo: " + e.getMessage());
                 e.printStackTrace();

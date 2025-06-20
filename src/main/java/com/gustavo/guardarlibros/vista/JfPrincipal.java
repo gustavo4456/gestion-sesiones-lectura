@@ -350,7 +350,7 @@ public class JfPrincipal extends javax.swing.JFrame {
 
         cargarTablaLibrosEnLectura();
 
-        System.out.println("LECTURA SELECCIONADA: " + libroLecturaSeleccionada);
+       // System.out.println("LECTURA SELECCIONADA: " + libroLecturaSeleccionada);
     }//GEN-LAST:event_tbLibrosMouseClicked
 
     private void btnAgregarLecturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarLecturaActionPerformed
@@ -380,7 +380,7 @@ public class JfPrincipal extends javax.swing.JFrame {
 
         cargarTablaLecturasDeLibrosTerminados();
 
-        System.out.println("LECTURA SELECCIONADA: " + libroLecturaTerminadasSeleccionada);
+        //System.out.println("LECTURA SELECCIONADA: " + libroLecturaTerminadasSeleccionada);
     }//GEN-LAST:event_tbLibrosTerminadosMouseClicked
 
     private void cargarElementos() {
@@ -422,8 +422,8 @@ public class JfPrincipal extends javax.swing.JFrame {
 
             List<Lectura> listaLibrosPorLeer = lecturaUtilImpl.getListadoLibrosPorLeerPorPerfil(perfilSeleccionado.getId());
 
-            System.out.println("ENTRO AL CARGAR  LIBROS POR LEER");
-            System.out.println(perfilSeleccionado.getId());
+            // System.out.println("ENTRO AL CARGAR  LIBROS POR LEER");
+          //  System.out.println(perfilSeleccionado.getId());
 
             grillaLibrosPorLeer1.setLecturas(listaLibrosPorLeer);
 
@@ -441,8 +441,8 @@ public class JfPrincipal extends javax.swing.JFrame {
 
             List<Lectura> listaLibrosPorLeer = lecturaUtilImpl.getListadoLibrosTerminadosPorPerfil(perfilSeleccionado.getId());
 
-            System.out.println("ENTRO AL CARGAR  LIBROS TERMINADOS");
-            System.out.println(perfilSeleccionado.getId());
+           // System.out.println("ENTRO AL CARGAR  LIBROS TERMINADOS");
+           // System.out.println(perfilSeleccionado.getId());
 
             grillaLibrosTerminados1.setLecturas(listaLibrosPorLeer);
 
@@ -460,8 +460,8 @@ public class JfPrincipal extends javax.swing.JFrame {
 
             List<Lectura> listaLibrosEnLectura = lecturaUtilImpl.getListadoLibrosEnLecturaPorPerfilYLibro(perfilSeleccionado.getId(), libroLecturaTerminadasSeleccionada.getLibro());
 
-            System.out.println("ENTRO AL CARGAR   LECTURAS DE LIBROS TERMINANDOS");
-            System.out.println(perfilSeleccionado.getId());
+           // System.out.println("ENTRO AL CARGAR   LECTURAS DE LIBROS TERMINANDOS");
+           // System.out.println(perfilSeleccionado.getId());
 
             grillaLibrosEnLectura1.setLecturas(listaLibrosEnLectura);
 
@@ -478,8 +478,8 @@ public class JfPrincipal extends javax.swing.JFrame {
 
             List<Lectura> listaLibrosEnLectura = lecturaUtilImpl.getListadoLibrosEnLecturaPorPerfilYLibro(perfilSeleccionado.getId(), libroLecturaSeleccionada.getLibro());
 
-            System.out.println("ENTRO AL CARGAR  LIBROS EN LECTURA");
-            System.out.println(perfilSeleccionado.getId());
+          //  System.out.println("ENTRO AL CARGAR  LIBROS EN LECTURA");
+          //  System.out.println(perfilSeleccionado.getId());
 
             grillaLibrosEnLectura1.setLecturas(listaLibrosEnLectura);
 

@@ -4,3 +4,7 @@
 4,La Sombra de insmouth,LoveCraft,100
 5,El Señor de los Anillos,anacleo,1200
 6,Juegos del hambre,ana,1200
+7,guera mundial,juancho,200
+8,galaxia,perez,200
+9,marte,jaramildo,100
+10,Un librooooooo,eL AUTO,1200
