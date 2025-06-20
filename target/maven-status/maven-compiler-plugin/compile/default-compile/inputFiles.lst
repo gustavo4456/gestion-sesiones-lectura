@@ -13,6 +13,7 @@
 /home/gustavo/NetBeansProjects/guardarlibros/src/main/java/com/gustavo/guardarlibros/vista/JDialogAgregarLectura.java
 /home/gustavo/NetBeansProjects/guardarlibros/src/main/java/com/gustavo/guardarlibros/vista/JDialogAgregarLibro.java
 /home/gustavo/NetBeansProjects/guardarlibros/src/main/java/com/gustavo/guardarlibros/vista/JDialogAgregarPerfil.java
+/home/gustavo/NetBeansProjects/guardarlibros/src/main/java/com/gustavo/guardarlibros/vista/JDialogEliminarLecturasDeLibroTerminado.java
 /home/gustavo/NetBeansProjects/guardarlibros/src/main/java/com/gustavo/guardarlibros/vista/JfPrincipal.java
 /home/gustavo/NetBeansProjects/guardarlibros/src/main/java/com/gustavo/guardarlibros/vista/grillas/GrillaLibrosEnLectura.java
 /home/gustavo/NetBeansProjects/guardarlibros/src/main/java/com/gustavo/guardarlibros/vista/grillas/GrillaLibrosPorLeer.java

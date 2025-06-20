@@ -70,7 +70,7 @@ public class JfPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnPasarLecturaATerminado = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        btnPasarTerminadoALectura = new javax.swing.JButton();
+        btnEliminarLibroTerminado = new javax.swing.JButton();
         jMenuBarra = new javax.swing.JMenuBar();
         jMenuNuevo = new javax.swing.JMenu();
         jItemNuevoLibro = new javax.swing.JMenuItem();
@@ -231,8 +231,13 @@ public class JfPrincipal extends javax.swing.JFrame {
         jLabel2.setPreferredSize(new java.awt.Dimension(15, 20));
         jPanel1.add(jLabel2);
 
-        btnPasarTerminadoALectura.setText("<------");
-        jPanel1.add(btnPasarTerminadoALectura);
+        btnEliminarLibroTerminado.setText("<---Eliminar");
+        btnEliminarLibroTerminado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarLibroTerminadoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminarLibroTerminado);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -350,7 +355,7 @@ public class JfPrincipal extends javax.swing.JFrame {
 
         cargarTablaLibrosEnLectura();
 
-       // System.out.println("LECTURA SELECCIONADA: " + libroLecturaSeleccionada);
+        // System.out.println("LECTURA SELECCIONADA: " + libroLecturaSeleccionada);
     }//GEN-LAST:event_tbLibrosMouseClicked
 
     private void btnAgregarLecturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarLecturaActionPerformed
@@ -365,6 +370,8 @@ public class JfPrincipal extends javax.swing.JFrame {
         if (perfilSeleccionado != null && libroLecturaSeleccionada != null) {
             JDialogAgregarLectura agregarLectura = new JDialogAgregarLectura(this, rootPaneCheckingEnabled, libroLecturaSeleccionada, perfilSeleccionado);
             agregarLectura.setVisible(true);
+            cargarElementos();
+
         } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un perfil y un libro.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 
@@ -383,6 +390,30 @@ public class JfPrincipal extends javax.swing.JFrame {
         //System.out.println("LECTURA SELECCIONADA: " + libroLecturaTerminadasSeleccionada);
     }//GEN-LAST:event_tbLibrosTerminadosMouseClicked
 
+    private void btnEliminarLibroTerminadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarLibroTerminadoActionPerformed
+        // TODO add your handling code here:
+
+        perfilSeleccionado = (Perfil) cbPerfil.getSelectedItem();
+
+        if (tbLibrosTerminados.getSelectedRow() != -1) {
+            libroLecturaTerminadasSeleccionada = grillaLibrosTerminados1.getLectura(tbLibrosTerminados.getSelectedRow());
+        }
+
+        if (perfilSeleccionado != null && libroLecturaTerminadasSeleccionada != null) {
+            JDialogEliminarLecturasDeLibroTerminado jDialogEliminarLecturasDeLibroTerminado = new JDialogEliminarLecturasDeLibroTerminado(this, rootPaneCheckingEnabled, libroLecturaTerminadasSeleccionada, perfilSeleccionado);
+
+            jDialogEliminarLecturasDeLibroTerminado.setVisible(true);
+
+            cargarElementos();
+
+            this.libroLecturaTerminadasSeleccionada = null;
+            this.perfilSeleccionado = null;
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un perfil y un libro que haya terminado.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_btnEliminarLibroTerminadoActionPerformed
+
     private void cargarElementos() {
 
         cargarCbPerfil();
@@ -393,6 +424,7 @@ public class JfPrincipal extends javax.swing.JFrame {
 
         libroLecturaSeleccionada = null;
         perfilSeleccionado = null;
+        libroLecturaTerminadasSeleccionada = null;
 
     }
 
@@ -423,8 +455,7 @@ public class JfPrincipal extends javax.swing.JFrame {
             List<Lectura> listaLibrosPorLeer = lecturaUtilImpl.getListadoLibrosPorLeerPorPerfil(perfilSeleccionado.getId());
 
             // System.out.println("ENTRO AL CARGAR  LIBROS POR LEER");
-          //  System.out.println(perfilSeleccionado.getId());
-
+            //  System.out.println(perfilSeleccionado.getId());
             grillaLibrosPorLeer1.setLecturas(listaLibrosPorLeer);
 
         } else {
@@ -441,9 +472,8 @@ public class JfPrincipal extends javax.swing.JFrame {
 
             List<Lectura> listaLibrosPorLeer = lecturaUtilImpl.getListadoLibrosTerminadosPorPerfil(perfilSeleccionado.getId());
 
-           // System.out.println("ENTRO AL CARGAR  LIBROS TERMINADOS");
-           // System.out.println(perfilSeleccionado.getId());
-
+            // System.out.println("ENTRO AL CARGAR  LIBROS TERMINADOS");
+            // System.out.println(perfilSeleccionado.getId());
             grillaLibrosTerminados1.setLecturas(listaLibrosPorLeer);
 
         } else {
@@ -460,9 +490,8 @@ public class JfPrincipal extends javax.swing.JFrame {
 
             List<Lectura> listaLibrosEnLectura = lecturaUtilImpl.getListadoLibrosEnLecturaPorPerfilYLibro(perfilSeleccionado.getId(), libroLecturaTerminadasSeleccionada.getLibro());
 
-           // System.out.println("ENTRO AL CARGAR   LECTURAS DE LIBROS TERMINANDOS");
-           // System.out.println(perfilSeleccionado.getId());
-
+            // System.out.println("ENTRO AL CARGAR   LECTURAS DE LIBROS TERMINANDOS");
+            // System.out.println(perfilSeleccionado.getId());
             grillaLibrosEnLectura1.setLecturas(listaLibrosEnLectura);
 
         } else {
@@ -478,9 +507,8 @@ public class JfPrincipal extends javax.swing.JFrame {
 
             List<Lectura> listaLibrosEnLectura = lecturaUtilImpl.getListadoLibrosEnLecturaPorPerfilYLibro(perfilSeleccionado.getId(), libroLecturaSeleccionada.getLibro());
 
-          //  System.out.println("ENTRO AL CARGAR  LIBROS EN LECTURA");
-          //  System.out.println(perfilSeleccionado.getId());
-
+            //  System.out.println("ENTRO AL CARGAR  LIBROS EN LECTURA");
+            //  System.out.println(perfilSeleccionado.getId());
             grillaLibrosEnLectura1.setLecturas(listaLibrosEnLectura);
 
         } else {
@@ -516,9 +544,9 @@ public class JfPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAgregarLectura;
+    private javax.swing.JButton btnEliminarLibroTerminado;
     private javax.swing.JButton btnPasarLecturaALibros;
     private javax.swing.JButton btnPasarLecturaATerminado;
-    private javax.swing.JButton btnPasarTerminadoALectura;
     private javax.swing.JComboBox<String> cbPerfil;
     private com.gustavo.guardarlibros.vista.grillas.GrillaLibrosEnLectura grillaLibrosEnLectura1;
     private com.gustavo.guardarlibros.vista.grillas.GrillaLibrosPorLeer grillaLibrosPorLeer1;
