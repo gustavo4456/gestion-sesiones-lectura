@@ -130,6 +130,7 @@ public class LecturaUtilImpl implements ILecturaUtil {
                     return lectura;
 
                 })
+                .sorted(Comparator.comparing(Lectura::getFechaInicio).reversed())
                 .collect(Collectors.toList());
 
         return listaLecturas;
@@ -155,6 +156,7 @@ public class LecturaUtilImpl implements ILecturaUtil {
         List<Lectura> lecturas = listadoLectura.stream()
                 .distinct()
                 .filter(l -> l.getPerfil().getId().equals(idPerfil) && l.getEstado().equals(Estado.NO_LEIDO))
+                .sorted(Comparator.comparing(Lectura::getFechaInicio).reversed())
                 .collect(Collectors.toList());
 
         return lecturas;
@@ -167,6 +169,7 @@ public class LecturaUtilImpl implements ILecturaUtil {
         List<Lectura> lecturas = listadoLectura.stream()
                 .distinct()
                 .filter(l -> l.getPerfil().getId().equals(idPerfil) && l.getEstado().equals(Estado.LEYENDO) && l.getLibro().equals(libro))
+                .sorted(Comparator.comparing(Lectura::getFechaInicio).reversed())
                 .collect(Collectors.toList());
 
         return lecturas;
@@ -179,6 +182,7 @@ public class LecturaUtilImpl implements ILecturaUtil {
         List<Lectura> lecturas = listadoLectura.stream()
                 .distinct()
                 .filter(l -> l.getPerfil().getId().equals(idPerfil) && l.getEstado().equals(Estado.TERMINADO))
+                .sorted(Comparator.comparing(Lectura::getFechaInicio).reversed())
                 .collect(Collectors.toList());
 
         return lecturas;
@@ -219,6 +223,7 @@ public class LecturaUtilImpl implements ILecturaUtil {
                     }
                     return l;
                 })
+                .sorted(Comparator.comparing(Lectura::getFechaInicio).reversed())
                 .collect(Collectors.toList());
 
         crearArchivoPorLista(listaLecFiltrada, false);
@@ -258,6 +263,7 @@ public class LecturaUtilImpl implements ILecturaUtil {
         List<Lectura> lecturas = listadoLectura.stream()
                 .distinct()
                 .filter(l -> !(l.getPerfil().getId().equals(idPerfil) && l.getEstado().equals(Estado.LEYENDO) && l.getLibro().equals(libro)))
+                .sorted(Comparator.comparing(Lectura::getFechaInicio).reversed())
                 .collect(Collectors.toList());
 
         crearArchivoPorLista(lecturas, false);
