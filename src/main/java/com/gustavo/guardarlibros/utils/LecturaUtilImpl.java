@@ -277,6 +277,7 @@ public class LecturaUtilImpl implements ILecturaUtil {
 
         Optional<LocalDate> lecturaReciente = lecturas.stream()
                 .distinct()
+                .filter(l -> l.getPerfil().getId().equals(idPerfil) && l.getEstado().equals(Estado.LEYENDO) && l.getLibro().equals(libro))
                 .sorted(Comparator.comparing(Lectura::getFechaInicio).reversed())
                 .map(Lectura::getFechaInicio)
                 .findFirst();
