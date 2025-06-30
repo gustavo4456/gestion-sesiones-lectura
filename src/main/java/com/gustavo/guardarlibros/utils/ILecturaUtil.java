@@ -7,6 +7,7 @@ package com.gustavo.guardarlibros.utils;
 import com.gustavo.guardarlibros.modelo.Estado;
 import com.gustavo.guardarlibros.modelo.Lectura;
 import com.gustavo.guardarlibros.modelo.Libro;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +34,8 @@ public interface ILecturaUtil {
     List<Lectura> getListadoLibrosTerminadosPorPerfil(Integer idPerfil);
 
     Optional<Integer> getUltimaPaginaGuardadaPorLibroEnLectura(Integer idPerfil, Libro libro);
+    
+    Optional<LocalDate> getFechaMasReciente(Integer idPerfil, Libro libro);
 
     void actualizarEstadoYFechaDeUnaLectura(Lectura lecturaAEditar, Estado estado);
 

@@ -270,4 +270,18 @@ public class LecturaUtilImpl implements ILecturaUtil {
 
     }
 
+    @Override
+    public Optional<LocalDate> getFechaMasReciente(Integer idPerfil, Libro libro) {
+
+        List<Lectura> lecturas = leerArchivo();
+
+        Optional<LocalDate> lecturaReciente = lecturas.stream()
+                .distinct()
+                .sorted(Comparator.comparing(Lectura::getFechaInicio).reversed())
+                .map(Lectura::getFechaInicio)
+                .findFirst();
+
+        return lecturaReciente;
+    }
+
 }
