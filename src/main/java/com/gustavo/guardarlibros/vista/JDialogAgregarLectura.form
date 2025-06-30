@@ -50,7 +50,7 @@
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="panelParaDatos" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="23" max="32767" attributes="0"/>
+                  <EmptySpace pref="33" max="32767" attributes="0"/>
                   <Component id="panelParaBoton" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -210,7 +210,7 @@
             <Component class="javax.swing.JTextField" name="txtLibro">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Roboto" size="18" style="1"/>
+                  <Font name="Roboto" size="14" style="1"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Libro en lectra, ya previamente seleccionado."/>
                 <Property name="enabled" type="boolean" value="false"/>
@@ -225,7 +225,7 @@
             <Component class="javax.swing.JTextField" name="txtPerfil">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Roboto" size="18" style="1"/>
+                  <Font name="Roboto" size="14" style="1"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Perfil de lectura, ya previamente seleccionado."/>
                 <Property name="enabled" type="boolean" value="false"/>

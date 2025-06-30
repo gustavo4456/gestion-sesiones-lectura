@@ -50,6 +50,7 @@ public class JDialogAgregarLectura extends javax.swing.JDialog {
         txtFecha.setText(fechaActual.toString());
         txtLibro.setText(libro.getNombre() + " de " + libro.getAutor());
         txtPerfil.setText(perfil.getNombre());
+        lblPagina.setText("Pagina (Total " + this.libro.getCantidadPaginas() + ")" + ":");
 
     }
 
@@ -141,14 +142,14 @@ public class JDialogAgregarLectura extends javax.swing.JDialog {
         lblLibro.setText("Libro:");
         lblLibro.setToolTipText("Libro en lectra, ya previamente seleccionado.");
 
-        txtLibro.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        txtLibro.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         txtLibro.setToolTipText("Libro en lectra, ya previamente seleccionado.");
         txtLibro.setEnabled(false);
 
         lblPerfil.setText("Perfil:");
         lblPerfil.setToolTipText("Perfil de lectura, ya previamente seleccionado.");
 
-        txtPerfil.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        txtPerfil.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         txtPerfil.setToolTipText("Perfil de lectura, ya previamente seleccionado.");
         txtPerfil.setEnabled(false);
 
@@ -290,7 +291,7 @@ public class JDialogAgregarLectura extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelParaDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(panelParaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
