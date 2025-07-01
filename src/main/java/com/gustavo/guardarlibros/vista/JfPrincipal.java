@@ -25,6 +25,7 @@ public class JfPrincipal extends javax.swing.JFrame {
 
     private Lectura libroLecturaSeleccionada;
     private Lectura libroLecturaTerminadasSeleccionada;
+    private Lectura libroEnEstadoLeyendoSeleccionada; //tabla del medio
     private Perfil perfilSeleccionado;
 
     /**
@@ -213,6 +214,11 @@ public class JfPrincipal extends javax.swing.JFrame {
         jPanelInternoDeLeerAEnLectura.add(jLabel1);
 
         btnEditarLectura.setText("Editar Lectura");
+        btnEditarLectura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarLecturaActionPerformed(evt);
+            }
+        });
         jPanelInternoDeLeerAEnLectura.add(btnEditarLectura);
 
         jPaneLeerAEnLectura.add(jPanelInternoDeLeerAEnLectura, new java.awt.GridBagConstraints());
@@ -410,6 +416,26 @@ public class JfPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEliminarLibroTerminadoActionPerformed
 
+    private void btnEditarLecturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarLecturaActionPerformed
+        // TODO add your handling code here:
+
+        perfilSeleccionado = (Perfil) cbPerfil.getSelectedItem();
+
+        if (tbLectura.getSelectedRow() != -1) {
+            libroEnEstadoLeyendoSeleccionada = grillaLibrosEnLectura1.getLectura(tbLectura.getSelectedRow());
+        }
+
+        if (perfilSeleccionado != null && libroEnEstadoLeyendoSeleccionada != null) {
+            JDialogEditarLectura editarLectura = new JDialogEditarLectura(this, rootPaneCheckingEnabled, libroEnEstadoLeyendoSeleccionada, perfilSeleccionado);
+            editarLectura.setVisible(true);
+            cargarElementos();
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un perfil y una Lectura a editar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_btnEditarLecturaActionPerformed
+
     private void cargarElementos() {
 
         cargarCbPerfil();
@@ -421,6 +447,7 @@ public class JfPrincipal extends javax.swing.JFrame {
         libroLecturaSeleccionada = null;
         perfilSeleccionado = null;
         libroLecturaTerminadasSeleccionada = null;
+        libroEnEstadoLeyendoSeleccionada = null;
 
     }
 

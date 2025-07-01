@@ -51,6 +51,9 @@ public class JDialogEditarLectura extends javax.swing.JDialog {
         txtLibro.setText(libro.getNombre() + " de " + libro.getAutor());
         txtPerfil.setText(perfil.getNombre());
         lblPagina.setText("Pagina (Total " + this.libro.getCantidadPaginas() + ")" + ":");
+        txtPagina.setText(String.valueOf(lectura.getPaginaActual()));
+        txtFecha.setText(String.valueOf(lectura.getFechaInicio()));
+        txtTiempo.setText(this.lectura.getMinutosLeidos().toString());
 
     }
 
@@ -82,7 +85,7 @@ public class JDialogEditarLectura extends javax.swing.JDialog {
         txtTiempo = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Crear nueva lectura");
+        setTitle("Editar nueva lectura");
 
         lblTitulo.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -232,19 +235,16 @@ public class JDialogEditarLectura extends javax.swing.JDialog {
         panelParaDatosLayout.setHorizontalGroup(
             panelParaDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelParaDatosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelParaDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelParaDatosLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addGroup(panelParaDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblPagina)
-                            .addComponent(lblFecha)
-                            .addComponent(lblPerfil)
-                            .addComponent(lblLibro)))
+                .addGap(15, 15, 15)
+                .addGroup(panelParaDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblPagina)
+                    .addComponent(lblFecha)
+                    .addComponent(lblPerfil)
+                    .addComponent(lblLibro)
                     .addComponent(lblTiempo))
                 .addGap(18, 18, 18)
                 .addGroup(panelParaDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTiempo)
+                    .addComponent(txtTiempo, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
                     .addComponent(txtLibro)
                     .addComponent(txtPerfil)
                     .addComponent(txtPagina)
