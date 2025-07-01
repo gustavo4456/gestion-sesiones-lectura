@@ -285,4 +285,23 @@ public class LecturaUtilImpl implements ILecturaUtil {
         return lecturaReciente;
     }
 
+    @Override
+    public void editarUnaLectura(Lectura lecturaEditada) {
+
+        List<Lectura> lecturas = leerArchivo();
+
+        List<Lectura> listaLecturaModificada = lecturas.stream()
+                .distinct()
+                .map(l -> {
+                    if (l.getId().equals(lecturaEditada.getId())) {
+                        return lecturaEditada;
+                    } else {
+                        return l;
+                    }
+                })
+                .collect(Collectors.toList());
+
+        crearArchivoPorLista(listaLecturaModificada, false);
+    }
+
 }

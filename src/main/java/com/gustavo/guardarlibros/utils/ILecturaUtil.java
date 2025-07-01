@@ -34,11 +34,13 @@ public interface ILecturaUtil {
     List<Lectura> getListadoLibrosTerminadosPorPerfil(Integer idPerfil);
 
     Optional<Integer> getUltimaPaginaGuardadaPorLibroEnLectura(Integer idPerfil, Libro libro);
-    
+
     Optional<LocalDate> getFechaMasReciente(Integer idPerfil, Libro libro);
 
     void actualizarEstadoYFechaDeUnaLectura(Lectura lecturaAEditar, Estado estado);
 
     void eliminarTodasLasLecturasPorPerfilYLibro(Integer idPerfil, Libro libro);
+
+    void editarUnaLectura(Lectura lecturaEditada);
 
 }
