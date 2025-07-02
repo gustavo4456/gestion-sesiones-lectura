@@ -349,13 +349,11 @@ public class JDialogEditarLectura extends javax.swing.JDialog {
                 if (esValidaLaFechaAIngresar) {
                     if (esValidaLaPaginaIngresada) {
 
-                        List<Integer> ids = lecturaUtilImpl.getIds();
-
                         Lectura nuevaLectura = new Lectura();
 
                         if (esLaPaginaIngresaLaUltimaDelLibro) {
 
-                            nuevaLectura.setId(ids);
+                            nuevaLectura.setId(lectura.getId());
                             nuevaLectura.setLibro(libro);
                             nuevaLectura.setPerfil(perfil);
                             nuevaLectura.setFechaInicio(LocalDate.parse(txtFecha.getText()));
@@ -363,7 +361,7 @@ public class JDialogEditarLectura extends javax.swing.JDialog {
                             nuevaLectura.setPaginaActual(Integer.valueOf(txtPagina.getText()));
                             nuevaLectura.setEstado(Estado.LEYENDO);
 
-                            lecturaUtilImpl.crearArchivo(nuevaLectura, true);
+                            lecturaUtilImpl.editarUnaLectura(nuevaLectura);
 
                             //ACA DEBO MODIFICAR LA LECTURA QUE ESTA EN ESTADO DE NO_LEIDO Y PASARLO A TERMINADO
                             lecturaUtilImpl.actualizarEstadoYFechaDeUnaLectura(lectura, Estado.TERMINADO);
@@ -372,7 +370,7 @@ public class JDialogEditarLectura extends javax.swing.JDialog {
 
                         } else {
 
-                            nuevaLectura.setId(ids);
+                            nuevaLectura.setId(lectura.getId());
                             nuevaLectura.setLibro(libro);
                             nuevaLectura.setPerfil(perfil);
                             nuevaLectura.setFechaInicio(LocalDate.parse(txtFecha.getText()));
@@ -380,9 +378,9 @@ public class JDialogEditarLectura extends javax.swing.JDialog {
                             nuevaLectura.setPaginaActual(Integer.valueOf(txtPagina.getText()));
                             nuevaLectura.setEstado(Estado.LEYENDO);
 
-                            lecturaUtilImpl.crearArchivo(nuevaLectura, true);
+                            lecturaUtilImpl.editarUnaLectura(nuevaLectura);
 
-                            JOptionPane.showMessageDialog(this, "Se guardo la lectura.", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(this, "Se Edito la lectura.", "Exito", JOptionPane.INFORMATION_MESSAGE);
                         }
 
                     } else {
