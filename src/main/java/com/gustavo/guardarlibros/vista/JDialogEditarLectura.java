@@ -319,89 +319,177 @@ public class JDialogEditarLectura extends javax.swing.JDialog {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        boolean sePuedeGuardar = !txtLibro.getText().isEmpty() && !txtPerfil.getText().isEmpty() && !txtFecha.getText().isEmpty() && !txtTiempo.getText().isEmpty() && !txtPagina.getText().isEmpty();
+//        boolean sePuedeGuardar = !txtLibro.getText().isEmpty() && !txtPerfil.getText().isEmpty() && !txtFecha.getText().isEmpty() && !txtTiempo.getText().isEmpty() && !txtPagina.getText().isEmpty();
+//
+//        if (sePuedeGuardar) {
+//
+//            //debo continuar con una forma de que el usuario no pueda ingresar un numero de pagina actual que no supere el limite o que ya se haya leido
+//            Optional<Integer> ultimaPaginaOpt = lecturaUtilImpl.getUltimaPaginaGuardadaPorLibroEnLectura(perfil.getId(), libro);
+//
+//            // fecha mas reciente de lectura ya ingresada, es para evitar que el usuario ingrese una fecha pasada, solo puede agregar una fecha posterior a la ultima fecha ingresada.
+//            Optional<LocalDate> fechaMasRecienteYaIngresadaOptional = lecturaUtilImpl.getFechaMasReciente(perfil.getId(), libro);
+//
+//            Integer ultimaPaginaLeida = ultimaPaginaOpt.isPresent() ? ultimaPaginaOpt.get() : 0;
+//            Integer paginaFinalLibro = libro.getCantidadPaginas();
+//
+//            Integer paginaAGuardar = Integer.valueOf(txtPagina.getText());
+//
+//            boolean esValidaLaPaginaIngresada = paginaAGuardar > ultimaPaginaLeida && paginaAGuardar <= paginaFinalLibro && ultimaPaginaLeida < paginaFinalLibro;
+//            boolean esLaPaginaIngresaLaUltimaDelLibro = paginaAGuardar.equals(paginaFinalLibro);
+//
+//            boolean esValidaLaFechaAIngresar = false;
+//
+//            if (fechaMasRecienteYaIngresadaOptional.isPresent()) {
+//                esValidaLaFechaAIngresar = LocalDate.parse(txtFecha.getText()).isAfter(fechaMasRecienteYaIngresadaOptional.get());
+//            } else {
+//                esValidaLaFechaAIngresar = true;
+//            }
+//
+//            if (!LocalDate.parse(txtFecha.getText()).isAfter(LocalDate.now())) {
+//                if (esValidaLaFechaAIngresar) {
+//                    if (esValidaLaPaginaIngresada) {
+//
+//                        Lectura nuevaLectura = new Lectura();
+//
+//                        if (esLaPaginaIngresaLaUltimaDelLibro) {
+//
+//                            nuevaLectura.setId(lectura.getId());
+//                            nuevaLectura.setLibro(libro);
+//                            nuevaLectura.setPerfil(perfil);
+//                            nuevaLectura.setFechaInicio(LocalDate.parse(txtFecha.getText()));
+//                            nuevaLectura.setMinutosLeidos(Integer.valueOf(txtTiempo.getText()));
+//                            nuevaLectura.setPaginaActual(Integer.valueOf(txtPagina.getText()));
+//                            nuevaLectura.setEstado(Estado.LEYENDO);
+//
+//                            lecturaUtilImpl.editarUnaLectura(nuevaLectura);
+//
+//                            //ACA DEBO MODIFICAR LA LECTURA QUE ESTA EN ESTADO DE NO_LEIDO Y PASARLO A TERMINADO
+//                            lecturaUtilImpl.actualizarEstadoYFechaDeUnaLectura(lectura, Estado.TERMINADO);
+//
+//                            JOptionPane.showMessageDialog(this, "Acaba de ingresar la ultima pagina del libro. Su libro pasara a la lista de Libros terminados.", "Información", JOptionPane.INFORMATION_MESSAGE);
+//
+//                        } else {
+//
+//                            nuevaLectura.setId(lectura.getId());
+//                            nuevaLectura.setLibro(libro);
+//                            nuevaLectura.setPerfil(perfil);
+//                            nuevaLectura.setFechaInicio(LocalDate.parse(txtFecha.getText()));
+//                            nuevaLectura.setMinutosLeidos(Integer.valueOf(txtTiempo.getText()));
+//                            nuevaLectura.setPaginaActual(Integer.valueOf(txtPagina.getText()));
+//                            nuevaLectura.setEstado(Estado.LEYENDO);
+//
+//                            lecturaUtilImpl.editarUnaLectura(nuevaLectura);
+//
+//                            JOptionPane.showMessageDialog(this, "Se Edito la lectura.", "Exito", JOptionPane.INFORMATION_MESSAGE);
+//                        }
+//
+//                    } else {
+//                        JOptionPane.showMessageDialog(this, "Ingrese un número de página adecuada. No puede ser menor o igual al la pagina de la ultima lectura. (Total de paginas: " + libro.getCantidadPaginas() + ").", "Advertencia", JOptionPane.WARNING_MESSAGE);
+//
+//                    }
+//                } else {
+//                    JOptionPane.showMessageDialog(this, "Ingrese una fecha Valida, no puede colocar una fecha que sea anterior a las fechas de lecturas pasadas. ", "Advertencia", JOptionPane.WARNING_MESSAGE);
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "No puede ingresar Fechas futuras.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+//
+//            }
+//
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Complete todos los campos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+//
+//        }
 
-        if (sePuedeGuardar) {
-
-            //debo continuar con una forma de que el usuario no pueda ingresar un numero de pagina actual que no supere el limite o que ya se haya leido
-            Optional<Integer> ultimaPaginaOpt = lecturaUtilImpl.getUltimaPaginaGuardadaPorLibroEnLectura(perfil.getId(), libro);
-
-            // fecha mas reciente de lectura ya ingresada, es para evitar que el usuario ingrese una fecha pasada, solo puede agregar una fecha posterior a la ultima fecha ingresada.
-            Optional<LocalDate> fechaMasRecienteYaIngresadaOptional = lecturaUtilImpl.getFechaMasReciente(perfil.getId(), libro);
-
-            Integer ultimaPaginaLeida = ultimaPaginaOpt.isPresent() ? ultimaPaginaOpt.get() : 0;
-            Integer paginaFinalLibro = libro.getCantidadPaginas();
-
-            Integer paginaAGuardar = Integer.valueOf(txtPagina.getText());
-
-            boolean esValidaLaPaginaIngresada = paginaAGuardar > ultimaPaginaLeida && paginaAGuardar <= paginaFinalLibro && ultimaPaginaLeida < paginaFinalLibro;
-            boolean esLaPaginaIngresaLaUltimaDelLibro = paginaAGuardar.equals(paginaFinalLibro);
-
-            boolean esValidaLaFechaAIngresar = false;
-
-            if (fechaMasRecienteYaIngresadaOptional.isPresent()) {
-                esValidaLaFechaAIngresar = LocalDate.parse(txtFecha.getText()).isAfter(fechaMasRecienteYaIngresadaOptional.get());
-            } else {
-                esValidaLaFechaAIngresar = true;
-            }
-
-            if (!LocalDate.parse(txtFecha.getText()).isAfter(LocalDate.now())) {
-                if (esValidaLaFechaAIngresar) {
-                    if (esValidaLaPaginaIngresada) {
-
-                        Lectura nuevaLectura = new Lectura();
-
-                        if (esLaPaginaIngresaLaUltimaDelLibro) {
-
-                            nuevaLectura.setId(lectura.getId());
-                            nuevaLectura.setLibro(libro);
-                            nuevaLectura.setPerfil(perfil);
-                            nuevaLectura.setFechaInicio(LocalDate.parse(txtFecha.getText()));
-                            nuevaLectura.setMinutosLeidos(Integer.valueOf(txtTiempo.getText()));
-                            nuevaLectura.setPaginaActual(Integer.valueOf(txtPagina.getText()));
-                            nuevaLectura.setEstado(Estado.LEYENDO);
-
-                            lecturaUtilImpl.editarUnaLectura(nuevaLectura);
-
-                            //ACA DEBO MODIFICAR LA LECTURA QUE ESTA EN ESTADO DE NO_LEIDO Y PASARLO A TERMINADO
-                            lecturaUtilImpl.actualizarEstadoYFechaDeUnaLectura(lectura, Estado.TERMINADO);
-
-                            JOptionPane.showMessageDialog(this, "Acaba de ingresar la ultima pagina del libro. Su libro pasara a la lista de Libros terminados.", "Información", JOptionPane.INFORMATION_MESSAGE);
-
-                        } else {
-
-                            nuevaLectura.setId(lectura.getId());
-                            nuevaLectura.setLibro(libro);
-                            nuevaLectura.setPerfil(perfil);
-                            nuevaLectura.setFechaInicio(LocalDate.parse(txtFecha.getText()));
-                            nuevaLectura.setMinutosLeidos(Integer.valueOf(txtTiempo.getText()));
-                            nuevaLectura.setPaginaActual(Integer.valueOf(txtPagina.getText()));
-                            nuevaLectura.setEstado(Estado.LEYENDO);
-
-                            lecturaUtilImpl.editarUnaLectura(nuevaLectura);
-
-                            JOptionPane.showMessageDialog(this, "Se Edito la lectura.", "Exito", JOptionPane.INFORMATION_MESSAGE);
-                        }
-
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Ingrese un número de página adecuada. No puede ser menor o igual al la pagina de la ultima lectura. (Total de paginas: " + libro.getCantidadPaginas() + ").", "Advertencia", JOptionPane.WARNING_MESSAGE);
-
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(this, "Ingrese una fecha Valida, no puede colocar una fecha que sea anterior a las fechas de lecturas pasadas. ", "Advertencia", JOptionPane.WARNING_MESSAGE);
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "No puede ingresar Fechas futuras.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(this, "Complete todos los campos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-
-        }
+        System.out.println("Se puede ingresar la fecha ? : " + esValidaLaFecha(LocalDate.parse(txtFecha.getText())));
 
 
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private boolean esValidaLaFecha(LocalDate fechaAIngresar) {
+
+        List<Lectura> listaDeLecturas = lecturaUtilImpl.getListadoLibrosEnLecturaPorPerfilYLibro(perfil.getId(), libro);
+
+        if (!listaDeLecturas.isEmpty()) {
+            Lectura actual = null;
+            Lectura siguiente = null;
+            Lectura anterior = null;
+
+            for (int i = 0; i < listaDeLecturas.size(); i++) {
+                if (listaDeLecturas.get(i).equals(lectura)) {
+
+                    actual = listaDeLecturas.get(i);
+
+                    try {
+                        siguiente = listaDeLecturas.get(i + 1);
+                    } catch (IndexOutOfBoundsException e) {
+                        siguiente = null;
+                    }
+
+                    try {
+                        anterior = listaDeLecturas.get(i - 1);
+                    } catch (IndexOutOfBoundsException e) {
+                        anterior = null;
+                    }
+
+                    break;
+                }
+            }
+
+            if (actual != null) {
+                // Validación de la fecha actual: debe ser anterior o igual a hoy
+                if (LocalDate.parse(txtFecha.getText()).isBefore(LocalDate.now()) || LocalDate.parse(txtFecha.getText()).isEqual(LocalDate.now())) {
+                    // Si hay dos elementos y el que se quiere editar es el primero
+                    if (anterior == null && siguiente != null) {
+                        if (fechaAIngresar.isAfter(siguiente.getFechaInicio())) {
+                            return true;
+                        } else {
+                            JOptionPane.showMessageDialog(null, "La fecha debe ser posterior a la fecha de la siguiente lectura en la lista.", "Fecha Inválida", JOptionPane.ERROR_MESSAGE);
+                        }
+
+                        // Si hay dos elementos, pero el elemento a editar es el ultimo
+                    } else if (anterior != null && siguiente == null) {
+                        if (fechaAIngresar.isBefore(anterior.getFechaInicio())) {
+                            return true;
+                        } else {
+                            JOptionPane.showMessageDialog(null, "La fecha debe ser anterior a la fecha de la lectura previa en la lista.", "Fecha Inválida", JOptionPane.ERROR_MESSAGE);
+                        }
+
+                        // Cuando hay solo un elemento
+                    } else if (anterior == null && siguiente == null) {
+                        if (fechaAIngresar.isBefore(LocalDate.now()) || fechaAIngresar.isEqual(LocalDate.now())) {
+                            return true;
+                        } else {
+                            JOptionPane.showMessageDialog(null, "La fecha debe ser igual o anterior a la fecha actual.", "Fecha Inválida", JOptionPane.ERROR_MESSAGE);
+                        }
+
+                        // Hay 3 elementos y el elemento a editar es el del medio
+                    } else if (anterior != null && siguiente != null) {
+                        if (fechaAIngresar.isBefore(anterior.getFechaInicio()) && fechaAIngresar.isAfter(siguiente.getFechaInicio())) {
+                            return true;
+                        } else {
+                            JOptionPane.showMessageDialog(null, "La fecha debe estar entre la lectura anterior y la siguiente.", "Fecha Inválida", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                } else {
+                    // Mensaje si la fecha parseada de txtFecha.getText() es futura
+                    JOptionPane.showMessageDialog(null, "La fecha ingresada no puede ser una fecha futura.", "Fecha Inválida", JOptionPane.ERROR_MESSAGE);
+                }
+                return false; // Retorna false si ninguna de las condiciones de arriba retornó true
+            } else {
+                // Mensaje si la lectura actual no se encontró en la lista
+                JOptionPane.showMessageDialog(null, "La lectura que intenta editar no fue encontrada en la lista.", "Error de Búsqueda", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        } else {
+            // Si la lista de lecturas está vacía, solo validamos que la fecha no sea futura
+            if (fechaAIngresar.isBefore(LocalDate.now()) || fechaAIngresar.isEqual(LocalDate.now())) {
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "No hay lecturas registradas. La fecha debe ser igual o anterior a la fecha actual.", "Fecha Inválida", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        }
+    }
 
     /**
      * @param args the command line arguments
