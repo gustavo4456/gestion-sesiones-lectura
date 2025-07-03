@@ -481,13 +481,9 @@ public class JDialogEditarLectura extends javax.swing.JDialog {
                 return false;
             }
         } else {
-            // Si la lista de lecturas está vacía, solo validamos que la fecha no sea futura
-            if (fechaAIngresar.isBefore(LocalDate.now()) || fechaAIngresar.isEqual(LocalDate.now())) {
-                return true;
-            } else {
-                JOptionPane.showMessageDialog(null, "No hay lecturas registradas. La fecha debe ser igual o anterior a la fecha actual.", "Fecha Inválida", JOptionPane.ERROR_MESSAGE);
-                return false;
-            }
+
+            JOptionPane.showMessageDialog(null, "No hay lecturas registradas. La fecha debe ser igual o anterior a la fecha actual.", "Fecha Inválida", JOptionPane.ERROR_MESSAGE);
+            return false;
         }
     }
 
