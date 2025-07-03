@@ -400,7 +400,7 @@ public class JDialogEditarLectura extends javax.swing.JDialog {
 //
 //        }
 
-        System.out.println("Se puede ingresar la fecha ? : " + esValidaLaFecha(LocalDate.parse(txtFecha.getText())));
+        System.out.println("Se puede ingresar la pagina ? : " + esValidaLaCantidadDePaginas(Integer.valueOf(txtPagina.getText())));
 
 
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -488,6 +488,89 @@ public class JDialogEditarLectura extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "No hay lecturas registradas. La fecha debe ser igual o anterior a la fecha actual.", "Fecha Inválida", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
+        }
+    }
+
+    private boolean esValidaLaCantidadDePaginas(Integer paginaAIngresar) {
+
+        List<Lectura> listaDeLecturas = lecturaUtilImpl.getListadoLibrosEnLecturaPorPerfilYLibro(perfil.getId(), libro);
+
+        if (!listaDeLecturas.isEmpty()) {
+            Lectura actual = null;
+            Lectura siguiente = null;
+            Lectura anterior = null;
+
+            for (int i = 0; i < listaDeLecturas.size(); i++) {
+                if (listaDeLecturas.get(i).equals(lectura)) {
+
+                    actual = listaDeLecturas.get(i);
+
+                    try {
+                        siguiente = listaDeLecturas.get(i + 1);
+                    } catch (IndexOutOfBoundsException e) {
+                        siguiente = null;
+                    }
+
+                    try {
+                        anterior = listaDeLecturas.get(i - 1);
+                    } catch (IndexOutOfBoundsException e) {
+                        anterior = null;
+                    }
+
+                    break;
+                }
+            }
+
+            if (actual != null) {
+                // Validación de la pagina actual: debe ser mayor a cero && menor o igual al total del paginas del libro
+                if (Integer.parseInt(txtPagina.getText()) > 0 && Integer.valueOf(txtPagina.getText()) <= libro.getCantidadPaginas()) {
+                    // Si hay dos elementos y el que se quiere editar es el primero
+                    if (anterior == null && siguiente != null) {
+                        if (Integer.valueOf(txtPagina.getText()) > siguiente.getPaginaActual()) {
+                            return true;
+                        } else {
+                            JOptionPane.showMessageDialog(null, "La página debe ser mayor que la pagina de lectura anterior.", "Página Inválida", JOptionPane.ERROR_MESSAGE);
+                        }
+
+                        // Si hay dos elementos, pero el elemento a editar es el ultimo
+                    } else if (anterior != null && siguiente == null) {
+                        if (Integer.valueOf(txtPagina.getText()) < anterior.getPaginaActual()) {
+                            return true;
+                        } else {
+                            JOptionPane.showMessageDialog(null, "La página deber ser menor que la cantidad de paginas de la anterior lectura.", "Página Inválida", JOptionPane.ERROR_MESSAGE);
+                        }
+
+                        // Cuando hay solo un elemento
+                    } else if (anterior == null && siguiente == null) {
+                        if (Integer.parseInt(txtPagina.getText()) > 0 && Integer.valueOf(txtPagina.getText()) <= libro.getCantidadPaginas()) {
+                            return true;
+                        } else {
+                            JOptionPane.showMessageDialog(null, "La página debe ser mayor a cero y menor o igual a el total de páginas del libro.", "Página Inválida", JOptionPane.ERROR_MESSAGE);
+                        }
+
+                        // Hay 3 elementos y el elemento a editar es el del medio
+                    } else if (anterior != null && siguiente != null) {
+                        if (Integer.valueOf(txtPagina.getText()) < anterior.getPaginaActual() && Integer.valueOf(txtPagina.getText()) > siguiente.getPaginaActual()) {
+                            return true;
+                        } else {
+                            JOptionPane.showMessageDialog(null, "La Página deber estar entre la cantidad de paginas de las lectura anterior y siguiente.", "Página Inválida", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                } else {
+                    // Mensaje si la fecha parseada de txtFecha.getText() es futura
+                    JOptionPane.showMessageDialog(null, "La pagaina ingresada no puede ser mayor al total de paginas del libro o menor a cero.", "Página Inválida", JOptionPane.ERROR_MESSAGE);
+                }
+                return false; // Retorna false si ninguna de las condiciones de arriba retornó true
+            } else {
+                // Mensaje si la lectura actual no se encontró en la lista
+                JOptionPane.showMessageDialog(null, "La lectura que intenta editar no fue encontrada en la lista.", "Error de Búsqueda", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        } else {
+
+            JOptionPane.showMessageDialog(null, "No hay lecturas registradas.", "Página Inválida", JOptionPane.ERROR_MESSAGE);
+            return false;
+
         }
     }
 
