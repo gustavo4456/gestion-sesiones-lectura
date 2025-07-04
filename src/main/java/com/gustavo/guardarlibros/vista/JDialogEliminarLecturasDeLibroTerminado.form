@@ -60,15 +60,15 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="txtTitulo" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtInfo" pref="43" max="32767" attributes="0"/>
+                  <Component id="txtInfo" pref="44" max="32767" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="222" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnAceptar" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
                       <Component id="btnCancelar" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
+                      <Component id="btnAceptar" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="20" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

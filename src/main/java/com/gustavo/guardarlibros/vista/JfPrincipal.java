@@ -421,17 +421,18 @@ public class JfPrincipal extends javax.swing.JFrame {
 
         perfilSeleccionado = (Perfil) cbPerfil.getSelectedItem();
 
-        if (tbLectura.getSelectedRow() != -1) {
+        if (tbLectura.getSelectedRow() != -1 && tbLibros.getSelectedRow() != -1) {
             libroEnEstadoLeyendoSeleccionada = grillaLibrosEnLectura1.getLectura(tbLectura.getSelectedRow());
+            libroLecturaSeleccionada = grillaLibrosPorLeer1.getLectura(tbLibros.getSelectedRow());
         }
 
-        if (perfilSeleccionado != null && libroEnEstadoLeyendoSeleccionada != null) {
-            JDialogEditarLectura editarLectura = new JDialogEditarLectura(this, rootPaneCheckingEnabled, libroEnEstadoLeyendoSeleccionada, perfilSeleccionado);
+        if (perfilSeleccionado != null && libroEnEstadoLeyendoSeleccionada != null && libroLecturaSeleccionada != null) {
+            JDialogEditarLectura editarLectura = new JDialogEditarLectura(this, rootPaneCheckingEnabled, libroEnEstadoLeyendoSeleccionada, perfilSeleccionado, libroLecturaSeleccionada);
             editarLectura.setVisible(true);
             cargarElementos();
 
         } else {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un perfil y una Lectura a editar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un perfil, libro y una Lectura a editar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 
         }
     }//GEN-LAST:event_btnEditarLecturaActionPerformed

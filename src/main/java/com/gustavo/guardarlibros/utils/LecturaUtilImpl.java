@@ -203,6 +203,7 @@ public class LecturaUtilImpl implements ILecturaUtil {
 
     @Override
     public void actualizarEstadoYFechaDeUnaLectura(Lectura lecturaAEditar, Estado estado) {
+        // Aca le tengo que pasar la lectura que viene del la lista del libros no leidos
         List<Lectura> todasLasLecturas = leerArchivo();
 
         List<Lectura> listaLecFiltrada = todasLasLecturas.stream()

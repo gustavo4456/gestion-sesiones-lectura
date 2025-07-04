@@ -1,15 +1,2 @@
-1,El Gato Negro,Edgar Allan Poe,10
-2,La morgue,Edgar Allan Poe,50
-3,Coraline,giman,89
-4,La Sombra de insmouth,LoveCraft,100
-5,El Señor de los Anillos,anacleo,1200
-6,Juegos del hambre,ana,1200
-7,guera mundial,juancho,200
-8,galaxia,perez,200
-9,marte,jaramildo,100
-10,Un librooooooo,eL AUTO,1200
-11,agua,pez,1200
-12,casa,sssss,1200
-13,hacha,karen,1200
-14,cassssa,caca,1200
-15,don quijote,juax,124
+1,El Gato Negro,Edgar Allan Poe,100
+2,El cementerio,juancho,300
