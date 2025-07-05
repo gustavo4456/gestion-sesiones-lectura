@@ -330,7 +330,7 @@ public class JDialogEditarLecturaLibroTerminado extends javax.swing.JDialog {
             Integer paginaAGuardar = Integer.valueOf(txtPagina.getText());
 
             boolean esValidaLaPaginaIngresada = esValidaLaCantidadDePaginas(paginaAGuardar);
-            boolean esLaPaginaIngresaLaUltimaDelLibro = paginaAGuardar.equals(paginaFinalLibro);
+            boolean esLaPaginaMenorALaUltimaPaginaDelLibro = lectura.getPaginaActual().equals(paginaFinalLibro) && paginaAGuardar < paginaFinalLibro && paginaAGuardar > 0;
 
             boolean esValidaLaFechaAIngresar = esValidaLaFecha(LocalDate.parse(txtFecha.getText()));
 
@@ -340,7 +340,7 @@ public class JDialogEditarLecturaLibroTerminado extends javax.swing.JDialog {
 
                         Lectura nuevaLectura = new Lectura();
 
-                        if (esLaPaginaIngresaLaUltimaDelLibro) {
+                        if (esLaPaginaMenorALaUltimaPaginaDelLibro) {
 
                             nuevaLectura.setId(lectura.getId());
                             nuevaLectura.setLibro(libro);
@@ -352,10 +352,10 @@ public class JDialogEditarLecturaLibroTerminado extends javax.swing.JDialog {
 
                             lecturaUtilImpl.editarUnaLectura(nuevaLectura);
 
-                            //ACA DEBO MODIFICAR LA LECTURA QUE ESTA EN ESTADO DE NO_LEIDO Y PASARLO A TERMINADO, LA LECUTRA ES LA DE LIBRO NO LEDIO(SI NO, NO FUNCIONA)
-                            lecturaUtilImpl.actualizarEstadoYFechaDeUnaLectura(lecturaLibroNoLeido, Estado.TERMINADO);
+                            //ACA DEBO MODIFICAR LA LECTURA QUE ESTA EN ESTADO DE TERMINADO Y PASARLO A NO_LEIDO, LA LECUTRA ES LA DE LIBRO TERMINADO(SI NO, NO FUNCIONA)
+                            lecturaUtilImpl.actualizarEstadoYFechaDeUnaLectura(lecturaLibroNoLeido, Estado.NO_LEIDO);
 
-                            JOptionPane.showMessageDialog(this, "Acaba de ingresar la ultima pagina del libro. Su libro pasara a la lista de Libros terminados.", "Información", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(this, "Acaba de ingresar una pagina menor a la ultima página del libro. Su libro pasara a la lista de Libros no leídos.", "Información", JOptionPane.INFORMATION_MESSAGE);
 
                             this.dispose();
                         } else {

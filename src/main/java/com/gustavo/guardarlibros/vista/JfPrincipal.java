@@ -456,7 +456,7 @@ public class JfPrincipal extends javax.swing.JFrame {
         }
 
         if (perfilSeleccionado != null && libroEnEstadoLeyendoSeleccionada != null && libroLecturaTerminadasSeleccionada != null) {
-            JDialogEditarLectura editarLectura = new JDialogEditarLectura(this, rootPaneCheckingEnabled, libroEnEstadoLeyendoSeleccionada, perfilSeleccionado, libroLecturaTerminadasSeleccionada);
+            JDialogEditarLecturaLibroTerminado editarLectura = new JDialogEditarLecturaLibroTerminado(this, rootPaneCheckingEnabled, libroEnEstadoLeyendoSeleccionada, perfilSeleccionado, libroLecturaTerminadasSeleccionada);
             editarLectura.setVisible(true);
             cargarElementos();
 
