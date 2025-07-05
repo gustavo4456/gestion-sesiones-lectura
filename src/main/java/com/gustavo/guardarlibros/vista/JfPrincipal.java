@@ -450,13 +450,13 @@ public class JfPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         perfilSeleccionado = (Perfil) cbPerfil.getSelectedItem();
 
-        if (tbLibrosTerminados.getSelectedRow() != -1 && tbLibros.getSelectedRow() != -1) {
-            libroLecturaTerminadasSeleccionada = grillaLibrosEnLectura1.getLectura(tbLibrosTerminados.getSelectedRow());
-            libroLecturaSeleccionada = grillaLibrosPorLeer1.getLectura(tbLibros.getSelectedRow());
+        if (tbLectura.getSelectedRow() != -1 && tbLibrosTerminados.getSelectedRow() != -1) {
+            libroEnEstadoLeyendoSeleccionada = grillaLibrosEnLectura1.getLectura(tbLectura.getSelectedRow());
+            libroLecturaTerminadasSeleccionada = grillaLibrosTerminados1.getLectura(tbLibrosTerminados.getSelectedRow());
         }
 
-        if (perfilSeleccionado != null && libroLecturaTerminadasSeleccionada != null && libroLecturaSeleccionada != null) {
-            JDialogEditarLectura editarLectura = new JDialogEditarLectura(this, rootPaneCheckingEnabled, libroLecturaTerminadasSeleccionada, perfilSeleccionado, libroLecturaSeleccionada);
+        if (perfilSeleccionado != null && libroEnEstadoLeyendoSeleccionada != null && libroLecturaTerminadasSeleccionada != null) {
+            JDialogEditarLectura editarLectura = new JDialogEditarLectura(this, rootPaneCheckingEnabled, libroEnEstadoLeyendoSeleccionada, perfilSeleccionado, libroLecturaTerminadasSeleccionada);
             editarLectura.setVisible(true);
             cargarElementos();
 
