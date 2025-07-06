@@ -43,6 +43,43 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Estadisticas"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jItemEstadisticaProgresoPorLibro">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Progreso por Libro"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jItemEstadisticaActividadDeLectura">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Actividad de Lectura"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jItemEstadisticaEstadoDeMisLibros">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Estado de Mis Libros"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jItemEstadisticaLecturasPorAutor">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Lecturas por Autor"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jItemPaginasPorMinuto">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="P&#xe1;ginas por Minuto"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jItemLecturasPorPeriodo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Lecturas por Periodo"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jItemResumenGeneral">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Resumen General"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>

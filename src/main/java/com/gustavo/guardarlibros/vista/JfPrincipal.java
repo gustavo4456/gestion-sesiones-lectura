@@ -77,6 +77,13 @@ public class JfPrincipal extends javax.swing.JFrame {
         jItemNuevoLibro = new javax.swing.JMenuItem();
         jItemNuevoPerfil = new javax.swing.JMenuItem();
         jMenuEstadisticas = new javax.swing.JMenu();
+        jItemEstadisticaProgresoPorLibro = new javax.swing.JMenuItem();
+        jItemEstadisticaActividadDeLectura = new javax.swing.JMenuItem();
+        jItemEstadisticaEstadoDeMisLibros = new javax.swing.JMenuItem();
+        jItemEstadisticaLecturasPorAutor = new javax.swing.JMenuItem();
+        jItemPaginasPorMinuto = new javax.swing.JMenuItem();
+        jItemLecturasPorPeriodo = new javax.swing.JMenuItem();
+        jItemResumenGeneral = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestion de libros");
@@ -317,6 +324,28 @@ public class JfPrincipal extends javax.swing.JFrame {
         jMenuBarra.add(jMenuNuevo);
 
         jMenuEstadisticas.setText("Estadisticas");
+
+        jItemEstadisticaProgresoPorLibro.setText("Progreso por Libro");
+        jMenuEstadisticas.add(jItemEstadisticaProgresoPorLibro);
+
+        jItemEstadisticaActividadDeLectura.setText("Actividad de Lectura");
+        jMenuEstadisticas.add(jItemEstadisticaActividadDeLectura);
+
+        jItemEstadisticaEstadoDeMisLibros.setText("Estado de Mis Libros");
+        jMenuEstadisticas.add(jItemEstadisticaEstadoDeMisLibros);
+
+        jItemEstadisticaLecturasPorAutor.setText("Lecturas por Autor");
+        jMenuEstadisticas.add(jItemEstadisticaLecturasPorAutor);
+
+        jItemPaginasPorMinuto.setText("Páginas por Minuto");
+        jMenuEstadisticas.add(jItemPaginasPorMinuto);
+
+        jItemLecturasPorPeriodo.setText("Lecturas por Periodo");
+        jMenuEstadisticas.add(jItemLecturasPorPeriodo);
+
+        jItemResumenGeneral.setText("Resumen General");
+        jMenuEstadisticas.add(jItemResumenGeneral);
+
         jMenuBarra.add(jMenuEstadisticas);
 
         setJMenuBar(jMenuBarra);
@@ -604,8 +633,15 @@ public class JfPrincipal extends javax.swing.JFrame {
     private com.gustavo.guardarlibros.vista.grillas.GrillaLibrosEnLectura grillaLibrosEnLectura1;
     private com.gustavo.guardarlibros.vista.grillas.GrillaLibrosPorLeer grillaLibrosPorLeer1;
     private com.gustavo.guardarlibros.vista.grillas.GrillaLibrosTerminados grillaLibrosTerminados1;
+    private javax.swing.JMenuItem jItemEstadisticaActividadDeLectura;
+    private javax.swing.JMenuItem jItemEstadisticaEstadoDeMisLibros;
+    private javax.swing.JMenuItem jItemEstadisticaLecturasPorAutor;
+    private javax.swing.JMenuItem jItemEstadisticaProgresoPorLibro;
+    private javax.swing.JMenuItem jItemLecturasPorPeriodo;
     private javax.swing.JMenuItem jItemNuevoLibro;
     private javax.swing.JMenuItem jItemNuevoPerfil;
+    private javax.swing.JMenuItem jItemPaginasPorMinuto;
+    private javax.swing.JMenuItem jItemResumenGeneral;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBarra;
