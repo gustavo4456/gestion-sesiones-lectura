@@ -142,7 +142,7 @@ public class JfPrincipal extends javax.swing.JFrame {
             jPanelLibrosPorLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLibrosPorLeerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelLibrosPorLeerLayout.setVerticalGroup(
@@ -165,7 +165,7 @@ public class JfPrincipal extends javax.swing.JFrame {
             jPanelEnLecturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEnLecturaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelEnLecturaLayout.setVerticalGroup(
@@ -193,7 +193,7 @@ public class JfPrincipal extends javax.swing.JFrame {
             jPaneLibrosTerminadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPaneLibrosTerminadosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPaneLibrosTerminadosLayout.setVerticalGroup(
@@ -203,6 +203,7 @@ public class JfPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPaneLeerAEnLectura.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones para Libros no terminados"));
         jPaneLeerAEnLectura.setLayout(new java.awt.GridBagLayout());
 
         jPanelInternoDeLeerAEnLectura.setLayout(new javax.swing.BoxLayout(jPanelInternoDeLeerAEnLectura, javax.swing.BoxLayout.Y_AXIS));
@@ -231,6 +232,7 @@ public class JfPrincipal extends javax.swing.JFrame {
 
         jPaneLeerAEnLectura.add(jPanelInternoDeLeerAEnLectura, new java.awt.GridBagConstraints());
 
+        jPanelEnLecturaATerminados.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones para libros terminados"));
         jPanelEnLecturaATerminados.setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
@@ -275,7 +277,7 @@ public class JfPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                         .addComponent(jPanelLibrosPorLeer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPaneLeerAEnLectura, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                        .addComponent(jPaneLeerAEnLectura, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanelEnLectura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
