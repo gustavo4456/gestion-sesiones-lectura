@@ -4,10 +4,14 @@
  */
 package com.gustavo.guardarlibros.vista;
 
+import com.gustavo.guardarlibros.modelo.Lectura;
 import com.gustavo.guardarlibros.modelo.Libro;
 import com.gustavo.guardarlibros.modelo.Perfil;
+import com.gustavo.guardarlibros.utils.LecturaUtilImpl;
 import com.gustavo.guardarlibros.utils.LibroUtilImpl;
 import java.awt.BorderLayout;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -25,7 +29,7 @@ public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
     private Libro libroSeleccionado = null;
     private Perfil perfil = new Perfil();
 
-    private LibroUtilImpl libroUtilImpl = new LibroUtilImpl();
+    private LecturaUtilImpl lecturaUtilImpl = new LecturaUtilImpl();
 
     /**
      * Creates new form JDialogEstadisticaProgresoPorLibro
@@ -42,9 +46,26 @@ public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
 
         this.perfil = perfil;
 
-        lblPerfil.setText("Perfil: " + this.perfil.getNombre());
+        lblPerfil.setText("Para el Perfil: " + this.perfil.getNombre());
 
         mostrarGraficoDeLineas();
+        cargarCbLibros();
+    }
+
+    private void cargarCbLibros() {
+        List<Lectura> liLibros = lecturaUtilImpl.getListadoLibrosPorLeerPorPerfil(perfil.getId());
+
+        DefaultComboBoxModel modelLibros = new DefaultComboBoxModel(liLibros.toArray());
+
+        /*
+         * Esto evita que el cbPerfil se quede seleccionado con el primer elemento 
+         * cada vez que se selecciona otro o se actualiza(btn)
+         */
+        libroSeleccionado = (Libro) cbLibros.getSelectedItem();
+
+        cbLibros.setModel(modelLibros);
+
+        cbLibros.setSelectedItem(libroSeleccionado);
     }
 
     /**
@@ -70,8 +91,6 @@ public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Libro:");
-
-        cbLibros.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanelLienzoLayout = new javax.swing.GroupLayout(jPanelLienzo);
         jPanelLienzo.setLayout(jPanelLienzoLayout);
