@@ -10,6 +10,7 @@ import com.gustavo.guardarlibros.modelo.Perfil;
 import com.gustavo.guardarlibros.utils.LecturaUtilImpl;
 import com.gustavo.guardarlibros.utils.LibroUtilImpl;
 import java.awt.BorderLayout;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.DefaultComboBoxModel;
@@ -203,35 +204,48 @@ public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
     }
 
     private ChartPanel crearSimpleLineChart() {
-        // 1. Crear un Dataset para el gráfico de líneas
-        // DefaultCategoryDataset es fácil de usar para empezar
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        // Añadir datos de ejemplo: (valor, serie, categoria)
-        // Imagina que son puntos de progreso en el tiempo para una única serie
-        dataset.addValue(10, "Mi Progreso", "Día 1");
-        dataset.addValue(25, "Mi Progreso", "Día 2");
-        dataset.addValue(40, "Mi Progreso", "Día 3");
-        dataset.addValue(55, "Mi Progreso", "Día 4");
-        dataset.addValue(70, "Mi Progreso", "Día 5");
+        if (perfil != null && libroSeleccionado != null) {
+            List<Lectura> listaLecturas = lecturaUtilImpl.getListadoLibrosEnLecturaPorPerfilYLibro(perfil.getId(), libroSeleccionado);
 
-        // 2. Crear el objeto JFreeChart
-        JFreeChart lineaDibujo = ChartFactory.createLineChart(
-                "Mi Primer Gráfico de Líneas", // Título del gráfico
-                "Categoría (Días)", // Etiqueta del eje X
-                "Valor (Páginas)", // Etiqueta del eje Y
-                dataset, // El dataset con los datos
-                PlotOrientation.VERTICAL, // Orientación del gráfico
-                true, // ¿Mostrar leyenda? (true = sí)
-                true, // ¿Mostrar tooltips? (true = sí, texto al pasar el ratón)
-                false // ¿Generar URLs? (false = no)
-        );
+            //Se ordena las lecturas por fecha de mas antigua a mas reciente
+            List<Lectura> listaLectraOrdenada = listaLecturas.stream()
+                    .sorted(Comparator.comparing(Lectura::getFechaInicio))
+                    .collect(Collectors.toList());
 
-        // 3. Crear el ChartPanel para mostrar el gráfico
-        ChartPanel chartPanel = new ChartPanel(lineaDibujo);
-        chartPanel.setPreferredSize(new java.awt.Dimension(600, 400)); // Tamaño recomendado
+            // 1. Crear un Dataset para el gráfico de líneas
+            // DefaultCategoryDataset es fácil de usar para empezar
+            DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        return chartPanel;
+            // Añadir datos de ejemplo: (valor, serie, categoria)
+            // Imagina que son puntos de progreso en el tiempo para una única serie
+            for (int i = 0; i < listaLectraOrdenada.size(); i++) {
+                dataset.addValue(listaLectraOrdenada.get(i).getPaginaActual(), "Mi Progreso", listaLectraOrdenada.get(i).getFechaInicio());
+
+            }
+
+            // 2. Crear el objeto JFreeChart
+            JFreeChart lineaDibujo = ChartFactory.createLineChart(
+                    "Mi Primer Gráfico de Líneas", // Título del gráfico
+                    "Categoría (Días)", // Etiqueta del eje X
+                    "Valor (Páginas)", // Etiqueta del eje Y
+                    dataset, // El dataset con los datos
+                    PlotOrientation.VERTICAL, // Orientación del gráfico
+                    true, // ¿Mostrar leyenda? (true = sí)
+                    true, // ¿Mostrar tooltips? (true = sí, texto al pasar el ratón)
+                    false // ¿Generar URLs? (false = no)
+            );
+
+            // 3. Crear el ChartPanel para mostrar el gráfico
+            ChartPanel chartPanel = new ChartPanel(lineaDibujo);
+            chartPanel.setPreferredSize(new java.awt.Dimension(600, 400)); // Tamaño recomendado
+
+            return chartPanel;
+        }
+
+        JOptionPane.showMessageDialog(this, "Debe seleccionar un Libro y un perfil.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        return null;
+
     }
 
     private void mostrarGraficoDeLineas() {
