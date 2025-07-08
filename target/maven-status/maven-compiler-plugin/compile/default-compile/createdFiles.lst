@@ -23,6 +23,7 @@ com\gustavo\guardarlibros\vista\JfPrincipal$9.class
 com\gustavo\guardarlibros\modelo\Libro.class
 com\gustavo\guardarlibros\vista\JDialogEliminarLecturasDeLibroTerminado$3.class
 com\gustavo\guardarlibros\vista\JfPrincipal.class
+com\gustavo\guardarlibros\vista\JDialogEstadisticaProgresoPorLibro$1.class
 com\gustavo\guardarlibros\vista\JDialogEditarLectura$2.class
 com\gustavo\guardarlibros\vista\JDialogAgregarLibro$3.class
 com\gustavo\guardarlibros\utils\IPerfilUtil.class
@@ -58,4 +59,7 @@ com\gustavo\guardarlibros\modelo\Estado.class
 com\gustavo\guardarlibros\vista\JDialogEditarLectura.class
 com\gustavo\guardarlibros\vista\JDialogAgregarLectura$1.class
 com\gustavo\guardarlibros\vista\grillas\GrillaLibrosTerminados.class
+com\gustavo\guardarlibros\vista\JDialogEstadisticaProgresoPorLibro$1$1.class
+com\gustavo\guardarlibros\vista\JDialogEstadisticaProgresoPorLibro.class
 com\gustavo\guardarlibros\vista\JfPrincipal$1.class
+com\gustavo\guardarlibros\vista\JfPrincipal$11.class

@@ -48,6 +48,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Progreso por Libro"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jItemEstadisticaProgresoPorLibroActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jItemEstadisticaActividadDeLectura">
               <Properties>
@@ -149,18 +152,14 @@
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="jPanelPerfil" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jPanelEnLectura" max="32767" attributes="0"/>
-                              <Component id="jPaneLeerAEnLectura" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jPanelLibrosPorLeer" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jPaneLibrosTerminados" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="jPanelEnLecturaATerminados" alignment="1" pref="509" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jPanelEnLectura" max="32767" attributes="0"/>
+                      <Component id="jPaneLeerAEnLectura" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jPanelLibrosPorLeer" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jPaneLibrosTerminados" max="32767" attributes="0"/>
+                      <Component id="jPanelEnLecturaATerminados" max="32767" attributes="0"/>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -300,7 +299,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jScrollPane4" max="32767" attributes="0"/>
+                      <Component id="jScrollPane4" pref="474" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>

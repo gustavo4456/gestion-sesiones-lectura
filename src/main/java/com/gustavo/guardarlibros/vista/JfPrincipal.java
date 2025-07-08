@@ -171,7 +171,7 @@ public class JfPrincipal extends javax.swing.JFrame {
         jPanelEnLecturaLayout.setVerticalGroup(
             jPanelEnLecturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEnLecturaLayout.createSequentialGroup()
-                .addComponent(jScrollPane4)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -292,15 +292,13 @@ public class JfPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanelPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                        .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanelEnLectura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPaneLeerAEnLectura, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelLibrosPorLeer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPaneLibrosTerminados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .addComponent(jPanelEnLecturaATerminados, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)))
+                .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanelEnLectura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPaneLeerAEnLectura, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelLibrosPorLeer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPaneLibrosTerminados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelEnLecturaATerminados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jMenuNuevo.setText("Nuevo");
@@ -328,6 +326,11 @@ public class JfPrincipal extends javax.swing.JFrame {
         jMenuEstadisticas.setText("Estadisticas");
 
         jItemEstadisticaProgresoPorLibro.setText("Progreso por Libro");
+        jItemEstadisticaProgresoPorLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jItemEstadisticaProgresoPorLibroActionPerformed(evt);
+            }
+        });
         jMenuEstadisticas.add(jItemEstadisticaProgresoPorLibro);
 
         jItemEstadisticaActividadDeLectura.setText("Actividad de Lectura");
@@ -388,6 +391,7 @@ public class JfPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         cargarElementos();
+        perfilSeleccionado = (Perfil) cbPerfil.getSelectedItem();
     }//GEN-LAST:event_cbPerfilActionPerformed
 
     private void tbLibrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbLibrosMouseClicked
@@ -497,6 +501,20 @@ public class JfPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEditarLecturaLibroTerminadoActionPerformed
 
+    private void jItemEstadisticaProgresoPorLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jItemEstadisticaProgresoPorLibroActionPerformed
+        // TODO add your handling code here:
+
+        if (cbPerfil.getSelectedItem() != null) {
+            JDialogEstadisticaProgresoPorLibro jDialogEstadisticaProgresoPorLibro = new JDialogEstadisticaProgresoPorLibro(this, rootPaneCheckingEnabled, perfilSeleccionado);
+            jDialogEstadisticaProgresoPorLibro.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un perfil.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        }
+
+
+    }//GEN-LAST:event_jItemEstadisticaProgresoPorLibroActionPerformed
+
     private void cargarElementos() {
 
         cargarCbPerfil();
@@ -506,7 +524,7 @@ public class JfPrincipal extends javax.swing.JFrame {
         grillaLibrosEnLectura1.clear();
 
         libroLecturaSeleccionada = null;
-        perfilSeleccionado = null;
+//        perfilSeleccionado = null;
         libroLecturaTerminadasSeleccionada = null;
         libroEnEstadoLeyendoSeleccionada = null;
 
