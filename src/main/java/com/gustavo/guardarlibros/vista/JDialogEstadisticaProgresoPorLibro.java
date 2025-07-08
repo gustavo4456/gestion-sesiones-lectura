@@ -11,6 +11,7 @@ import com.gustavo.guardarlibros.utils.LecturaUtilImpl;
 import com.gustavo.guardarlibros.utils.LibroUtilImpl;
 import java.awt.BorderLayout;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.DefaultComboBoxModel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -53,7 +54,11 @@ public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
     }
 
     private void cargarCbLibros() {
-        List<Lectura> liLibros = lecturaUtilImpl.getListadoLibrosPorLeerPorPerfil(perfil.getId());
+        List<Lectura> liLecturas = lecturaUtilImpl.getListadoLibrosPorLeerPorPerfil(perfil.getId());
+
+        List<Libro> liLibros = liLecturas.stream()
+                .map(Lectura::getLibro)
+                .collect(Collectors.toList());
 
         DefaultComboBoxModel modelLibros = new DefaultComboBoxModel(liLibros.toArray());
 

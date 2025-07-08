@@ -107,7 +107,7 @@ public class Libro {
 
     @Override
     public String toString() {
-        return "Libro{" + "id=" + id + ", nombre=" + nombre + ", autor=" + autor + ", cantidadPaginas=" + cantidadPaginas + '}';
+        return this.nombre + " de " + this.autor;
     }
 
 }
