@@ -13,6 +13,7 @@ import java.awt.BorderLayout;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -49,7 +50,7 @@ public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
 
         lblPerfil.setText("Para el Perfil: " + this.perfil.getNombre());
 
-        mostrarGraficoDeLineas();
+        cbLibros.removeAllItems();
         cargarCbLibros();
     }
 
@@ -96,6 +97,12 @@ public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Libro:");
+
+        cbLibros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbLibrosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelLienzoLayout = new javax.swing.GroupLayout(jPanelLienzo);
         jPanelLienzo.setLayout(jPanelLienzoLayout);
@@ -151,6 +158,20 @@ public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cbLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbLibrosActionPerformed
+        // TODO add your handling code here:
+
+        cbLibros.setSelectedIndex(0);
+        this.libroSeleccionado = (Libro) cbLibros.getSelectedItem();
+
+        if (libroSeleccionado != null) {
+            mostrarGraficoDeLineas();
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un Libro.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_cbLibrosActionPerformed
 
     /**
      * @param args the command line arguments
