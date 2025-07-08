@@ -505,8 +505,14 @@ public class JfPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         if (cbPerfil.getSelectedItem() != null) {
-            JDialogEstadisticaProgresoPorLibro jDialogEstadisticaProgresoPorLibro = new JDialogEstadisticaProgresoPorLibro(this, rootPaneCheckingEnabled, perfilSeleccionado);
-            jDialogEstadisticaProgresoPorLibro.setVisible(true);
+            if (tbLibros.getRowCount() > 0) {
+                JDialogEstadisticaProgresoPorLibro jDialogEstadisticaProgresoPorLibro = new JDialogEstadisticaProgresoPorLibro(this, rootPaneCheckingEnabled, perfilSeleccionado);
+                jDialogEstadisticaProgresoPorLibro.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "El perfil seleccionado no tiene libros agregados..", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+            }
+
         } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un perfil.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 

@@ -50,8 +50,8 @@ public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
 
         lblPerfil.setText("Para el Perfil: " + this.perfil.getNombre());
 
-        cbLibros.removeAllItems();
         cargarCbLibros();
+
     }
 
     private void cargarCbLibros() {
@@ -63,15 +63,8 @@ public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
 
         DefaultComboBoxModel modelLibros = new DefaultComboBoxModel(liLibros.toArray());
 
-        /*
-         * Esto evita que el cbPerfil se quede seleccionado con el primer elemento 
-         * cada vez que se selecciona otro o se actualiza(btn)
-         */
-        libroSeleccionado = (Libro) cbLibros.getSelectedItem();
-
         cbLibros.setModel(modelLibros);
 
-        cbLibros.setSelectedItem(libroSeleccionado);
     }
 
     /**
@@ -162,7 +155,6 @@ public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
     private void cbLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbLibrosActionPerformed
         // TODO add your handling code here:
 
-        cbLibros.setSelectedIndex(0);
         this.libroSeleccionado = (Libro) cbLibros.getSelectedItem();
 
         if (libroSeleccionado != null) {
