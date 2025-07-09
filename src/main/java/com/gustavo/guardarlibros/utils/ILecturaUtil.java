@@ -34,6 +34,8 @@ public interface ILecturaUtil {
     List<Lectura> getListadoLibrosTerminadosYNoTermiandosPorPerfil(Integer idPerfil);
 
     List<Lectura> getListadoLibrosTerminadosPorPerfil(Integer idPerfil);
+    
+    List<Lectura> getListadoTodosLosLibrosPorPerfil(Integer idPerfil);
 
     Optional<Integer> getUltimaPaginaGuardadaPorLibroEnLectura(Integer idPerfil, Libro libro);
 

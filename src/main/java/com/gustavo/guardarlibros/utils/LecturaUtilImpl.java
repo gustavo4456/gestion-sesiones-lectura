@@ -318,4 +318,15 @@ public class LecturaUtilImpl implements ILecturaUtil {
         return lecturas;
     }
 
+    @Override
+    public List<Lectura> getListadoTodosLosLibrosPorPerfil(Integer idPerfil) {
+        List<Lectura> lecturas = leerArchivo();
+
+        return lecturas.stream()
+                .distinct()
+                .filter(l -> l.getPerfil().getId().equals(idPerfil) && l.getEstado().equals(Estado.LEYENDO))
+                .sorted(Comparator.comparing(Lectura::getFechaInicio))
+                .collect(Collectors.toList());
+    }
+
 }
