@@ -305,4 +305,17 @@ public class LecturaUtilImpl implements ILecturaUtil {
         crearArchivoPorLista(listaLecturaModificada, false);
     }
 
+    @Override
+    public List<Lectura> getListadoLibrosTerminadosYNoTermiandosPorPerfil(Integer idPerfil) {
+        List<Lectura> listadoLectura = leerArchivo();
+
+        List<Lectura> lecturas = listadoLectura.stream()
+                .distinct()
+                .filter(l -> l.getPerfil().getId().equals(idPerfil) && l.getEstado().equals(Estado.TERMINADO) || l.getEstado().equals(Estado.NO_LEIDO))
+                .sorted(Comparator.comparing(Lectura::getFechaInicio).reversed())
+                .collect(Collectors.toList());
+
+        return lecturas;
+    }
+
 }

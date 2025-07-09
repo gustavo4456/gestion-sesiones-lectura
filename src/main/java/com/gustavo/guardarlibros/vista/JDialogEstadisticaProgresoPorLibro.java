@@ -56,7 +56,7 @@ public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
     }
 
     private void cargarCbLibros() {
-        List<Lectura> liLecturas = lecturaUtilImpl.getListadoLibrosPorLeerPorPerfil(perfil.getId());
+        List<Lectura> liLecturas = lecturaUtilImpl.getListadoLibrosTerminadosYNoTermiandosPorPerfil(perfil.getId());
 
         List<Libro> liLibros = liLecturas.stream()
                 .map(Lectura::getLibro)

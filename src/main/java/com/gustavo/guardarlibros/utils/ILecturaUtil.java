@@ -30,6 +30,8 @@ public interface ILecturaUtil {
     List<Lectura> getListadoLibrosPorLeerPorPerfil(Integer idPerfil);
 
     List<Lectura> getListadoLibrosEnLecturaPorPerfilYLibro(Integer idPerfil, Libro libro);
+    
+    List<Lectura> getListadoLibrosTerminadosYNoTermiandosPorPerfil(Integer idPerfil);
 
     List<Lectura> getListadoLibrosTerminadosPorPerfil(Integer idPerfil);
 

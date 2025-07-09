@@ -505,7 +505,7 @@ public class JfPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         if (cbPerfil.getSelectedItem() != null) {
-            if (tbLibros.getRowCount() > 0) {
+            if (tbLibros.getRowCount() > 0 || tbLibrosTerminados.getRowCount() > 0) {
                 JDialogEstadisticaProgresoPorLibro jDialogEstadisticaProgresoPorLibro = new JDialogEstadisticaProgresoPorLibro(this, rootPaneCheckingEnabled, perfilSeleccionado);
                 jDialogEstadisticaProgresoPorLibro.setVisible(true);
             } else {
