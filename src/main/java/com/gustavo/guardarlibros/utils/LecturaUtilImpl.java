@@ -311,7 +311,7 @@ public class LecturaUtilImpl implements ILecturaUtil {
 
         List<Lectura> lecturas = listadoLectura.stream()
                 .distinct()
-                .filter(l -> l.getPerfil().getId().equals(idPerfil) && l.getEstado().equals(Estado.TERMINADO) || l.getEstado().equals(Estado.NO_LEIDO))
+                .filter(l -> l.getPerfil().getId().equals(idPerfil) && l.getEstado().equals(Estado.TERMINADO) || l.getPerfil().getId().equals(idPerfil) && l.getEstado().equals(Estado.NO_LEIDO))
                 .sorted(Comparator.comparing(Lectura::getFechaInicio).reversed())
                 .collect(Collectors.toList());
 
