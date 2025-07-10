@@ -10,8 +10,12 @@ import com.gustavo.guardarlibros.modelo.Perfil;
 import com.gustavo.guardarlibros.utils.LecturaUtilImpl;
 import com.gustavo.guardarlibros.utils.LibroUtilImpl;
 import java.awt.BorderLayout;
+import java.time.LocalDate;
 import java.util.Comparator;
+import java.util.IntSummaryStatistics;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -25,11 +29,10 @@ import org.jfree.data.category.DefaultCategoryDataset;
  *
  * @author gusta
  */
-public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
+public class JDialogEstadisticaActividadLectura extends javax.swing.JDialog {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JDialogEstadisticaProgresoPorLibro.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JDialogEstadisticaActividadLectura.class.getName());
 
-    private Libro libroSeleccionado = null;
     private Perfil perfil = new Perfil();
 
     private LecturaUtilImpl lecturaUtilImpl = new LecturaUtilImpl();
@@ -37,13 +40,13 @@ public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
     /**
      * Creates new form JDialogEstadisticaProgresoPorLibro
      */
-    public JDialogEstadisticaProgresoPorLibro(java.awt.Frame parent, boolean modal) {
+    public JDialogEstadisticaActividadLectura(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
     }
 
-    public JDialogEstadisticaProgresoPorLibro(java.awt.Frame parent, boolean modal, Perfil perfil) {
+    public JDialogEstadisticaActividadLectura(java.awt.Frame parent, boolean modal, Perfil perfil) {
         super(parent, modal);
         initComponents();
 
@@ -51,20 +54,7 @@ public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
 
         lblPerfil.setText("Para el Perfil: " + this.perfil.getNombre());
 
-        cargarCbLibros();
-
-    }
-
-    private void cargarCbLibros() {
-        List<Lectura> liLecturas = lecturaUtilImpl.getListadoLibrosTerminadosYNoTermiandosPorPerfil(perfil.getId());
-
-        List<Libro> liLibros = liLecturas.stream()
-                .map(Lectura::getLibro)
-                .collect(Collectors.toList());
-
-        DefaultComboBoxModel modelLibros = new DefaultComboBoxModel(liLibros.toArray());
-
-        cbLibros.setModel(modelLibros);
+        mostrarGraficoDeLineas();
 
     }
 
@@ -79,8 +69,6 @@ public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
 
         JPanelPrincipal = new javax.swing.JPanel();
         lblPerfil = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        cbLibros = new javax.swing.JComboBox<>();
         jPanelLienzo = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -89,24 +77,15 @@ public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
         lblPerfil.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPerfil.setText("Para el perfil: ");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("Libro:");
-
-        cbLibros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbLibrosActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanelLienzoLayout = new javax.swing.GroupLayout(jPanelLienzo);
         jPanelLienzo.setLayout(jPanelLienzoLayout);
         jPanelLienzoLayout.setHorizontalGroup(
             jPanelLienzoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 640, Short.MAX_VALUE)
         );
         jPanelLienzoLayout.setVerticalGroup(
             jPanelLienzoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 294, Short.MAX_VALUE)
+            .addGap(0, 295, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout JPanelPrincipalLayout = new javax.swing.GroupLayout(JPanelPrincipal);
@@ -115,24 +94,16 @@ public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
             JPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(JPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(JPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelLienzo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(JPanelPrincipalLayout.createSequentialGroup()
-                        .addComponent(lblPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(cbLibros, 0, 245, Short.MAX_VALUE)))
+                    .addComponent(lblPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         JPanelPrincipalLayout.setVerticalGroup(
             JPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPanelPrincipalLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(JPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbLibros, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanelLienzo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -152,19 +123,6 @@ public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cbLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbLibrosActionPerformed
-        // TODO add your handling code here:
-
-        this.libroSeleccionado = (Libro) cbLibros.getSelectedItem();
-
-        if (libroSeleccionado != null) {
-            mostrarGraficoDeLineas();
-        } else {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un Libro.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-
-        }
-    }//GEN-LAST:event_cbLibrosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,7 +149,7 @@ public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                JDialogEstadisticaProgresoPorLibro dialog = new JDialogEstadisticaProgresoPorLibro(new javax.swing.JFrame(), true);
+                JDialogEstadisticaActividadLectura dialog = new JDialogEstadisticaActividadLectura(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -205,13 +163,13 @@ public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
 
     private ChartPanel crearSimpleLineChart() {
 
-        if (perfil != null && libroSeleccionado != null) {
-            List<Lectura> listaLecturas = lecturaUtilImpl.getListadoLibrosEnLecturaPorPerfilYLibro(perfil.getId(), libroSeleccionado);
+        if (perfil != null) {
+            List<Lectura> listaLecturas = lecturaUtilImpl.getListadoTodosLosLibrosPorPerfil(perfil.getId());
 
             //Se ordena las lecturas por fecha de mas antigua a mas reciente
-            List<Lectura> listaLectraOrdenada = listaLecturas.stream()
+            Map<LocalDate, IntSummaryStatistics> mapaListaLectraOrdenada = listaLecturas.stream()
                     .sorted(Comparator.comparing(Lectura::getFechaInicio))
-                    .collect(Collectors.toList());
+                    .collect(Collectors.groupingBy(Lectura::getFechaInicio, LinkedHashMap::new, Collectors.summarizingInt(Lectura::getMinutosLeidos)));
 
             // 1. Crear un Dataset para el gráfico de líneas
             // DefaultCategoryDataset es fácil de usar para empezar
@@ -219,16 +177,15 @@ public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
 
             // Añadir datos de ejemplo: (valor, serie, categoria)
             // Imagina que son puntos de progreso en el tiempo para una única serie
-            for (int i = 0; i < listaLectraOrdenada.size(); i++) {
-                dataset.addValue(listaLectraOrdenada.get(i).getPaginaActual(), "Mi Progreso", listaLectraOrdenada.get(i).getFechaInicio());
-
-            }
+            mapaListaLectraOrdenada.forEach((llave, valor) -> {
+                dataset.addValue(valor.getSum(), "Minutos Acumulados", llave.toString());
+            });
 
             // 2. Crear el objeto JFreeChart
-            JFreeChart lineaDibujo = ChartFactory.createLineChart(
-                    "Progreso por libro", // Título del gráfico
+            JFreeChart lineaDibujo = ChartFactory.createBarChart(
+                    "Actividad de lecturas", // Título del gráfico
                     "Categoría (Días)", // Etiqueta del eje X
-                    "Valor (Páginas)", // Etiqueta del eje Y
+                    "Valor (Minutos)", // Etiqueta del eje Y
                     dataset, // El dataset con los datos
                     PlotOrientation.VERTICAL, // Orientación del gráfico
                     true, // ¿Mostrar leyenda? (true = sí)
@@ -270,8 +227,6 @@ public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPanelPrincipal;
-    private javax.swing.JComboBox<String> cbLibros;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanelLienzo;
     private javax.swing.JLabel lblPerfil;
     // End of variables declaration//GEN-END:variables

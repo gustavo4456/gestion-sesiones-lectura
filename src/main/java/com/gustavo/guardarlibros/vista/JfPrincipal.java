@@ -334,6 +334,11 @@ public class JfPrincipal extends javax.swing.JFrame {
         jMenuEstadisticas.add(jItemEstadisticaProgresoPorLibro);
 
         jItemEstadisticaActividadDeLectura.setText("Actividad de Lectura");
+        jItemEstadisticaActividadDeLectura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jItemEstadisticaActividadDeLecturaActionPerformed(evt);
+            }
+        });
         jMenuEstadisticas.add(jItemEstadisticaActividadDeLectura);
 
         jItemEstadisticaEstadoDeMisLibros.setText("Estado de Mis Libros");
@@ -520,6 +525,24 @@ public class JfPrincipal extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jItemEstadisticaProgresoPorLibroActionPerformed
+
+    private void jItemEstadisticaActividadDeLecturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jItemEstadisticaActividadDeLecturaActionPerformed
+        // TODO add your handling code here:
+
+        if (cbPerfil.getSelectedItem() != null) {
+            if (tbLibros.getRowCount() > 0 || tbLibrosTerminados.getRowCount() > 0) {
+                JDialogEstadisticaActividadLectura jDialogEstadisticaAvanceLectura = new JDialogEstadisticaActividadLectura(this, rootPaneCheckingEnabled, perfilSeleccionado);
+                jDialogEstadisticaAvanceLectura.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "El perfil seleccionado no tiene libros agregados..", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un perfil.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_jItemEstadisticaActividadDeLecturaActionPerformed
 
     private void cargarElementos() {
 

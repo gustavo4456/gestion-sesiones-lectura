@@ -2,12 +2,14 @@ com\gustavo\guardarlibros\vista\JDialogEditarLectura$3.class
 com\gustavo\guardarlibros\modelo\Lectura.class
 com\gustavo\guardarlibros\utils\LecturaUtilImpl.class
 com\gustavo\guardarlibros\vista\JDialogEditarLecturaLibroTerminado.class
+com\gustavo\guardarlibros\vista\JDialogEstadisticaActividadLectura$1.class
 com\gustavo\guardarlibros\vista\JDialogEditarLecturaLibroTerminado$1.class
 com\gustavo\guardarlibros\vista\JDialogEliminarLecturasDeLibroTerminado.class
 com\gustavo\guardarlibros\vista\JfPrincipal$2.class
 com\gustavo\guardarlibros\utils\ILibroUtil.class
 com\gustavo\guardarlibros\vista\JDialogAgregarPerfil$1.class
 com\gustavo\guardarlibros\vista\JDialogEstadisticaProgresoPorLibro$2.class
+com\gustavo\guardarlibros\vista\JfPrincipal$12.class
 com\gustavo\guardarlibros\vista\JDialogEliminarLecturasDeLibroTerminado$2.class
 com\gustavo\guardarlibros\vista\JDialogAgregarLectura$2.class
 com\gustavo\guardarlibros\vista\JDialogEditarLecturaLibroTerminado$4.class
@@ -17,6 +19,7 @@ com\gustavo\guardarlibros\vista\JDialogAgregarLectura$3.class
 com\gustavo\guardarlibros\vista\JDialogEditarLecturaLibroTerminado$3.class
 com\gustavo\guardarlibros\vista\JDialogEliminarLecturasDeLibroTerminado$3$1.class
 com\gustavo\guardarlibros\vista\grillas\GrillaLibrosPorLeer.class
+com\gustavo\guardarlibros\vista\JDialogEstadisticaActividadLectura.class
 com\gustavo\guardarlibros\utils\ILecturaUtil.class
 com\gustavo\guardarlibros\Guardarlibros.class
 com\gustavo\guardarlibros\vista\JfPrincipal$3.class
@@ -27,6 +30,7 @@ com\gustavo\guardarlibros\vista\JDialogEstadisticaProgresoPorLibro$2$1.class
 com\gustavo\guardarlibros\vista\JfPrincipal.class
 com\gustavo\guardarlibros\vista\JDialogEstadisticaProgresoPorLibro$1.class
 com\gustavo\guardarlibros\vista\JDialogEditarLectura$2.class
+com\gustavo\guardarlibros\vista\JDialogEstadisticaActividadLectura$1$1.class
 com\gustavo\guardarlibros\vista\JDialogAgregarLibro$3.class
 com\gustavo\guardarlibros\utils\IPerfilUtil.class
 com\gustavo\guardarlibros\utils\NombresArchivos.class
