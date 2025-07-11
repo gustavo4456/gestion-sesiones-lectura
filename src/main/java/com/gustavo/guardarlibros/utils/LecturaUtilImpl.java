@@ -340,6 +340,6 @@ public class LecturaUtilImpl implements ILecturaUtil {
                 .distinct()
                 .filter(l -> l.getPerfil().getId().equals(idPerfil) && l.getEstado().equals(Estado.LEYENDO))
                 .sorted(Comparator.comparing(Lectura::getFechaInicio))
-                .collect(Collectors.groupingBy(l -> l.getLibro().getNombre().trim().toLowerCase(), Collectors.summarizingInt(Lectura::getMinutosLeidos)));
+                .collect(Collectors.groupingBy(l -> l.getLibro().getAutor().trim().toLowerCase(), Collectors.summarizingInt(Lectura::getMinutosLeidos)));
     }
 }

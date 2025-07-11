@@ -164,12 +164,7 @@ public class JDialogEstadisticaLecturaPorAutor extends javax.swing.JDialog {
     private ChartPanel crearSimpleLineChart() {
 
         if (perfil != null) {
-            List<Lectura> listaLecturas = lecturaUtilImpl.getListadoTodosLosLibrosPorPerfil(perfil.getId());
-
-            //Se ordena las lecturas por fecha de mas antigua a mas reciente
-            Map<LocalDate, IntSummaryStatistics> mapaListaLectraOrdenada = listaLecturas.stream()
-                    .sorted(Comparator.comparing(Lectura::getFechaInicio))
-                    .collect(Collectors.groupingBy(Lectura::getFechaInicio, LinkedHashMap::new, Collectors.summarizingInt(Lectura::getMinutosLeidos)));
+            Map<String, IntSummaryStatistics> mapaAutoresMinutosTotales = lecturaUtilImpl.getMapaAutoresMinutosTotales(perfil.getId());
 
             // 1. Crear un Dataset para el gráfico de líneas
             // DefaultCategoryDataset es fácil de usar para empezar
@@ -177,14 +172,14 @@ public class JDialogEstadisticaLecturaPorAutor extends javax.swing.JDialog {
 
             // Añadir datos de ejemplo: (valor, serie, categoria)
             // Imagina que son puntos de progreso en el tiempo para una única serie
-            mapaListaLectraOrdenada.forEach((llave, valor) -> {
-                dataset.addValue(valor.getSum(), "Minutos Acumulados", llave.toString());
+            mapaAutoresMinutosTotales.forEach((llave, valor) -> {
+                dataset.addValue(valor.getSum(), "Total De Minutos", llave);
             });
 
             // 2. Crear el objeto JFreeChart
             JFreeChart lineaDibujo = ChartFactory.createBarChart(
-                    "Actividad de lecturas", // Título del gráfico
-                    "Categoría (Días)", // Etiqueta del eje X
+                    "Lecturas por Autor", // Título del gráfico
+                    "Categoría (Autor)", // Etiqueta del eje X
                     "Valor (Minutos)", // Etiqueta del eje Y
                     dataset, // El dataset con los datos
                     PlotOrientation.VERTICAL, // Orientación del gráfico
