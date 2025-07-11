@@ -8,7 +8,9 @@ import com.gustavo.guardarlibros.modelo.Estado;
 import com.gustavo.guardarlibros.modelo.Lectura;
 import com.gustavo.guardarlibros.modelo.Libro;
 import java.time.LocalDate;
+import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -37,7 +39,7 @@ public interface ILecturaUtil {
 
     List<Lectura> getListadoTodosLosLibrosPorPerfil(Integer idPerfil);
 
-    List<Lectura> getListadoLecturasPorAutorYPerfil(Integer idPerfil, String nombreAutor);
+    Map<String, IntSummaryStatistics> getMapaAutoresMinutosTotales(Integer idPerfil);
 
     Optional<Integer> getUltimaPaginaGuardadaPorLibroEnLectura(Integer idPerfil, Libro libro);
 

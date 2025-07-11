@@ -16,7 +16,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -330,14 +332,14 @@ public class LecturaUtilImpl implements ILecturaUtil {
     }
 
     @Override
-    public List<Lectura> getListadoLecturasPorAutorYPerfil(Integer idPerfil, String nombreAutor) {
+    public Map<String, IntSummaryStatistics> getMapaAutoresMinutosTotales(Integer idPerfil) {
 
         List<Lectura> lecturas = leerArchivo();
 
         return lecturas.stream()
                 .distinct()
-                .filter(l -> l.getPerfil().getId().equals(idPerfil) && l.getEstado().equals(Estado.LEYENDO) && l.getLibro().getAutor().trim().toLowerCase().equals(nombreAutor.trim().toLowerCase()))
+                .filter(l -> l.getPerfil().getId().equals(idPerfil) && l.getEstado().equals(Estado.LEYENDO))
                 .sorted(Comparator.comparing(Lectura::getFechaInicio))
-                .collect(Collectors.toList());
+                .collect(Collectors.groupingBy(l -> l.getLibro().getNombre().trim().toLowerCase(), Collectors.summarizingInt(Lectura::getMinutosLeidos)));
     }
 }
