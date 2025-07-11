@@ -329,4 +329,15 @@ public class LecturaUtilImpl implements ILecturaUtil {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<Lectura> getListadoLecturasPorAutorYPerfil(Integer idPerfil, String nombreAutor) {
+
+        List<Lectura> lecturas = leerArchivo();
+
+        return lecturas.stream()
+                .distinct()
+                .filter(l -> l.getPerfil().getId().equals(idPerfil) && l.getEstado().equals(Estado.LEYENDO) && l.getLibro().getAutor().trim().toLowerCase().equals(nombreAutor.trim().toLowerCase()))
+                .sorted(Comparator.comparing(Lectura::getFechaInicio))
+                .collect(Collectors.toList());
+    }
 }

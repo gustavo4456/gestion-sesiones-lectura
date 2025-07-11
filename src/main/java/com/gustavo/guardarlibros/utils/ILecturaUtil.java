@@ -30,12 +30,14 @@ public interface ILecturaUtil {
     List<Lectura> getListadoLibrosPorLeerPorPerfil(Integer idPerfil);
 
     List<Lectura> getListadoLibrosEnLecturaPorPerfilYLibro(Integer idPerfil, Libro libro);
-    
+
     List<Lectura> getListadoLibrosTerminadosYNoTermiandosPorPerfil(Integer idPerfil);
 
     List<Lectura> getListadoLibrosTerminadosPorPerfil(Integer idPerfil);
-    
+
     List<Lectura> getListadoTodosLosLibrosPorPerfil(Integer idPerfil);
+
+    List<Lectura> getListadoLecturasPorAutorYPerfil(Integer idPerfil, String nombreAutor);
 
     Optional<Integer> getUltimaPaginaGuardadaPorLibroEnLectura(Integer idPerfil, Libro libro);
 
