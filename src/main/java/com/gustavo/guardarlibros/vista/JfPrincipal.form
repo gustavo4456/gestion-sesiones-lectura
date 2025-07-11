@@ -72,6 +72,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Lecturas por Autor"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jItemEstadisticaLecturasPorAutorActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jItemPaginasPorMinuto">
               <Properties>
