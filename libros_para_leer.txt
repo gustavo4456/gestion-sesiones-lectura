@@ -1,3 +1,4 @@
 1,El Gato Negro,Edgar Allan Poe,100
 2,El cementerio,juancho,300
 3,La marmota,juancho,1000
+4,La casa blanca,Juancho,40
