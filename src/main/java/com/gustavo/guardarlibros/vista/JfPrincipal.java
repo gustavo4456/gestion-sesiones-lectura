@@ -358,6 +358,11 @@ public class JfPrincipal extends javax.swing.JFrame {
         jMenuEstadisticas.add(jItemEstadisticaLecturasPorAutor);
 
         jItemPaginasPorMinuto.setText("Páginas por Minuto");
+        jItemPaginasPorMinuto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jItemPaginasPorMinutoActionPerformed(evt);
+            }
+        });
         jMenuEstadisticas.add(jItemPaginasPorMinuto);
 
         jItemLecturasPorPeriodo.setText("Lecturas por Periodo");
@@ -587,6 +592,24 @@ public class JfPrincipal extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_jItemEstadisticaLecturasPorAutorActionPerformed
+
+    private void jItemPaginasPorMinutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jItemPaginasPorMinutoActionPerformed
+        // TODO add your handling code here:
+
+        if (cbPerfil.getSelectedItem() != null) {
+            if (tbLibros.getRowCount() > 0 || tbLibrosTerminados.getRowCount() > 0) {
+                JDialogEstadisticaPaginaPorMinuto jDialogEstadisticaPaginaPorMinuto = new JDialogEstadisticaPaginaPorMinuto(this, rootPaneCheckingEnabled, perfilSeleccionado);
+                jDialogEstadisticaPaginaPorMinuto.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "El perfil seleccionado no tiene libros agregados..", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un perfil.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_jItemPaginasPorMinutoActionPerformed
 
     private void cargarElementos() {
 
