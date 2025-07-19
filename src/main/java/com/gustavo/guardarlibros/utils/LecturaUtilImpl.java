@@ -365,8 +365,8 @@ public class LecturaUtilImpl implements ILecturaUtil {
                 }
 
                 if (siguiente != null) {
-                    Integer cantidadPagianas = actual.getPaginaActual() - siguiente.getPaginaActual();
-                    listaDiaLecturas.add(new DiaLectura(actual.getFechaInicio(), cantidadPagianas));
+                    Integer cantidadPaginas = actual.getPaginaActual() - siguiente.getPaginaActual();
+                    listaDiaLecturas.add(new DiaLectura(actual.getFechaInicio(), cantidadPaginas));
                 } else {
                     listaDiaLecturas.add(new DiaLectura(actual.getFechaInicio(), actual.getPaginaActual()));
                 }
@@ -377,6 +377,6 @@ public class LecturaUtilImpl implements ILecturaUtil {
             System.out.println("La lista esta vacia no se puede calcular la cantidad de paginas leidas en un dia determinado.");
         }
 
-        return listaDiaLecturas;
+        return listaDiaLecturas.stream().sorted(Comparator.comparing(DiaLectura::getFecha).reversed()).collect(Collectors.toList());
     }
 }

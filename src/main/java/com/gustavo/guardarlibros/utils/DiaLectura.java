@@ -18,12 +18,15 @@ public class DiaLectura {
     // CANTIDAD DE PAGIANAS LEIDAS ESE DIA
     private Integer paginasLeidas;
 
+    private Integer minutosLeidos;
+
     public DiaLectura() {
     }
 
-    public DiaLectura(LocalDate fecha, Integer paginasLeidas) {
+    public DiaLectura(LocalDate fecha, Integer paginasLeidas, Integer minutosLeidos) {
         this.fecha = fecha;
         this.paginasLeidas = paginasLeidas;
+        this.minutosLeidos = minutosLeidos;
     }
 
     public LocalDate getFecha() {
@@ -42,11 +45,20 @@ public class DiaLectura {
         this.paginasLeidas = paginasLeidas;
     }
 
+    public Integer getMinutosLeidos() {
+        return minutosLeidos;
+    }
+
+    public void setMinutosLeidos(Integer minutosLeidos) {
+        this.minutosLeidos = minutosLeidos;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.fecha);
-        hash = 89 * hash + Objects.hashCode(this.paginasLeidas);
+        hash = 41 * hash + Objects.hashCode(this.fecha);
+        hash = 41 * hash + Objects.hashCode(this.paginasLeidas);
+        hash = 41 * hash + Objects.hashCode(this.minutosLeidos);
         return hash;
     }
 
@@ -65,12 +77,15 @@ public class DiaLectura {
         if (!Objects.equals(this.fecha, other.fecha)) {
             return false;
         }
-        return Objects.equals(this.paginasLeidas, other.paginasLeidas);
+        if (!Objects.equals(this.paginasLeidas, other.paginasLeidas)) {
+            return false;
+        }
+        return Objects.equals(this.minutosLeidos, other.minutosLeidos);
     }
 
     @Override
     public String toString() {
-        return "DiaLectura{" + "fecha=" + fecha + ", paginasLeidas=" + paginasLeidas + '}';
+        return "DiaLectura{" + "fecha=" + fecha + ", paginasLeidas=" + paginasLeidas + ", minutosLeidos=" + minutosLeidos + '}';
     }
 
 }
