@@ -342,4 +342,41 @@ public class LecturaUtilImpl implements ILecturaUtil {
                 .sorted(Comparator.comparing(Lectura::getFechaInicio))
                 .collect(Collectors.groupingBy(l -> l.getLibro().getAutor().trim().toLowerCase(), Collectors.summarizingInt(Lectura::getMinutosLeidos)));
     }
+
+    @Override
+    public List<DiaLectura> getPaginasLeidasEnUnDiaPorLibroYPerfil(Integer idPerfil, Libro libro) {
+
+        List<Lectura> listaDeLecturas = getListadoLibrosEnLecturaPorPerfilYLibro(idPerfil, libro);
+        List<DiaLectura> listaDiaLecturas = new ArrayList<>();
+
+        if (!listaDeLecturas.isEmpty()) {
+            // Solo siguiente porque la lista esta ordenada de primero la mas reciente
+            Lectura actual = null;
+            Lectura siguiente = null;
+
+            for (int i = 0; i < listaDeLecturas.size(); i++) {
+
+                actual = listaDeLecturas.get(i);
+
+                try {
+                    siguiente = listaDeLecturas.get(i + 1);
+                } catch (IndexOutOfBoundsException e) {
+                    siguiente = null;
+                }
+
+                if (siguiente != null) {
+                    Integer cantidadPagianas = actual.getPaginaActual() - siguiente.getPaginaActual();
+                    listaDiaLecturas.add(new DiaLectura(actual.getFechaInicio(), cantidadPagianas));
+                } else {
+                    listaDiaLecturas.add(new DiaLectura(actual.getFechaInicio(), actual.getPaginaActual()));
+                }
+
+            }
+
+        } else {
+            System.out.println("La lista esta vacia no se puede calcular la cantidad de paginas leidas en un dia determinado.");
+        }
+
+        return listaDiaLecturas;
+    }
 }

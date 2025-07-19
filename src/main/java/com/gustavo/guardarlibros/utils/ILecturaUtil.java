@@ -51,4 +51,6 @@ public interface ILecturaUtil {
 
     void editarUnaLectura(Lectura lecturaEditada);
 
+    List<DiaLectura> getPaginasLeidasEnUnDiaPorLibroYPerfil(Integer idPerfil, Libro libro);
+
 }
