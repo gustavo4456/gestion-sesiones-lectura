@@ -29,6 +29,10 @@ public class DiaLectura {
         this.minutosLeidos = minutosLeidos;
     }
 
+    public Double getVelocidadPorMinuto() {
+        return (double) paginasLeidas / (double) minutosLeidos;
+    }
+
     public LocalDate getFecha() {
         return fecha;
     }

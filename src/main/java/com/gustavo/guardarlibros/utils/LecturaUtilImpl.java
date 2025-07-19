@@ -366,9 +366,9 @@ public class LecturaUtilImpl implements ILecturaUtil {
 
                 if (siguiente != null) {
                     Integer cantidadPaginas = actual.getPaginaActual() - siguiente.getPaginaActual();
-                    listaDiaLecturas.add(new DiaLectura(actual.getFechaInicio(), cantidadPaginas));
+                    listaDiaLecturas.add(new DiaLectura(actual.getFechaInicio(), cantidadPaginas, actual.getMinutosLeidos()));
                 } else {
-                    listaDiaLecturas.add(new DiaLectura(actual.getFechaInicio(), actual.getPaginaActual()));
+                    listaDiaLecturas.add(new DiaLectura(actual.getFechaInicio(), actual.getPaginaActual(), actual.getMinutosLeidos()));
                 }
 
             }
