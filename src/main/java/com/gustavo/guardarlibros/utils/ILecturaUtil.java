@@ -34,6 +34,8 @@ public interface ILecturaUtil {
     List<Lectura> getListadoLibrosEnLecturaPorPerfilYLibro(Integer idPerfil, Libro libro);
 
     List<Lectura> getListadoLibrosTerminadosYNoTermiandosPorPerfil(Integer idPerfil);
+    
+    List<Lectura> getListadoTodasLecturasPorPerfil(Integer idPerfil);
 
     List<Lectura> getListadoLibrosTerminadosPorPerfil(Integer idPerfil);
 
@@ -52,5 +54,7 @@ public interface ILecturaUtil {
     void editarUnaLectura(Lectura lecturaEditada);
 
     List<DiaLectura> getPaginasLeidasEnUnDiaPorLibroYPerfil(Integer idPerfil, Libro libro);
+    
+    List<DiaLectura> getPaginasLeidasEnUnDiaDeTodosLosLibrosPorPerfil(Integer idPerfil);
 
 }

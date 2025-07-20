@@ -70,6 +70,12 @@ public class JDialogEstadisticaPaginaPorMinuto extends javax.swing.JDialog {
                 .map(Lectura::getLibro)
                 .collect(Collectors.toList());
 
+        Libro nuevoLibro = new Libro();
+        nuevoLibro.setId(-1);
+        nuevoLibro.setNombre("Todos los Libros");
+        nuevoLibro.setAutor("Todos los autores");
+        liLibros.add(0, nuevoLibro);
+
         DefaultComboBoxModel modelLibros = new DefaultComboBoxModel(liLibros.toArray());
 
         cbLibros.setModel(modelLibros);
@@ -92,7 +98,7 @@ public class JDialogEstadisticaPaginaPorMinuto extends javax.swing.JDialog {
         jPanelLienzo = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Progreso Por Libro");
+        setTitle("Páginas Por Minuto");
 
         lblPerfil.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPerfil.setText("Para el perfil: ");

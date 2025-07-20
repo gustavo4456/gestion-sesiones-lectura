@@ -379,4 +379,54 @@ public class LecturaUtilImpl implements ILecturaUtil {
 
         return listaDiaLecturas.stream().sorted(Comparator.comparing(DiaLectura::getFecha).reversed()).collect(Collectors.toList());
     }
+
+    @Override
+    public List<DiaLectura> getPaginasLeidasEnUnDiaDeTodosLosLibrosPorPerfil(Integer idPerfil) {
+        List<Lectura> listaDeLecturas = getListadoTodasLecturasPorPerfil(idPerfil);
+        List<DiaLectura> listaDiaLecturas = new ArrayList<>();
+
+        if (!listaDeLecturas.isEmpty()) {
+            // Solo siguiente porque la lista esta ordenada de primero la mas reciente
+            Lectura actual = null;
+            Lectura siguiente = null;
+
+            for (int i = 0; i < listaDeLecturas.size(); i++) {
+
+                actual = listaDeLecturas.get(i);
+
+                try {
+                    siguiente = listaDeLecturas.get(i + 1);
+                } catch (IndexOutOfBoundsException e) {
+                    siguiente = null;
+                }
+
+                if (siguiente != null) {
+                    Integer cantidadPaginas = actual.getPaginaActual() - siguiente.getPaginaActual();
+                    listaDiaLecturas.add(new DiaLectura(actual.getFechaInicio(), cantidadPaginas, actual.getMinutosLeidos()));
+                } else {
+                    listaDiaLecturas.add(new DiaLectura(actual.getFechaInicio(), actual.getPaginaActual(), actual.getMinutosLeidos()));
+                }
+
+            }
+
+        } else {
+            System.out.println("La lista esta vacia no se puede calcular la cantidad de paginas leidas en un dia determinado.");
+        }
+
+        return listaDiaLecturas.stream().sorted(Comparator.comparing(DiaLectura::getFecha).reversed()).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Lectura> getListadoTodasLecturasPorPerfil(Integer idPerfil) {
+
+        List<Lectura> listadoLectura = leerArchivo();
+
+        List<Lectura> lecturas = listadoLectura.stream()
+                .distinct()
+                .filter(l -> l.getPerfil().getId().equals(idPerfil) && l.getEstado().equals(Estado.LEYENDO))
+                .sorted(Comparator.comparing(Lectura::getFechaInicio).reversed())
+                .collect(Collectors.toList());
+
+        return lecturas;
+    }
 }
