@@ -2,3 +2,5 @@
 2,El cementerio,juancho,300
 3,La marmota,juancho,1000
 4,La casa blanca,Juancho,40
+5,Pruebaaa,autore1,122
+6,pruebaaa2,auror2,200

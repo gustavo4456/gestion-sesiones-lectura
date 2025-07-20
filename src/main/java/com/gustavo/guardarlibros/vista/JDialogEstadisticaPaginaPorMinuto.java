@@ -12,18 +12,22 @@ import com.gustavo.guardarlibros.utils.LecturaUtilImpl;
 import com.gustavo.guardarlibros.utils.LibroUtilImpl;
 import java.awt.BorderLayout;
 import java.awt.RenderingHints;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.DateAxis;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.time.Day;
 import org.jfree.data.time.TimeSeries;
@@ -218,94 +222,83 @@ public class JDialogEstadisticaPaginaPorMinuto extends javax.swing.JDialog {
     }
 
     private ChartPanel crearSimpleLineChart() {
-        // Generar datos de prueba para el gráfico de velocidad de lectura
-        // Usamos DiaLectura para representar la información de cada día
-        List<DiaLectura> datosDeVelocidadDePrueba = new ArrayList<>();
-        LocalDate fechaBase = LocalDate.of(2025, 1, 10); // Una fecha de inicio para los datos de prueba
+        List<DiaLectura> datos = obtenerDatosLectura();
 
-        if (libroSeleccionado != null) {
-            if (libroSeleccionado.getId() == -1) { // Si es "Todos los Libros"
-                // Datos de prueba para la serie "Velocidad Promedio Diaria"
-                datosDeVelocidadDePrueba.add(new DiaLectura(fechaBase.plusDays(0), 40, 30)); // 1.33 PPM
-                datosDeVelocidadDePrueba.add(new DiaLectura(fechaBase.plusDays(1), 50, 35)); // 1.42 PPM
-                datosDeVelocidadDePrueba.add(new DiaLectura(fechaBase.plusDays(3), 45, 30)); // 1.5 PPM
-                datosDeVelocidadDePrueba.add(new DiaLectura(fechaBase.plusDays(5), 60, 40)); // 1.5 PPM
-                datosDeVelocidadDePrueba.add(new DiaLectura(fechaBase.plusDays(7), 55, 45)); // 1.22 PPM
-                datosDeVelocidadDePrueba.add(new DiaLectura(fechaBase.plusDays(10), 70, 50)); // 1.4 PPM
-                datosDeVelocidadDePrueba.add(new DiaLectura(fechaBase.plusDays(12), 65, 40)); // 1.625 PPM
-            } else { // Si es un libro específico (real de tu DB, pero con datos de prueba)
-                // Para simular datos diferentes por libro, podrías usar if/else if con libroSeleccionado.getId()
-                // Por ahora, pondremos datos genéricos pero que varíen ligeramente.
-                datosDeVelocidadDePrueba = lecturaUtilImpl.getPaginasLeidasEnUnDiaPorLibroYPerfil(perfil.getId(), libroSeleccionado);
-            }
-        }
-
-        // Filtrar datos inválidos (minutos=0 o paginas=0) antes de graficar para evitar divisiones por cero
-        datosDeVelocidadDePrueba = datosDeVelocidadDePrueba.stream()
-                .filter(dl -> dl.getMinutosLeidos() != null && dl.getMinutosLeidos() > 0 && dl.getPaginasLeidas() != null && dl.getPaginasLeidas() > 0)
+        // Filtrar datos inválidos
+        datos = datos.stream()
+                .filter(dl -> dl.getMinutosLeidos() != null && dl.getMinutosLeidos() > 0
+                && dl.getPaginasLeidas() != null && dl.getPaginasLeidas() > 0)
                 .collect(Collectors.toList());
 
-        if (datosDeVelocidadDePrueba.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No hay datos de lectura de prueba válidos para mostrar en el gráfico.", "Información", JOptionPane.INFORMATION_MESSAGE);
+        if (datos.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hay datos de lectura válidos para mostrar en el gráfico.", "Información", JOptionPane.INFORMATION_MESSAGE);
             return null;
         }
 
-        // Usamos TimeSeriesCollection para un gráfico de series de tiempo (ideal para fechas)
-        TimeSeriesCollection dataset = new TimeSeriesCollection();
-        TimeSeries seriesPPM;
+        TimeSeries serie = new TimeSeries(libroSeleccionado.getId() == -1
+                ? "Velocidad Promedio Diaria"
+                : "PPM - " + libroSeleccionado.getNombre());
 
         if (libroSeleccionado.getId() == -1) {
-            seriesPPM = new TimeSeries("Velocidad Promedio Diaria");
-            // Agrupar los DiaLectura por fecha para calcular el promedio de velocidad del día
-            Map<LocalDate, List<DiaLectura>> lecturasPorFecha = datosDeVelocidadDePrueba.stream()
-                    .collect(Collectors.groupingBy(DiaLectura::getFecha));
+            Map<LocalDate, Double> promedioPorFecha = datos.stream()
+                    .collect(Collectors.groupingBy(
+                            DiaLectura::getFecha,
+                            TreeMap::new,
+                            Collectors.averagingDouble(DiaLectura::getVelocidadPorMinuto)
+                    ));
 
-            lecturasPorFecha.entrySet().stream()
-                    .sorted(Map.Entry.comparingByKey()) // Ordenar por fecha
-                    .forEach(entry -> {
-                        LocalDate fecha = entry.getKey();
-                        List<DiaLectura> lecturasDelDia = entry.getValue();
-                        double sumaVelocidades = lecturasDelDia.stream()
-                                .mapToDouble(DiaLectura::getVelocidadPorMinuto)
-                                .average() // Calcula el promedio de velocidad para ese día
-                                .orElse(0.0);
-
-                        if (sumaVelocidades > 0) {
-                            seriesPPM.add(new Day(fecha.getDayOfMonth(), fecha.getMonthValue(), fecha.getYear()), sumaVelocidades);
+            promedioPorFecha.forEach((fecha, ppm) -> {
+                if (ppm > 0) {
+                    serie.add(new Day(fecha.getDayOfMonth(), fecha.getMonthValue(), fecha.getYear()), ppm);
+                }
+            });
+        } else {
+            datos.stream()
+                    .sorted(Comparator.comparing(DiaLectura::getFecha))
+                    .forEach(dia -> {
+                        double ppm = dia.getVelocidadPorMinuto();
+                        if (ppm > 0) {
+                            LocalDate fecha = dia.getFecha();
+                            serie.add(new Day(fecha.getDayOfMonth(), fecha.getMonthValue(), fecha.getYear()), ppm);
                         }
                     });
-        } else {
-            seriesPPM = new TimeSeries("PPM - " + libroSeleccionado.getNombre());
-            datosDeVelocidadDePrueba.sort(Comparator.comparing(DiaLectura::getFecha)); // Ordenar por fecha
-            for (DiaLectura diaLectura : datosDeVelocidadDePrueba) {
-                seriesPPM.add(new Day(diaLectura.getFecha().getDayOfMonth(), diaLectura.getFecha().getMonthValue(), diaLectura.getFecha().getYear()), diaLectura.getVelocidadPorMinuto());
-            }
         }
 
-        dataset.addSeries(seriesPPM);
+        TimeSeriesCollection dataset = new TimeSeriesCollection(serie);
 
-        // Crear el objeto JFreeChart como un TimeSeriesChart
         JFreeChart chart = ChartFactory.createTimeSeriesChart(
-                "Velocidad de Lectura - " + libroSeleccionado.getNombre(), // Título del gráfico
-                "Fecha", // Etiqueta del eje X
-                "Páginas por Minuto (PPM)", // Etiqueta del eje Y
-                dataset, // El dataset con los datos
-                true, // ¿Mostrar leyenda?
-                true, // ¿Mostrar tooltips?
-                false // ¿Generar URLs?
+                "Velocidad de Lectura - " + libroSeleccionado.getNombre(),
+                "Fecha",
+                "Páginas por Minuto (PPM)",
+                dataset,
+                true,
+                true,
+                false
         );
 
-        // Anti-aliasing para mejorar la calidad visual
-        chart.setTextAntiAlias(true);
+        // Forzar formato de fechas en el eje X
+        XYPlot plot = chart.getXYPlot();
+        DateAxis ejeX = (DateAxis) plot.getDomainAxis();
+        ejeX.setDateFormatOverride(new SimpleDateFormat("dd/MM/yyyy"));
+
+        // Anti-aliasing y render hints
         chart.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
         chart.setRenderingHints(new RenderingHints(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON));
         chart.setRenderingHints(new RenderingHints(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE));
 
-        // Crear el ChartPanel para mostrar el gráfico
-        ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new java.awt.Dimension(600, 400)); // Tamaño recomendado
+        return new ChartPanel(chart);
+    }
 
-        return chartPanel;
+    private List<DiaLectura> obtenerDatosLectura() {
+        if (libroSeleccionado == null) {
+            return new ArrayList<>();
+        }
+
+        if (libroSeleccionado.getId() == -1) {
+            return lecturaUtilImpl.getPaginasLeidasEnUnDiaDeTodosLosLibrosPorPerfil(perfil.getId());
+        } else {
+            return lecturaUtilImpl.getPaginasLeidasEnUnDiaPorLibroYPerfil(perfil.getId(), libroSeleccionado);
+        }
     }
 
     private void mostrarGraficoDeLineas() {
