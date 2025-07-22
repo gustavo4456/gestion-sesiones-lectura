@@ -88,6 +88,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Lecturas por Periodo"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jItemLecturasPorPeriodoActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jItemResumenGeneral">
               <Properties>
