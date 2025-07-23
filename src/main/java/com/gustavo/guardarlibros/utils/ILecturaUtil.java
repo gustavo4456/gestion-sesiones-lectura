@@ -67,4 +67,6 @@ public interface ILecturaUtil {
 
     double getPromedioMinutosLeidos(Integer idPerfil);
 
+    double getPorcentajeCompletadoPorLibroYPerfil(Integer idPerfil, Libro libro);
+
 }

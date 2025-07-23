@@ -513,4 +513,25 @@ public class LecturaUtilImpl implements ILecturaUtil {
         }
     }
 
+    @Override
+    public double getPorcentajeCompletadoPorLibroYPerfil(Integer idPerfil, Libro libro) {
+
+        List<Lectura> lecturas = getListadoLibrosEnLecturaPorPerfilYLibro(idPerfil, libro);
+
+        Optional<Lectura> lecturaOpt = lecturas.stream()
+                .distinct()
+                .sorted(Comparator.comparing(Lectura::getFechaInicio).reversed())
+                .findFirst();
+
+        if (lecturaOpt.isEmpty()) {
+            return 0;
+        }
+
+        double totalPaginas = lecturaOpt.get().getLibro().getCantidadPaginas();
+        double paginaActual = lecturaOpt.get().getMinutosLeidos();
+
+        return paginaActual / totalPaginas;
+
+    }
+
 }
