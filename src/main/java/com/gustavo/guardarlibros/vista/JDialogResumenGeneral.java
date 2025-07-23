@@ -151,7 +151,9 @@ public class JDialogResumenGeneral extends javax.swing.JDialog {
         this.libroSeleccionado = (Libro) cbLibros.getSelectedItem();
 
         if (libroSeleccionado != null) {
+            double porcentaje = lecturaUtilImpl.getPorcentajeCompletadoPorLibroYPerfil(perfil.getId(), libroSeleccionado);
 
+            lblPorcentajeCompletado.setText("Porcentaje completado: " + porcentaje);
         } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un Libro.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 

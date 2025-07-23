@@ -528,7 +528,7 @@ public class LecturaUtilImpl implements ILecturaUtil {
         }
 
         double totalPaginas = lecturaOpt.get().getLibro().getCantidadPaginas();
-        double paginaActual = lecturaOpt.get().getMinutosLeidos();
+        double paginaActual = lecturaOpt.get().getPaginaActual();
 
         return paginaActual / totalPaginas;
 
