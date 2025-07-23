@@ -472,4 +472,45 @@ public class LecturaUtilImpl implements ILecturaUtil {
         return resultadoFinal;
     }
 
+    @Override
+    public long getTotalDeLecturasPorPerfil(Integer idPerfil) {
+        List<Lectura> lecturas = getListadoTodasLecturasPorPerfil(idPerfil);
+
+        return lecturas.stream()
+                .distinct()
+                .count();
+
+    }
+
+    @Override
+    public Optional<Integer> getTotalDeMinutosLeidosPorPerfil(Integer idPerfil) {
+        List<Lectura> lecturas = getListadoTodasLecturasPorPerfil(idPerfil);
+
+        return lecturas.stream()
+                .distinct()
+                .map(Lectura::getMinutosLeidos)
+                .reduce((s1, s2) -> s1 + s2);
+    }
+
+    @Override
+    public long getCantidadLibrosTerminados(Integer idPerfil) {
+        List<Lectura> lecturas = getListadoLibrosTerminadosPorPerfil(idPerfil);
+
+        return lecturas.stream()
+                .distinct()
+                .count();
+    }
+
+    @Override
+    public double getPromedioMinutosLeidos(Integer idPerfil) {
+        Optional<Integer> minutosTotalesOpt = getTotalDeMinutosLeidosPorPerfil(idPerfil);
+        long cantidadDeLecturas = getTotalDeLecturasPorPerfil(idPerfil);
+
+        if (minutosTotalesOpt.isPresent()) {
+            return minutosTotalesOpt.get() / cantidadDeLecturas;
+        } else {
+            return 0;
+        }
+    }
+
 }
