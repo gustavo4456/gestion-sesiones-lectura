@@ -534,4 +534,20 @@ public class LecturaUtilImpl implements ILecturaUtil {
 
     }
 
+    @Override
+    public long getTotalDePaginasPorPerfil(Integer idPerfil) {
+        List<Lectura> lecturas = getListadoTodasLecturasPorPerfil(idPerfil);
+
+        Optional<Integer> resOpt = lecturas.stream()
+                .distinct()
+                .map(Lectura::getPaginaActual)
+                .reduce((p1, p2) -> p1 + p2);
+
+        if (resOpt.isEmpty()) {
+            return 0;
+        }
+
+        return resOpt.get();
+    }
+
 }

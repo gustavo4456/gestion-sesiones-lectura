@@ -39,6 +39,7 @@ public class JDialogResumenGeneral extends javax.swing.JDialog {
         this.perfil = perfil;
 
         cargarCbLibros();
+        cargarLabels();
 
     }
 
@@ -60,6 +61,7 @@ public class JDialogResumenGeneral extends javax.swing.JDialog {
         lblMinutosTotalesLeidos = new javax.swing.JLabel();
         lblLibroTerminados = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        lblSesionesTotales = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Resumen General");
@@ -86,6 +88,8 @@ public class JDialogResumenGeneral extends javax.swing.JDialog {
 
         jLabel3.setText("Promedio Diario de Lectura:");
 
+        lblSesionesTotales.setText("Sesiones Totales: ");
+
         javax.swing.GroupLayout jPanelPrincipalLayout = new javax.swing.GroupLayout(jPanelPrincipal);
         jPanelPrincipal.setLayout(jPanelPrincipalLayout);
         jPanelPrincipalLayout.setHorizontalGroup(
@@ -105,7 +109,8 @@ public class JDialogResumenGeneral extends javax.swing.JDialog {
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                             .addComponent(lblPaginasTotalesLeidas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblMinutosTotalesLeidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblLibroTerminados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblLibroTerminados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblSesionesTotales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -127,7 +132,9 @@ public class JDialogResumenGeneral extends javax.swing.JDialog {
                 .addComponent(lblLibroTerminados, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(lblSesionesTotales, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -153,7 +160,7 @@ public class JDialogResumenGeneral extends javax.swing.JDialog {
         if (libroSeleccionado != null) {
             double porcentaje = lecturaUtilImpl.getPorcentajeCompletadoPorLibroYPerfil(perfil.getId(), libroSeleccionado);
 
-            lblPorcentajeCompletado.setText("Porcentaje completado: " + porcentaje);
+            lblPorcentajeCompletado.setText("Porcentaje completado: " + Math.round(porcentaje * 100) + " %");
         } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un Libro.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 
@@ -210,6 +217,13 @@ public class JDialogResumenGeneral extends javax.swing.JDialog {
 
     }
 
+    private void cargarLabels() {
+
+        long cantidadTotalLecturas = lecturaUtilImpl.getTotalDeLecturasPorPerfil(perfil.getId());
+
+        lblSesionesTotales.setText("Sesiones Totales: " + cantidadTotalLecturas);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbLibros;
     private javax.swing.JLabel jLabel1;
@@ -220,5 +234,6 @@ public class JDialogResumenGeneral extends javax.swing.JDialog {
     private javax.swing.JLabel lblMinutosTotalesLeidos;
     private javax.swing.JLabel lblPaginasTotalesLeidas;
     private javax.swing.JLabel lblPorcentajeCompletado;
+    private javax.swing.JLabel lblSesionesTotales;
     // End of variables declaration//GEN-END:variables
 }

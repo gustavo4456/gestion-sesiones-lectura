@@ -60,6 +60,8 @@ public interface ILecturaUtil {
     Map<String, Integer> getObtenerUltimosMesesYConteoDeLecturasParaCadaMes(int cantidadMeses, Integer idPerfil);
 
     long getTotalDeLecturasPorPerfil(Integer idPerfil);
+    
+    long getTotalDePaginasPorPerfil(Integer idPerfil);
 
     Optional<Integer> getTotalDeMinutosLeidosPorPerfil(Integer idPerfil);
 
