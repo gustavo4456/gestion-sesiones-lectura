@@ -4,13 +4,26 @@
  */
 package com.gustavo.guardarlibros.vista;
 
+import com.gustavo.guardarlibros.modelo.Lectura;
+import com.gustavo.guardarlibros.modelo.Libro;
+import com.gustavo.guardarlibros.modelo.Perfil;
+import com.gustavo.guardarlibros.utils.LecturaUtilImpl;
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author gusta
  */
 public class JDialogResumenGeneral extends javax.swing.JDialog {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JDialogResumenGeneral.class.getName());
+
+    private Libro libroSeleccionado = new Libro();
+    private Perfil perfil;
+    private LecturaUtilImpl lecturaUtilImpl = new LecturaUtilImpl();
 
     /**
      * Creates new form JDialogResumenGeneral
@@ -18,6 +31,15 @@ public class JDialogResumenGeneral extends javax.swing.JDialog {
     public JDialogResumenGeneral(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+
+    public JDialogResumenGeneral(java.awt.Frame parent, boolean modal, Perfil perfil) {
+        super(parent, modal);
+        initComponents();
+        this.perfil = perfil;
+
+        cargarCbLibros();
+
     }
 
     /**
@@ -29,21 +51,112 @@ public class JDialogResumenGeneral extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanelPrincipal = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        cbLibros = new javax.swing.JComboBox<>();
+        lblPorcentajeCompletado = new javax.swing.JLabel();
+        lblPaginasTotalesLeidas = new javax.swing.JLabel();
+        lblMinutosTotalesLeidos = new javax.swing.JLabel();
+        lblLibroTerminados = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Resumen General");
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Resumen");
+
+        jLabel2.setText("Libro:");
+
+        cbLibros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbLibrosActionPerformed(evt);
+            }
+        });
+
+        lblPorcentajeCompletado.setText("Porcentaje completado: ");
+
+        lblPaginasTotalesLeidas.setText("Paginas Totales leídas: ");
+
+        lblMinutosTotalesLeidos.setText("Minutos Totales Leídos: ");
+
+        lblLibroTerminados.setText("Libros Terminados: ");
+
+        jLabel3.setText("Promedio Diario de Lectura:");
+
+        javax.swing.GroupLayout jPanelPrincipalLayout = new javax.swing.GroupLayout(jPanelPrincipal);
+        jPanelPrincipal.setLayout(jPanelPrincipalLayout);
+        jPanelPrincipalLayout.setHorizontalGroup(
+            jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPrincipalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanelPrincipalLayout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbLibros, 0, 135, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPorcentajeCompletado, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))
+                    .addGroup(jPanelPrincipalLayout.createSequentialGroup()
+                        .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                            .addComponent(lblPaginasTotalesLeidas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblMinutosTotalesLeidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblLibroTerminados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanelPrincipalLayout.setVerticalGroup(
+            jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPrincipalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(cbLibros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPorcentajeCompletado, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(lblPaginasTotalesLeidas, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblMinutosTotalesLeidos, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblLibroTerminados, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(110, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cbLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbLibrosActionPerformed
+        // TODO add your handling code here:
+
+        this.libroSeleccionado = (Libro) cbLibros.getSelectedItem();
+
+        if (libroSeleccionado != null) {
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un Libro.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_cbLibrosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -82,6 +195,28 @@ public class JDialogResumenGeneral extends javax.swing.JDialog {
         });
     }
 
+    private void cargarCbLibros() {
+        List<Lectura> liLecturas = lecturaUtilImpl.getListadoLibrosTerminadosYNoTermiandosPorPerfil(perfil.getId());
+
+        List<Libro> liLibros = liLecturas.stream()
+                .map(Lectura::getLibro)
+                .collect(Collectors.toList());
+
+        DefaultComboBoxModel modelLibros = new DefaultComboBoxModel(liLibros.toArray());
+
+        cbLibros.setModel(modelLibros);
+
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbLibros;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanelPrincipal;
+    private javax.swing.JLabel lblLibroTerminados;
+    private javax.swing.JLabel lblMinutosTotalesLeidos;
+    private javax.swing.JLabel lblPaginasTotalesLeidas;
+    private javax.swing.JLabel lblPorcentajeCompletado;
     // End of variables declaration//GEN-END:variables
 }

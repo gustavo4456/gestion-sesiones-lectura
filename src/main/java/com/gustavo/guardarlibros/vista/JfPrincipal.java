@@ -374,6 +374,11 @@ public class JfPrincipal extends javax.swing.JFrame {
         jMenuEstadisticas.add(jItemLecturasPorPeriodo);
 
         jItemResumenGeneral.setText("Resumen General");
+        jItemResumenGeneral.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jItemResumenGeneralActionPerformed(evt);
+            }
+        });
         jMenuEstadisticas.add(jItemResumenGeneral);
 
         jMenuBarra.add(jMenuEstadisticas);
@@ -633,6 +638,23 @@ public class JfPrincipal extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_jItemLecturasPorPeriodoActionPerformed
+
+    private void jItemResumenGeneralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jItemResumenGeneralActionPerformed
+        // TODO add your handling code here:
+        if (cbPerfil.getSelectedItem() != null) {
+            if (tbLibros.getRowCount() > 0 || tbLibrosTerminados.getRowCount() > 0) {
+                JDialogResumenGeneral jDialogResumenGeneral = new JDialogResumenGeneral(this, rootPaneCheckingEnabled, perfilSeleccionado);
+                jDialogResumenGeneral.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "El perfil seleccionado no tiene libros agregados..", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un perfil.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_jItemResumenGeneralActionPerformed
 
     private void cargarElementos() {
 
