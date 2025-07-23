@@ -13,14 +13,20 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.IntSummaryStatistics;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  *
@@ -429,4 +435,41 @@ public class LecturaUtilImpl implements ILecturaUtil {
 
         return lecturas;
     }
+
+    @Override
+    public Map<String, Integer> getObtenerUltimosMesesYConteoDeLecturasParaCadaMes(int cantidadMeses, Integer idPerfil) {
+        List<Lectura> lecturas = getListadoTodasLecturasPorPerfil(idPerfil);
+
+        // 1. Calcular el conteo de lecturas existentes por YearMonth
+        Map<YearMonth, Long> conteoExistente = lecturas.stream()
+                .distinct() // Asegura que cada lectura única se cuente una sola vez
+                .collect(Collectors.groupingBy(
+                        l -> YearMonth.from(l.getFechaInicio()),
+                        Collectors.counting()
+                ));
+
+        // 2. Generar la secuencia de los últimos 'cantidadMeses' y combinarlos con el conteo
+        // Usamos YearMonth.now() para obtener el mes y año actual.
+        // Locale.getDefault() para obtener el idioma predeterminado del sistema,
+        // o Locale.of("es", "ES") para forzar español.
+        Locale locale = Locale.of("es", "ES"); // Forzar el locale a español para los nombres de los meses
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy", locale);
+
+        YearMonth mesActual = YearMonth.now(); // Hora actual: 2025-07-22
+
+        // Creamos un LinkedHashMap para asegurar que los meses se devuelvan en orden cronológico (de más antiguo a más reciente)
+        Map<String, Integer> resultadoFinal = IntStream.range(0, cantidadMeses)
+                .mapToObj(i -> mesActual.minusMonths(cantidadMeses - 1 - i)) // Genera los meses de más antiguo a más reciente
+                .collect(Collectors.toMap(
+                        // Clave: Mes y Año formateado (ej. "julio 2025")
+                        mes -> mes.format(formatter),
+                        // Valor: Conteo de lecturas (0 si no hay para ese mes)
+                        mes -> conteoExistente.getOrDefault(mes, 0L).intValue(), // Convierte Long a Integer
+                        (oldValue, newValue) -> oldValue, // Función de fusión (no debería usarse si las claves son únicas)
+                        LinkedHashMap::new // Asegura el orden de inserción
+                ));
+
+        return resultadoFinal;
+    }
+
 }

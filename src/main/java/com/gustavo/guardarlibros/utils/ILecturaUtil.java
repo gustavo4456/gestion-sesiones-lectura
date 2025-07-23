@@ -57,29 +57,6 @@ public interface ILecturaUtil {
 
     List<DiaLectura> getPaginasLeidasEnUnDiaDeTodosLosLibrosPorPerfil(Integer idPerfil);
 
-    Map<String, Integer> obtenerUltimosMesesYConteoDeLecturasParaCadaMes(int cantidadMeses);
+    Map<String, Integer> getObtenerUltimosMesesYConteoDeLecturasParaCadaMes(int cantidadMeses, Integer idPerfil);
 
-//    public static List<String> obtenerUltimosMeses(int cantidadMeses) {
-//        List<String> resultado = new ArrayList<>();
-//        LocalDate fechaActual = LocalDate.now(); // Obtiene la fecha actual
-//
-//        // Formato para mostrar el mes y el año (ej. "enero 2024")
-//        // Puedes personalizar el formato según tus necesidades
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
-//
-//        for (int i = 0; i < cantidadMeses; i++) {
-//            LocalDate fechaIterada = fechaActual.minusMonths(i); // Resta 'i' meses a la fecha actual
-//            
-//            // Obtiene el mes (en español si la configuración regional lo permite,
-//            // de lo contrario será el nombre del mes en inglés)
-//            Month mes = fechaIterada.getMonth();
-//            int anio = fechaIterada.getYear();
-//
-//            // Formatea la fecha para obtener la cadena "mes año"
-//            String mesAnioFormateado = fechaIterada.format(formatter);
-//            
-//            resultado.add(mesAnioFormateado);
-//        }
-//        return resultado;
-//    }
 }
