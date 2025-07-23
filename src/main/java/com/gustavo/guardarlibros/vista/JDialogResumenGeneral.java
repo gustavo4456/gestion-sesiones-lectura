@@ -9,6 +9,7 @@ import com.gustavo.guardarlibros.modelo.Libro;
 import com.gustavo.guardarlibros.modelo.Perfil;
 import com.gustavo.guardarlibros.utils.LecturaUtilImpl;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -60,7 +61,7 @@ public class JDialogResumenGeneral extends javax.swing.JDialog {
         lblPaginasTotalesLeidas = new javax.swing.JLabel();
         lblMinutosTotalesLeidos = new javax.swing.JLabel();
         lblLibroTerminados = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblPromedioTotal = new javax.swing.JLabel();
         lblSesionesTotales = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -86,7 +87,7 @@ public class JDialogResumenGeneral extends javax.swing.JDialog {
 
         lblLibroTerminados.setText("Libros Terminados: ");
 
-        jLabel3.setText("Promedio Diario de Lectura:");
+        lblPromedioTotal.setText("Promedio Diario de Lectura:");
 
         lblSesionesTotales.setText("Sesiones Totales: ");
 
@@ -106,7 +107,7 @@ public class JDialogResumenGeneral extends javax.swing.JDialog {
                         .addComponent(lblPorcentajeCompletado, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
                     .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                         .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                            .addComponent(lblPromedioTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                             .addComponent(lblPaginasTotalesLeidas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblMinutosTotalesLeidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblLibroTerminados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -131,7 +132,7 @@ public class JDialogResumenGeneral extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(lblLibroTerminados, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblPromedioTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblSesionesTotales, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
                 .addContainerGap())
@@ -221,21 +222,33 @@ public class JDialogResumenGeneral extends javax.swing.JDialog {
 
         long cantidadTotalLecturas = lecturaUtilImpl.getTotalDeLecturasPorPerfil(perfil.getId());
         long cantidadDePaginasLeidas = lecturaUtilImpl.getTotalDePaginasLeidasPorPerfil(perfil.getId());
+        Optional<Integer> totalMinutosOpt = lecturaUtilImpl.getTotalDeMinutosLeidosPorPerfil(perfil.getId());
+        Integer totalMinutos = 0;
+        if (totalMinutosOpt.isEmpty()) {
+            totalMinutos = 0;
+        } else {
+            totalMinutos = totalMinutosOpt.get();
+        }
+        long cantidadLibrosTerminados = lecturaUtilImpl.getCantidadLibrosTerminados(perfil.getId());
+        double promedioMinDiario = lecturaUtilImpl.getPromedioMinutosLeidos(perfil.getId());
 
-        lblPaginasTotalesLeidas.setText("Páginas Totales Leídas: " + cantidadDePaginasLeidas);
-        lblSesionesTotales.setText("Sesiones Totales: " + cantidadTotalLecturas);
+        lblPaginasTotalesLeidas.setText("Páginas Totales Leídas: " + cantidadDePaginasLeidas + " pag.");
+        lblMinutosTotalesLeidos.setText("Minutos Totales Leídos: " + totalMinutos + " min.");
+        lblLibroTerminados.setText("Libros Terminados: " + cantidadLibrosTerminados + " libros.");
+        lblPromedioTotal.setText("Promedio Diario de Lectura: " + promedioMinDiario + " min. por día.");
+        lblSesionesTotales.setText("Sesiones Totales: " + cantidadTotalLecturas + " lecturas.");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbLibros;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanelPrincipal;
     private javax.swing.JLabel lblLibroTerminados;
     private javax.swing.JLabel lblMinutosTotalesLeidos;
     private javax.swing.JLabel lblPaginasTotalesLeidas;
     private javax.swing.JLabel lblPorcentajeCompletado;
+    private javax.swing.JLabel lblPromedioTotal;
     private javax.swing.JLabel lblSesionesTotales;
     // End of variables declaration//GEN-END:variables
 }
