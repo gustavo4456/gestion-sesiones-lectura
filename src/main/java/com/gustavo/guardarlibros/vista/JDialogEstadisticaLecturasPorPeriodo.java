@@ -54,8 +54,6 @@ public class JDialogEstadisticaLecturasPorPeriodo extends javax.swing.JDialog {
 
         lblPerfil.setText("Para el Perfil: " + this.perfil.getNombre());
 
-        mostrarGraficoDeLineas();
-
     }
 
     /**
@@ -70,9 +68,11 @@ public class JDialogEstadisticaLecturasPorPeriodo extends javax.swing.JDialog {
         JPanelPrincipal = new javax.swing.JPanel();
         lblPerfil = new javax.swing.JLabel();
         jPanelLienzo = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        cbMeses = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Progreso Por Libro");
+        setTitle("Lecturas por periodo");
 
         lblPerfil.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPerfil.setText("Para el perfil: ");
@@ -85,8 +85,18 @@ public class JDialogEstadisticaLecturasPorPeriodo extends javax.swing.JDialog {
         );
         jPanelLienzoLayout.setVerticalGroup(
             jPanelLienzoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 295, Short.MAX_VALUE)
+            .addGap(0, 294, Short.MAX_VALUE)
         );
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setText("Meses:");
+
+        cbMeses.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24" }));
+        cbMeses.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbMesesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout JPanelPrincipalLayout = new javax.swing.GroupLayout(JPanelPrincipal);
         JPanelPrincipal.setLayout(JPanelPrincipalLayout);
@@ -96,14 +106,22 @@ public class JDialogEstadisticaLecturasPorPeriodo extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(JPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelLienzo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(JPanelPrincipalLayout.createSequentialGroup()
+                        .addComponent(lblPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbMeses, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         JPanelPrincipalLayout.setVerticalGroup(
             JPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPanelPrincipalLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(lblPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(JPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbMeses, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanelLienzo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -123,6 +141,22 @@ public class JDialogEstadisticaLecturasPorPeriodo extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cbMesesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMesesActionPerformed
+        // TODO add your handling code here:
+
+        if (perfil != null) {
+            if (cbMeses.getSelectedIndex() != -1) {
+                mostrarGraficoDeLineas();
+            } else {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar un mes.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No ha seleccionado un perfil.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+
+
+    }//GEN-LAST:event_cbMesesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,28 +198,25 @@ public class JDialogEstadisticaLecturasPorPeriodo extends javax.swing.JDialog {
     private ChartPanel crearSimpleLineChart() {
 
         if (perfil != null) {
-            List<Lectura> listaLecturas = lecturaUtilImpl.getListadoTodosLosLibrosPorPerfil(perfil.getId());
+
+            Integer cantidadMeses = Integer.valueOf((String) cbMeses.getSelectedItem());
 
             //Se ordena las lecturas por fecha de mas antigua a mas reciente
-            Map<LocalDate, IntSummaryStatistics> mapaListaLectraOrdenada = listaLecturas.stream()
-                    .sorted(Comparator.comparing(Lectura::getFechaInicio))
-                    .collect(Collectors.groupingBy(Lectura::getFechaInicio, LinkedHashMap::new, Collectors.summarizingInt(Lectura::getMinutosLeidos)));
-
-            // 1. Crear un Dataset para el gráfico de líneas
+            Map<String, Integer> mapaListaLectraOrdenada = lecturaUtilImpl.getObtenerUltimosMesesYConteoDeLecturasParaCadaMes(cantidadMeses, perfil.getId()); // 1. Crear un Dataset para el gráfico de líneas
             // DefaultCategoryDataset es fácil de usar para empezar
             DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
             // Añadir datos de ejemplo: (valor, serie, categoria)
             // Imagina que son puntos de progreso en el tiempo para una única serie
             mapaListaLectraOrdenada.forEach((llave, valor) -> {
-                dataset.addValue(valor.getSum(), "Minutos Acumulados", llave.toString());
+                dataset.addValue(valor, "Sesiones de Lectura Acumuladas", llave);
             });
 
             // 2. Crear el objeto JFreeChart
             JFreeChart lineaDibujo = ChartFactory.createBarChart(
-                    "Actividad de lecturas", // Título del gráfico
-                    "Categoría (Días)", // Etiqueta del eje X
-                    "Valor (Minutos)", // Etiqueta del eje Y
+                    "Sesiones de Lectura por periodo", // Título del gráfico
+                    "Mes/Año", // Etiqueta del eje X
+                    "Cantidad de sesiones", // Etiqueta del eje Y
                     dataset, // El dataset con los datos
                     PlotOrientation.VERTICAL, // Orientación del gráfico
                     true, // ¿Mostrar leyenda? (true = sí)
@@ -227,6 +258,8 @@ public class JDialogEstadisticaLecturasPorPeriodo extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPanelPrincipal;
+    private javax.swing.JComboBox<String> cbMeses;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelLienzo;
     private javax.swing.JLabel lblPerfil;
     // End of variables declaration//GEN-END:variables
