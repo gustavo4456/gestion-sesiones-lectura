@@ -535,19 +535,19 @@ public class LecturaUtilImpl implements ILecturaUtil {
     }
 
     @Override
-    public long getTotalDePaginasPorPerfil(Integer idPerfil) {
+    public long getTotalDePaginasLeidasPorPerfil(Integer idPerfil) {
         List<Lectura> lecturas = getListadoTodasLecturasPorPerfil(idPerfil);
 
-        Optional<Integer> resOpt = lecturas.stream()
+        Map<Libro, Optional<Lectura>> mapaLectura = lecturas.stream()
                 .distinct()
-                .map(Lectura::getPaginaActual)
-                .reduce((p1, p2) -> p1 + p2);
+                .sorted(Comparator.comparing(Lectura::getFechaInicio).reversed())
+                .collect(Collectors.groupingBy(Lectura::getLibro, Collectors.maxBy(Comparator.comparing(Lectura::getPaginaActual))));
 
-        if (resOpt.isEmpty()) {
-            return 0;
-        }
+        int totalPaginas = mapaLectura.values().stream()
+                .mapToInt(opt -> opt.isPresent() ? opt.get().getPaginaActual() : 0)
+                .sum();
 
-        return resOpt.get();
+        return totalPaginas;
     }
 
 }

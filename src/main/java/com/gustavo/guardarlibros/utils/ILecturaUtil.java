@@ -61,7 +61,7 @@ public interface ILecturaUtil {
 
     long getTotalDeLecturasPorPerfil(Integer idPerfil);
     
-    long getTotalDePaginasPorPerfil(Integer idPerfil);
+    long getTotalDePaginasLeidasPorPerfil(Integer idPerfil);
 
     Optional<Integer> getTotalDeMinutosLeidosPorPerfil(Integer idPerfil);
 

@@ -220,7 +220,9 @@ public class JDialogResumenGeneral extends javax.swing.JDialog {
     private void cargarLabels() {
 
         long cantidadTotalLecturas = lecturaUtilImpl.getTotalDeLecturasPorPerfil(perfil.getId());
+        long cantidadDePaginasLeidas = lecturaUtilImpl.getTotalDePaginasLeidasPorPerfil(perfil.getId());
 
+        lblPaginasTotalesLeidas.setText("Páginas Totales Leídas: " + cantidadDePaginasLeidas);
         lblSesionesTotales.setText("Sesiones Totales: " + cantidadTotalLecturas);
     }
 
