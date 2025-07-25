@@ -1,6 +1,2 @@
-1,El Gato Negro,Edgar Allan Poe,100
-2,El cementerio,juancho,300
-3,La marmota,juancho,1000
-4,La casa blanca,Juancho,40
-5,Pruebaaa,autore1,122
-6,pruebaaa2,auror2,200
+1,El Gato Negro,Edgar Allan Poe,60
+2,Quimica General e Inorganica,Chang,2000

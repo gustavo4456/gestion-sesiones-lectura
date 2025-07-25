@@ -76,6 +76,9 @@ public class JfPrincipal extends javax.swing.JFrame {
         jMenuNuevo = new javax.swing.JMenu();
         jItemNuevoLibro = new javax.swing.JMenuItem();
         jItemNuevoPerfil = new javax.swing.JMenuItem();
+        jMenuEditar = new javax.swing.JMenu();
+        jItemMenuEditarLibro = new javax.swing.JMenuItem();
+        jItemMenuEditarPerfil = new javax.swing.JMenuItem();
         jMenuEstadisticas = new javax.swing.JMenu();
         jItemEstadisticaProgresoPorLibro = new javax.swing.JMenuItem();
         jItemEstadisticaActividadDeLectura = new javax.swing.JMenuItem();
@@ -322,6 +325,23 @@ public class JfPrincipal extends javax.swing.JFrame {
         jMenuNuevo.add(jItemNuevoPerfil);
 
         jMenuBarra.add(jMenuNuevo);
+
+        jMenuEditar.setText("Editar");
+
+        jItemMenuEditarLibro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        jItemMenuEditarLibro.setText("Libro");
+        jMenuEditar.add(jItemMenuEditarLibro);
+
+        jItemMenuEditarPerfil.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        jItemMenuEditarPerfil.setText("Perfil");
+        jItemMenuEditarPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jItemMenuEditarPerfilActionPerformed(evt);
+            }
+        });
+        jMenuEditar.add(jItemMenuEditarPerfil);
+
+        jMenuBarra.add(jMenuEditar);
 
         jMenuEstadisticas.setText("Estadisticas");
 
@@ -656,6 +676,13 @@ public class JfPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jItemResumenGeneralActionPerformed
 
+    private void jItemMenuEditarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jItemMenuEditarPerfilActionPerformed
+        // TODO add your handling code here:
+
+        JDialogEditarPerfil jDialogEditarPerfil = new JDialogEditarPerfil(this, rootPaneCheckingEnabled);
+        jDialogEditarPerfil.setVisible(true);
+    }//GEN-LAST:event_jItemMenuEditarPerfilActionPerformed
+
     private void cargarElementos() {
 
         cargarCbPerfil();
@@ -799,6 +826,8 @@ public class JfPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jItemEstadisticaLecturasPorAutor;
     private javax.swing.JMenuItem jItemEstadisticaProgresoPorLibro;
     private javax.swing.JMenuItem jItemLecturasPorPeriodo;
+    private javax.swing.JMenuItem jItemMenuEditarLibro;
+    private javax.swing.JMenuItem jItemMenuEditarPerfil;
     private javax.swing.JMenuItem jItemNuevoLibro;
     private javax.swing.JMenuItem jItemNuevoPerfil;
     private javax.swing.JMenuItem jItemPaginasPorMinuto;
@@ -806,6 +835,7 @@ public class JfPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBarra;
+    private javax.swing.JMenu jMenuEditar;
     private javax.swing.JMenu jMenuEstadisticas;
     private javax.swing.JMenu jMenuNuevo;
     private javax.swing.JPanel jPaneLeerAEnLectura;
