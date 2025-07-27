@@ -126,7 +126,7 @@ public class JDialogEditarPerfil extends javax.swing.JDialog {
 
     private void btnGuardarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPerfilActionPerformed
         // TODO add your handling code here:
-        boolean sePuedeCrear = !txtNombre.getText().isEmpty() && perfilSeleccionado != null;
+        boolean sePuedeCrear = !txtNombre.getText().isBlank() && perfilSeleccionado != null;
 
         if (sePuedeCrear) {
 
