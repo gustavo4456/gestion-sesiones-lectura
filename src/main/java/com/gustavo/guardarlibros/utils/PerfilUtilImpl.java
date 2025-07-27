@@ -150,7 +150,7 @@ public class PerfilUtilImpl implements IPerfilUtil {
 
         String contenido = "";
         for (int i = 0; i < perfiles.size(); i++) {
-            contenido = String.valueOf(perfiles.get(i).getId()).trim();
+            contenido += String.valueOf(perfiles.get(i).getId()).trim();
             contenido += "," + perfiles.get(i).getNombre().trim() + "\n";
         }
 
