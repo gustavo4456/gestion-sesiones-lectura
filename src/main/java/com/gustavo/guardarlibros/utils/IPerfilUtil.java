@@ -18,6 +18,10 @@ public interface IPerfilUtil {
     List<Perfil> leerArchivo();
 
     Perfil getPerfilPorId(Integer id);
-    
+
     List<Integer> getIds();
+
+    void crearArchivoPorLista(List<Perfil> perfiles, boolean seMantienenLosDatos);
+
+    void editarPerfil(Perfil perfilEditado);
 }

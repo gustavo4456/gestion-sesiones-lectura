@@ -31,7 +31,7 @@ public class PerfilUtilImpl implements IPerfilUtil {
 
         try (FileWriter writer = new FileWriter(nombreArchivo, true)) {
             writer.write(contenido);
-           // System.out.println("Archivo '" + nombreArchivo + "' creado y escrito con éxito.");
+            // System.out.println("Archivo '" + nombreArchivo + "' creado y escrito con éxito.");
         } catch (IOException e) {
             System.err.println("Ocurrió un error al crear/escribir el archivo: " + e.getMessage());
             e.printStackTrace();
@@ -48,18 +48,18 @@ public class PerfilUtilImpl implements IPerfilUtil {
         File archivo = new File(nombreArchivo);
 
         if (archivo.exists()) {
-           // System.out.println("--- Leyendo archivo línea por línea ---");
+            // System.out.println("--- Leyendo archivo línea por línea ---");
             try (BufferedReader reader = new BufferedReader(new FileReader(nombreArchivo))) {
                 String linea;
                 int numeroLinea = 1;
                 while ((linea = reader.readLine()) != null) {
-                   // System.out.println("Línea " + numeroLinea + ": " + linea);
+                    // System.out.println("Línea " + numeroLinea + ": " + linea);
                     lineas.add(linea);
                     numeroLinea++;
                 }
-               // System.out.println("Lectura de archivo completada.");
-               // System.out.println("Tamanio: " + lineas.size());
-               // System.out.println(conseguirAtributosPerfil(lineas));
+                // System.out.println("Lectura de archivo completada.");
+                // System.out.println("Tamanio: " + lineas.size());
+                // System.out.println(conseguirAtributosPerfil(lineas));
             } catch (IOException e) {
                 System.err.println("Ocurrió un error al leer el archivo: " + e.getMessage());
                 e.printStackTrace();
@@ -112,7 +112,7 @@ public class PerfilUtilImpl implements IPerfilUtil {
             return new Perfil("No se pudo encontrar el perfil.");
         }
     }
-    
+
     @Override
     public List<Integer> getIds() {
         List<Perfil> listaLibros = leerArchivo();
@@ -124,6 +124,43 @@ public class PerfilUtilImpl implements IPerfilUtil {
 
         return listadoIds;
 
+    }
+
+    @Override
+    public void editarPerfil(Perfil perfilEditado) {
+        List<Perfil> perfiles = leerArchivo();
+
+        List<Perfil> listaEditada = perfiles.stream()
+                .distinct()
+                .map(per -> {
+                    if (per.getId().equals(perfilEditado.getId())) {
+                        return perfilEditado;
+                    } else {
+                        return per;
+                    }
+                })
+                .collect(Collectors.toList());
+
+        crearArchivoPorLista(listaEditada, false);
+    }
+
+    @Override
+    public void crearArchivoPorLista(List<Perfil> perfiles, boolean seMantienenLosDatos) {
+        String nombreArchivo = NombresArchivos.PERFIL.getNombreArchivo();
+
+        String contenido = "";
+        for (int i = 0; i < perfiles.size(); i++) {
+            contenido = String.valueOf(perfiles.get(i).getId()).trim();
+            contenido += "," + perfiles.get(i).getNombre().trim() + "\n";
+        }
+
+        try (FileWriter writer = new FileWriter(nombreArchivo, seMantienenLosDatos)) {
+            writer.write(contenido);
+            // System.out.println("Archivo '" + nombreArchivo + "' creado y escrito con éxito.");
+        } catch (IOException e) {
+            System.err.println("Ocurrió un error al crear/escribir el archivo: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
 }
