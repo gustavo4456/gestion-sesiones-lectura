@@ -130,8 +130,15 @@ public class JDialogEditarPerfil extends javax.swing.JDialog {
 
         if (sePuedeCrear) {
 
-            System.out.println(perfilSeleccionado);
+            Perfil perfilConDatosNuevos = new Perfil();
+
+            perfilConDatosNuevos.setId(perfilSeleccionado.getId());
+            perfilConDatosNuevos.setNombre(txtNombre.getText().trim());
+
+            perfilUtil.editarPerfil(perfilSeleccionado);
+
             JOptionPane.showMessageDialog(this, "Se actualizo el perfil.", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
 
         } else {
             JOptionPane.showMessageDialog(this, "Complete todos los campos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
