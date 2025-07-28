@@ -151,6 +151,11 @@ public class JDialogEditarPerfil extends javax.swing.JDialog {
         // TODO add your handling code here:
 
         perfilSeleccionado = (Perfil) cbPerfil.getSelectedItem();
+
+        //estetica
+        if (perfilSeleccionado != null) {
+            txtNombre.setText(perfilSeleccionado.getNombre().trim());
+        }
     }//GEN-LAST:event_cbPerfilActionPerformed
 
     private void cargarCbPerfil() {

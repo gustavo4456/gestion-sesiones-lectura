@@ -1,2 +1,2 @@
-1,El Gato Negro,Edgar Allan Poe,80
-2,Quimica general,Chang,600
+1,El Gato Negro,Edgar Allan Poe,100
+2,Quimica general,Chang,200
