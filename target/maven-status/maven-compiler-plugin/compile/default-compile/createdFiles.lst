@@ -32,6 +32,7 @@ com\gustavo\guardarlibros\vista\grillas\GrillaLibrosEnLectura.class
 com\gustavo\guardarlibros\vista\JfPrincipal$4.class
 com\gustavo\guardarlibros\vista\JDialogEditarPerfil$3.class
 com\gustavo\guardarlibros\utils\LibroUtilImpl.class
+com\gustavo\guardarlibros\vista\JDialogEditarLibro$1.class
 com\gustavo\guardarlibros\vista\JDialogEditarLecturaLibroTerminado$2.class
 com\gustavo\guardarlibros\utils\PerfilUtilImpl.class
 com\gustavo\guardarlibros\vista\JDialogEditarLectura$1.class
@@ -45,6 +46,7 @@ com\gustavo\guardarlibros\modelo\Perfil.class
 com\gustavo\guardarlibros\vista\JDialogEditarLectura.class
 com\gustavo\guardarlibros\vista\JDialogEditarPerfil.class
 com\gustavo\guardarlibros\vista\JDialogEstadisticaProgresoPorLibro.class
+com\gustavo\guardarlibros\vista\JDialogEditarLibro$4$1.class
 com\gustavo\guardarlibros\vista\JDialogEstadisticaEstadoDeMisLibros$1.class
 com\gustavo\guardarlibros\vista\JfPrincipal$11.class
 com\gustavo\guardarlibros\vista\JDialogEditarLectura$3.class
@@ -55,6 +57,7 @@ com\gustavo\guardarlibros\utils\ILibroUtil.class
 com\gustavo\guardarlibros\vista\JDialogAgregarPerfil$1.class
 com\gustavo\guardarlibros\vista\JDialogEliminarLecturasDeLibroTerminado$2.class
 com\gustavo\guardarlibros\vista\JDialogAgregarLectura$2.class
+com\gustavo\guardarlibros\vista\JDialogEditarLibro$2.class
 com\gustavo\guardarlibros\vista\JDialogAgregarLectura.class
 com\gustavo\guardarlibros\vista\JDialogEstadisticaEstadoDeMisLibros.class
 com\gustavo\guardarlibros\vista\JDialogEditarLecturaLibroTerminado$5$1.class
@@ -64,6 +67,7 @@ com\gustavo\guardarlibros\vista\JDialogEstadisticaLecturaPorAutor$1$1.class
 com\gustavo\guardarlibros\vista\grillas\GrillaLibrosPorLeer.class
 com\gustavo\guardarlibros\vista\JDialogEstadisticaActividadLectura.class
 com\gustavo\guardarlibros\vista\JfPrincipal$13.class
+com\gustavo\guardarlibros\vista\JfPrincipal$19.class
 com\gustavo\guardarlibros\vista\JfPrincipal$3.class
 com\gustavo\guardarlibros\vista\JfPrincipal$9.class
 com\gustavo\guardarlibros\vista\JDialogEstadisticaProgresoPorLibro$2$1.class
@@ -82,6 +86,7 @@ com\gustavo\guardarlibros\vista\JDialogAgregarPerfil.class
 com\gustavo\guardarlibros\vista\JDialogEstadisticaLecturasPorPeriodo$1.class
 com\gustavo\guardarlibros\vista\JfPrincipal$8.class
 com\gustavo\guardarlibros\vista\JDialogEstadisticaPaginaPorMinuto$2$1.class
+com\gustavo\guardarlibros\vista\JDialogEditarLibro$4.class
 com\gustavo\guardarlibros\vista\JfPrincipal$7.class
 com\gustavo\guardarlibros\vista\JDialogResumenGeneral$2.class
 com\gustavo\guardarlibros\vista\JDialogEliminarLecturasDeLibroTerminado$1.class
@@ -98,3 +103,5 @@ com\gustavo\guardarlibros\vista\JDialogEditarPerfil$3$1.class
 com\gustavo\guardarlibros\utils\DiaLectura.class
 com\gustavo\guardarlibros\vista\JDialogEstadisticaLecturasPorPeriodo$2.class
 com\gustavo\guardarlibros\vista\JfPrincipal$1.class
+com\gustavo\guardarlibros\vista\JDialogEditarLibro$3.class
+com\gustavo\guardarlibros\vista\JDialogEditarLibro.class

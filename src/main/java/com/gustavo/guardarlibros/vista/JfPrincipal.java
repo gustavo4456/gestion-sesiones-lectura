@@ -330,6 +330,11 @@ public class JfPrincipal extends javax.swing.JFrame {
 
         jItemMenuEditarLibro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_DOWN_MASK));
         jItemMenuEditarLibro.setText("Libro");
+        jItemMenuEditarLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jItemMenuEditarLibroActionPerformed(evt);
+            }
+        });
         jMenuEditar.add(jItemMenuEditarLibro);
 
         jItemMenuEditarPerfil.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_DOWN_MASK));
@@ -682,6 +687,12 @@ public class JfPrincipal extends javax.swing.JFrame {
         JDialogEditarPerfil jDialogEditarPerfil = new JDialogEditarPerfil(this, rootPaneCheckingEnabled);
         jDialogEditarPerfil.setVisible(true);
     }//GEN-LAST:event_jItemMenuEditarPerfilActionPerformed
+
+    private void jItemMenuEditarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jItemMenuEditarLibroActionPerformed
+        // TODO add your handling code here:
+        JDialogEditarLibro jDialogEditarLibro = new JDialogEditarLibro(this, rootPaneCheckingEnabled);
+        jDialogEditarLibro.setVisible(true);
+    }//GEN-LAST:event_jItemMenuEditarLibroActionPerformed
 
     private void cargarElementos() {
 

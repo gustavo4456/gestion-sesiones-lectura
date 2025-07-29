@@ -7,6 +7,7 @@ package com.gustavo.guardarlibros.utils;
 import com.gustavo.guardarlibros.modelo.Estado;
 import com.gustavo.guardarlibros.modelo.Lectura;
 import com.gustavo.guardarlibros.modelo.Libro;
+import com.gustavo.guardarlibros.modelo.Perfil;
 import java.time.LocalDate;
 import java.util.IntSummaryStatistics;
 import java.util.List;
@@ -60,7 +61,7 @@ public interface ILecturaUtil {
     Map<String, Integer> getObtenerUltimosMesesYConteoDeLecturasParaCadaMes(int cantidadMeses, Integer idPerfil);
 
     long getTotalDeLecturasPorPerfil(Integer idPerfil);
-    
+
     long getTotalDePaginasLeidasPorPerfil(Integer idPerfil);
 
     Optional<Integer> getTotalDeMinutosLeidosPorPerfil(Integer idPerfil);
@@ -70,5 +71,9 @@ public interface ILecturaUtil {
     double getPromedioMinutosLeidos(Integer idPerfil);
 
     double getPorcentajeCompletadoPorLibroYPerfil(Integer idPerfil, Libro libro);
+
+    List<Lectura> getTodosLosLibros();
+
+    Optional<Perfil> getPerfil(Libro libro);
 
 }

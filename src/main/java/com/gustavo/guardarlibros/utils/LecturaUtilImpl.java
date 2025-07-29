@@ -7,6 +7,7 @@ package com.gustavo.guardarlibros.utils;
 import com.gustavo.guardarlibros.modelo.Estado;
 import com.gustavo.guardarlibros.modelo.Lectura;
 import com.gustavo.guardarlibros.modelo.Libro;
+import com.gustavo.guardarlibros.modelo.Perfil;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -548,6 +549,31 @@ public class LecturaUtilImpl implements ILecturaUtil {
                 .sum();
 
         return totalPaginas;
+    }
+
+    @Override
+    public List<Lectura> getTodosLosLibros() {
+        List<Lectura> listadoLectura = leerArchivo();
+
+        List<Lectura> lecturas = listadoLectura.stream()
+                .distinct()
+                .filter(l -> l.getEstado().equals(Estado.TERMINADO) || l.getEstado().equals(Estado.NO_LEIDO))
+                .sorted(Comparator.comparing(Lectura::getFechaInicio).reversed())
+                .collect(Collectors.toList());
+
+        return lecturas;
+    }
+
+    @Override
+    public Optional<Perfil> getPerfil(Libro libro) {
+        List<Lectura> lecturas = leerArchivo();
+
+        return lecturas.stream()
+                .distinct()
+                .filter(l -> l.getEstado().equals(Estado.NO_LEIDO) || l.getEstado().equals(Estado.TERMINADO))
+                .filter(l -> l.getLibro().equals(libro))
+                .map(Lectura::getPerfil)
+                .findFirst();
     }
 
 }
