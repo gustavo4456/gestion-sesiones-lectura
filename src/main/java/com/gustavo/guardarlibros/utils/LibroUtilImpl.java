@@ -51,7 +51,7 @@ public class LibroUtilImpl implements ILibroUtil {
         File archivo = new File(nombreArchivo);
 
         if (archivo.exists()) {
-           // System.out.println("--- Leyendo archivo línea por línea ---");
+            // System.out.println("--- Leyendo archivo línea por línea ---");
             try (BufferedReader reader = new BufferedReader(new FileReader(nombreArchivo))) {
                 String linea;
                 int numeroLinea = 1;
@@ -60,7 +60,7 @@ public class LibroUtilImpl implements ILibroUtil {
                     lineas.add(linea);
                     numeroLinea++;
                 }
-               // System.out.println("Lectura de archivo completada.");
+                // System.out.println("Lectura de archivo completada.");
                 //System.out.println("Tamanio: " + lineas.size());
                 //System.out.println(conseguirAtributosLibro(lineas));
             } catch (IOException e) {
@@ -132,6 +132,46 @@ public class LibroUtilImpl implements ILibroUtil {
 
         return listadoIds;
 
+    }
+
+    @Override
+    public void editarLibro(Libro libroEditado) {
+        List<Libro> libros = leerArchivo();
+
+        List<Libro> liLibroEditado = libros.stream()
+                .distinct()
+                .map(l -> {
+                    if (l.equals(libroEditado)) {
+                        return libroEditado;
+                    } else {
+                        return l;
+                    }
+                })
+                .collect(Collectors.toList());
+
+        crearArchivoPorLista(liLibroEditado, false);
+    }
+
+    @Override
+    public void crearArchivoPorLista(List<Libro> libros, boolean seMantieneLosDatos) {
+        String nombreArchivo = NombresArchivos.LIBROS.getNombreArchivo();
+
+        String contenido = "";
+
+        for (int i = 0; i < libros.size(); i++) {
+            contenido += String.valueOf(libros.get(i).getId());
+            contenido += "," + libros.get(i).getNombre();
+            contenido += "," + libros.get(i).getAutor();
+            contenido += "," + libros.get(i).getCantidadPaginas() + "\n";
+        }
+
+        try (FileWriter writer = new FileWriter(nombreArchivo, seMantieneLosDatos)) {
+            writer.write(contenido);
+            //System.out.println("Archivo '" + nombreArchivo + "' creado y escrito con éxito.");
+        } catch (IOException e) {
+            System.err.println("Ocurrió un error al crear/escribir el archivo: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
 }

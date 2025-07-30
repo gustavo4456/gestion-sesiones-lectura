@@ -12,8 +12,16 @@ import java.util.List;
  * @author gustavo
  */
 public interface ILibroUtil {
+
     void crearArchivo(Libro nuevoLibro);
+
     List<Libro> leerArchivo();
+
     Libro getLibroPorId(Integer id);
+
     List<Integer> getIds();
+
+    void crearArchivoPorLista(List<Libro> libros, boolean seMantienenLosDatos);
+
+    void editarLibro(Libro libroEditado);
 }
