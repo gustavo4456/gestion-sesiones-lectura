@@ -141,7 +141,7 @@ public class LibroUtilImpl implements ILibroUtil {
         List<Libro> liLibroEditado = libros.stream()
                 .distinct()
                 .map(l -> {
-                    if (l.equals(libroEditado)) {
+                    if (l.getId().equals(libroEditado.getId())) {
                         return libroEditado;
                     } else {
                         return l;

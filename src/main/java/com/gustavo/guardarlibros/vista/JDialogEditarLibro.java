@@ -30,6 +30,7 @@ public class JDialogEditarLibro extends javax.swing.JDialog {
      * Creates new form JDialogAgregarLibro
      */
     private LecturaUtilImpl lecturaUtilImpl = new LecturaUtilImpl();
+    private LibroUtilImpl libroUtilImpl = new LibroUtilImpl();
     private Libro libroSeleccionado;
 
     public JDialogEditarLibro(java.awt.Frame parent, boolean modal) {
@@ -115,6 +116,11 @@ public class JDialogEditarLibro extends javax.swing.JDialog {
         });
 
         cbPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbPerfilActionPerformed(evt);
+            }
+        });
 
         cbLibros.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbLibros.addActionListener(new java.awt.event.ActionListener() {
@@ -201,6 +207,16 @@ public class JDialogEditarLibro extends javax.swing.JDialog {
         if (libroSeleccionado != null) {
             if (cbPerfil.getSelectedItem() != null) {
                 if (sePuedeCrear) {
+                    Libro libroConDatosModificados = new Libro();
+
+                    libroConDatosModificados.setId(libroSeleccionado.getId());
+                    libroConDatosModificados.setNombre(txtNombre.getText().trim());
+                    libroConDatosModificados.setAutor(txtAutor.getText().trim());
+                    libroConDatosModificados.setCantidadPaginas(Integer.valueOf(txtCantidadDePaginas.getText().trim()));
+
+                    libroUtilImpl.editarLibro(libroConDatosModificados);
+
+                    lecturaUtilImpl.editarPerfilesDeLasLecturasPorLibro(libroSeleccionado, (Perfil) cbPerfil.getSelectedItem());
 
                     JOptionPane.showMessageDialog(this, "El libro se guardo con exito.", "Exito", JOptionPane.INFORMATION_MESSAGE);
 
@@ -225,6 +241,10 @@ public class JDialogEditarLibro extends javax.swing.JDialog {
         llenarDatos();
 
     }//GEN-LAST:event_cbLibrosActionPerformed
+
+    private void cbPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPerfilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbPerfilActionPerformed
 
     /**
      * @param args the command line arguments
