@@ -220,6 +220,8 @@ public class JDialogEditarLibro extends javax.swing.JDialog {
 
                     JOptionPane.showMessageDialog(this, "El libro se guardo con exito.", "Exito", JOptionPane.INFORMATION_MESSAGE);
 
+                    cargarCbLibros();
+
                 } else {
                     JOptionPane.showMessageDialog(this, "Complete todos los campos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 }
