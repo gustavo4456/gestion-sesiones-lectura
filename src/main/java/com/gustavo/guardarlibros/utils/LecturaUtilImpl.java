@@ -218,7 +218,7 @@ public class LecturaUtilImpl implements ILecturaUtil {
         List<Lectura> listaLecFiltrada = todasLasLecturas.stream()
                 .distinct()
                 .map(l -> {
-                    if (l.equals(lecturaAEditar)) {
+                    if (l.getId().equals(lecturaAEditar.getId())) {
                         Lectura lec = new Lectura();
 
                         lec.setId(l.getId());
@@ -593,6 +593,17 @@ public class LecturaUtilImpl implements ILecturaUtil {
                 .collect(Collectors.toList());
 
         crearArchivoPorLista(lecturasEditada, false);
+    }
+
+    @Override
+    public Optional<Lectura> getLecturaLibroLeidoyNoLeido(Libro libro) {
+        List<Lectura> lecturas = leerArchivo();
+
+        return lecturas.stream()
+                .distinct()
+                .filter(l -> l.getEstado().equals(Estado.NO_LEIDO) || l.getEstado().equals(Estado.TERMINADO))
+                .filter(l -> l.getLibro().getId().equals(libro.getId()))
+                .findFirst();
     }
 
 }

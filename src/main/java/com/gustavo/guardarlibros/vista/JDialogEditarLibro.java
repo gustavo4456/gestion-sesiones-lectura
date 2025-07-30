@@ -202,25 +202,83 @@ public class JDialogEditarLibro extends javax.swing.JDialog {
 
     private void btnGuardarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarLibroActionPerformed
         // TODO add your handling code here:
-        boolean sePuedeCrear = !txtNombre.getText().isEmpty() && !txtAutor.getText().isEmpty() && !txtCantidadDePaginas.getText().isEmpty();
+        boolean sePuedeCrear = !txtNombre.getText().isBlank() && !txtAutor.getText().isBlank() && !txtCantidadDePaginas.getText().isBlank();
 
         if (libroSeleccionado != null) {
+            Optional<Perfil> perfilDelLibroOpt = lecturaUtilImpl.getPerfil(libroSeleccionado);
+
+            Optional<Integer> ultimaPaginaLeidaOpt = lecturaUtilImpl.getUltimaPaginaGuardadaPorLibroEnLectura(perfilDelLibroOpt.get().getId(), libroSeleccionado);
+
+            Integer ultimaPaginaLeida = ultimaPaginaLeidaOpt.isPresent() ? ultimaPaginaLeidaOpt.get() : 0;
+
             if (cbPerfil.getSelectedItem() != null) {
+
                 if (sePuedeCrear) {
-                    Libro libroConDatosModificados = new Libro();
+                    // Si mofico la cantidad de paginas del libro a la mis cantdad que llevo leida se da por terminado el libro
+                    if (Integer.valueOf(txtCantidadDePaginas.getText()).equals(ultimaPaginaLeida)) {
 
-                    libroConDatosModificados.setId(libroSeleccionado.getId());
-                    libroConDatosModificados.setNombre(txtNombre.getText().trim());
-                    libroConDatosModificados.setAutor(txtAutor.getText().trim());
-                    libroConDatosModificados.setCantidadPaginas(Integer.valueOf(txtCantidadDePaginas.getText().trim()));
+                        Optional<Lectura> leLibroNoLeido = lecturaUtilImpl.getLecturaLibroLeidoyNoLeido(libroSeleccionado);
 
-                    libroUtilImpl.editarLibro(libroConDatosModificados);
+                        Libro libroConDatosModificados = new Libro();
 
-                    lecturaUtilImpl.editarPerfilesDeLasLecturasPorLibro(libroSeleccionado, (Perfil) cbPerfil.getSelectedItem());
+                        libroConDatosModificados.setId(libroSeleccionado.getId());
+                        libroConDatosModificados.setNombre(txtNombre.getText().trim());
+                        libroConDatosModificados.setAutor(txtAutor.getText().trim());
+                        libroConDatosModificados.setCantidadPaginas(Integer.valueOf(txtCantidadDePaginas.getText().trim()));
 
-                    JOptionPane.showMessageDialog(this, "El libro se guardo con exito.", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                        libroUtilImpl.editarLibro(libroConDatosModificados);
 
-                    cargarCbLibros();
+                        lecturaUtilImpl.editarPerfilesDeLasLecturasPorLibro(libroSeleccionado, (Perfil) cbPerfil.getSelectedItem());
+
+                        lecturaUtilImpl.actualizarEstadoYFechaDeUnaLectura(leLibroNoLeido.get(), Estado.TERMINADO);
+
+                        JOptionPane.showMessageDialog(this, "El libro se guardo con exito Y la cantidad total de paginas del libro coincide con las paginas que lleva leyendo, por eso se pasara el libro a estado de terminado.", "Exito", JOptionPane.INFORMATION_MESSAGE);
+
+                        cargarCbLibros();
+                        limpiarTxt();
+                    } else if (Integer.valueOf(txtCantidadDePaginas.getText()) > ultimaPaginaLeida) {
+
+                        Optional<Lectura> leLibroNoLeido = lecturaUtilImpl.getLecturaLibroLeidoyNoLeido(libroSeleccionado);
+
+                        if (leLibroNoLeido.get().getEstado().equals(Estado.NO_LEIDO)) {
+                            Libro libroConDatosModificados = new Libro();
+
+                            libroConDatosModificados.setId(libroSeleccionado.getId());
+                            libroConDatosModificados.setNombre(txtNombre.getText().trim());
+                            libroConDatosModificados.setAutor(txtAutor.getText().trim());
+                            libroConDatosModificados.setCantidadPaginas(Integer.valueOf(txtCantidadDePaginas.getText().trim()));
+
+                            libroUtilImpl.editarLibro(libroConDatosModificados);
+
+                            lecturaUtilImpl.editarPerfilesDeLasLecturasPorLibro(libroSeleccionado, (Perfil) cbPerfil.getSelectedItem());
+
+                            JOptionPane.showMessageDialog(this, "El libro se guardo con exito.", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                        }
+
+                        if (leLibroNoLeido.get().getEstado().equals(Estado.TERMINADO)) {
+                            Libro libroConDatosModificados = new Libro();
+
+                            libroConDatosModificados.setId(libroSeleccionado.getId());
+                            libroConDatosModificados.setNombre(txtNombre.getText().trim());
+                            libroConDatosModificados.setAutor(txtAutor.getText().trim());
+                            libroConDatosModificados.setCantidadPaginas(Integer.valueOf(txtCantidadDePaginas.getText().trim()));
+
+                            libroUtilImpl.editarLibro(libroConDatosModificados);
+
+                            lecturaUtilImpl.editarPerfilesDeLasLecturasPorLibro(libroSeleccionado, (Perfil) cbPerfil.getSelectedItem());
+
+                            lecturaUtilImpl.actualizarEstadoYFechaDeUnaLectura(leLibroNoLeido.get(), Estado.NO_LEIDO);
+
+                            JOptionPane.showMessageDialog(this, "El libro se guardo con exito. El libro estaba en estado de terminado ahora pasara a No leídos porque aumento el total de páginas del libro.", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                        }
+
+                        cargarCbLibros();
+                        limpiarTxt();
+
+                    } else {
+                        JOptionPane.showMessageDialog(this, "La cantidad de paginas del libro debe ser Superior o igual a la ultima pagina que leíste. >= " + ultimaPaginaLeida, "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+                    }
 
                 } else {
                     JOptionPane.showMessageDialog(this, "Complete todos los campos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -310,6 +368,13 @@ public class JDialogEditarLibro extends javax.swing.JDialog {
 
         cbLibros.setModel(modelLibros);
 
+    }
+
+    void limpiarTxt() {
+        txtNombre.setText("");
+        txtAutor.setText("");
+        txtCantidadDePaginas.setText("");
+        libroSeleccionado = null;
     }
 
     void llenarDatos() {
