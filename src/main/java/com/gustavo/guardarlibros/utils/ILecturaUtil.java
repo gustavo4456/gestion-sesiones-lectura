@@ -76,4 +76,5 @@ public interface ILecturaUtil {
 
     Optional<Perfil> getPerfil(Libro libro);
 
+    void editarPerfilesDeLasLecturasPorLibro(Libro libroEditado, Perfil perfilEditado);
 }

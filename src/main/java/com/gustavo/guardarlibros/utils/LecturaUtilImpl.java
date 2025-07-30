@@ -576,4 +576,23 @@ public class LecturaUtilImpl implements ILecturaUtil {
                 .findFirst();
     }
 
+    @Override
+    public void editarPerfilesDeLasLecturasPorLibro(Libro libroEditado, Perfil perfilEditado) {
+        List<Lectura> lecturas = leerArchivo();
+
+        List<Lectura> lecturasEditada = lecturas.stream()
+                .distinct()
+                .map(l -> {
+                    if (l.getLibro().getId().equals(libroEditado.getId())) {
+                        l.setPerfil(perfilEditado);
+                        return l;
+                    } else {
+                        return l;
+                    }
+                })
+                .collect(Collectors.toList());
+
+        crearArchivoPorLista(lecturasEditada, false);
+    }
+
 }
