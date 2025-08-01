@@ -72,7 +72,7 @@ public class JDialogEstadisticaLecturaPorAutor extends javax.swing.JDialog {
         jPanelLienzo = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Progreso Por Libro");
+        setTitle("Lecturas Por Autor");
 
         lblPerfil.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPerfil.setText("Para el perfil: ");

@@ -109,6 +109,7 @@ public class JDialogEditarLectura extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/limpiar-32.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +117,7 @@ public class JDialogEditarLectura extends javax.swing.JDialog {
             }
         });
 
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guardar-32.png"))); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

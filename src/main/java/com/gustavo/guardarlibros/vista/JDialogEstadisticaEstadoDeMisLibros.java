@@ -74,7 +74,7 @@ public class JDialogEstadisticaEstadoDeMisLibros extends javax.swing.JDialog {
         jPanelLienzo = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Progreso Por Libro");
+        setTitle("Estado de Mis Libros");
 
         lblPerfil.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPerfil.setText("Para el perfil: ");

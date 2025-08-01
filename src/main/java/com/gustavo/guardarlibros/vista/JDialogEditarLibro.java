@@ -106,8 +106,9 @@ public class JDialogEditarLibro extends javax.swing.JDialog {
             }
         }));
 
-        jLabel5.setText("Paginas:");
+        jLabel5.setText("Páginas:");
 
+        btnGuardarLibro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guardar-32.png"))); // NOI18N
         btnGuardarLibro.setText("Guardar");
         btnGuardarLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,8 +181,8 @@ public class JDialogEditarLibro extends javax.swing.JDialog {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnGuardarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(btnGuardarLibro)
                 .addContainerGap())
         );
 

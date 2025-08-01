@@ -67,6 +67,7 @@ public class JDialogEliminarLecturasDeLibroTerminado extends javax.swing.JDialog
 
         jScrollPane1.setViewportView(listaLecturas);
 
+        btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceptar-32.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,6 +75,7 @@ public class JDialogEliminarLecturasDeLibroTerminado extends javax.swing.JDialog
             }
         });
 
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cancelar-32.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

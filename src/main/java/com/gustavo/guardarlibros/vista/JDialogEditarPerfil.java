@@ -58,6 +58,7 @@ public class JDialogEditarPerfil extends javax.swing.JDialog {
 
         jLabel2.setText("Nombre:");
 
+        btnGuardarPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guardar-32.png"))); // NOI18N
         btnGuardarPerfil.setText("Guardar");
         btnGuardarPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
