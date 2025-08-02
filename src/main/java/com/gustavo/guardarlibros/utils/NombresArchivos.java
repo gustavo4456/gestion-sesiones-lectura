@@ -10,7 +10,7 @@ package com.gustavo.guardarlibros.utils;
  */
 public enum NombresArchivos {
 
-    LIBROS("libros_para_leer.txt"), LECTURA("libros_en_lecutra.txt"), PERFIL("perfiles.txt");
+    LIBROS("libros_para_leer.txt"), LECTURA("libros_en_lectura.txt"), PERFIL("perfiles.txt");
 
     private String nombreArchivo;
 
