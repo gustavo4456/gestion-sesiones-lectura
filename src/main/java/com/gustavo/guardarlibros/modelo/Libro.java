@@ -24,8 +24,8 @@ public class Libro {
     }
 
     public Libro(String nombre, String autor, Integer cantidadPaginas) {
-        this.nombre = nombre;
-        this.autor = autor;
+        this.nombre = nombre.replace(',', ' ');
+        this.autor = autor.replace(',', ' ');
         this.cantidadPaginas = cantidadPaginas;
     }
 
@@ -48,19 +48,19 @@ public class Libro {
     }
 
     public String getNombre() {
-        return nombre;
+        return nombre.trim();
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre = nombre.replace(',', ' ');
     }
 
     public String getAutor() {
-        return autor;
+        return autor.trim();
     }
 
     public void setAutor(String autor) {
-        this.autor = autor;
+        this.autor = autor.replace(',', ' ');
     }
 
     public Integer getCantidadPaginas() {

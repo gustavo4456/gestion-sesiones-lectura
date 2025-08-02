@@ -22,7 +22,7 @@ public class Perfil {
     }
 
     public Perfil(String nombre) {
-        this.nombre = nombre;
+        this.nombre = nombre.replace(',', ' ');
     }
 
     public Integer getId() {
@@ -44,11 +44,11 @@ public class Perfil {
     }
 
     public String getNombre() {
-        return nombre;
+        return nombre.trim();
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre = nombre.replace(',', ' ');
     }
 
     @Override

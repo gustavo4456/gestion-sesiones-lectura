@@ -1,3 +1,4 @@
 1,El Gato Negro,Edgar Allan Poe,150
 2,Quimica general,Chang,200
 3,Algebra y geometria analitica,juancho,521
+4,El Libro Pequeño aburrido y caro,Juan Perez,21
