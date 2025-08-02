@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
 public class GrillaLibrosPorLeer extends AbstractTableModel {
 
     private List<Lectura> lecturas = new ArrayList<>();
-    private String[] columnas = {"Id", "Nombre", "Autor"};
+    private String[] columnas = {"Nombre", "Autor"};
 
     public GrillaLibrosPorLeer() {
     }
@@ -39,8 +39,6 @@ public class GrillaLibrosPorLeer extends AbstractTableModel {
                 return columnas[0];
             case 1:
                 return columnas[1];
-            case 2:
-                return columnas[2];
 
             default:
                 return "";
@@ -62,11 +60,10 @@ public class GrillaLibrosPorLeer extends AbstractTableModel {
         Lectura l = lecturas.get(rowIndex);
 
         switch (columnIndex) {
+
             case 0:
-                return l.getId();
-            case 1:
                 return l.getLibro().getNombre();
-            case 2:
+            case 1:
                 return l.getLibro().getAutor();
             default:
                 return "";
@@ -74,7 +71,7 @@ public class GrillaLibrosPorLeer extends AbstractTableModel {
     }
 
     public Lectura getLectura(int rowIndex) {
-        
+
         System.out.println(lecturas);
 
         if (lecturas == null || lecturas.isEmpty()) {
