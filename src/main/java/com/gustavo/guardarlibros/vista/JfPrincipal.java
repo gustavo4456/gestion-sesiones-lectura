@@ -444,6 +444,7 @@ public class JfPrincipal extends javax.swing.JFrame {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
+
         cargarElementos();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
@@ -691,6 +692,7 @@ public class JfPrincipal extends javax.swing.JFrame {
 
         JDialogEditarPerfil jDialogEditarPerfil = new JDialogEditarPerfil(this, rootPaneCheckingEnabled);
         jDialogEditarPerfil.setVisible(true);
+        cargarElementos();
     }//GEN-LAST:event_jItemMenuEditarPerfilActionPerformed
 
     private void jItemMenuEditarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jItemMenuEditarLibroActionPerformed
@@ -700,6 +702,9 @@ public class JfPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jItemMenuEditarLibroActionPerformed
 
     private void cargarElementos() {
+        grillaLibrosEnLectura1.clear();
+        grillaLibrosPorLeer1.clear();
+        grillaLibrosTerminados1.clear();
 
         cargarCbPerfil();
         cargarTablaLibrosPorLeer();

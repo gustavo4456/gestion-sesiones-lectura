@@ -84,4 +84,9 @@ public class GrillaLibrosTerminados extends AbstractTableModel {
         return l;
     }
 
+    public void clear() {
+        this.lecturas.clear();
+        fireTableDataChanged();
+    }
+
 }

@@ -24,4 +24,6 @@ public interface IPerfilUtil {
     void crearArchivoPorLista(List<Perfil> perfiles, boolean seMantienenLosDatos);
 
     void editarPerfil(Perfil perfilEditado);
+
+    void eliminarPerfil(Perfil perfil);
 }

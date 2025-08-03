@@ -24,4 +24,6 @@ public interface ILibroUtil {
     void crearArchivoPorLista(List<Libro> libros, boolean seMantienenLosDatos);
 
     void editarLibro(Libro libroEditado);
+
+    void eliminarLibro(Libro libro);
 }

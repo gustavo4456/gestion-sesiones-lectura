@@ -174,4 +174,16 @@ public class LibroUtilImpl implements ILibroUtil {
         }
     }
 
+    @Override
+    public void eliminarLibro(Libro libro) {
+        List<Libro> libros = leerArchivo();
+
+        List<Libro> librosFiltrados = libros.stream()
+                .distinct()
+                .filter(l -> !l.getId().equals(libro.getId()))
+                .collect(Collectors.toList());
+
+        crearArchivoPorLista(librosFiltrados, false);
+    }
+
 }

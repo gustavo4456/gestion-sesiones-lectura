@@ -606,4 +606,28 @@ public class LecturaUtilImpl implements ILecturaUtil {
                 .findFirst();
     }
 
+    @Override
+    public void eliminarLecturasPorPerfil(Perfil perfil) {
+        List<Lectura> lecturas = leerArchivo();
+
+        List<Lectura> lecturasFiltradas = lecturas.stream()
+                .distinct()
+                .filter(l -> !l.getPerfil().getId().equals(perfil.getId()))
+                .sorted(Comparator.comparing(Lectura::getFechaInicio).reversed())
+                .collect(Collectors.toList());
+
+        crearArchivoPorLista(lecturasFiltradas, false);
+
+    }
+
+    @Override
+    public boolean existeAlgunaLecturaPorPerfil(Perfil perfil) {
+        List<Lectura> lecturas = leerArchivo();
+
+        return lecturas.stream()
+                .distinct()
+                .anyMatch(l -> l.getPerfil().getId().equals(perfil.getId()));
+
+    }
+
 }

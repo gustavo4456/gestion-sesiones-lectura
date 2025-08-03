@@ -79,4 +79,8 @@ public interface ILecturaUtil {
     void editarPerfilesDeLasLecturasPorLibro(Libro libroEditado, Perfil perfilEditado);
 
     Optional<Lectura> getLecturaLibroLeidoyNoLeido(Libro libro);
+
+    void eliminarLecturasPorPerfil(Perfil perfil);
+
+    boolean existeAlgunaLecturaPorPerfil(Perfil perfil);
 }

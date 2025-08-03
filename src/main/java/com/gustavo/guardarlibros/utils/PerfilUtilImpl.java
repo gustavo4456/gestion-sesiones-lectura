@@ -4,6 +4,7 @@
  */
 package com.gustavo.guardarlibros.utils;
 
+import com.gustavo.guardarlibros.modelo.Lectura;
 import com.gustavo.guardarlibros.modelo.Perfil;
 import java.io.BufferedReader;
 import java.io.File;
@@ -161,6 +162,37 @@ public class PerfilUtilImpl implements IPerfilUtil {
             System.err.println("Ocurrió un error al crear/escribir el archivo: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void eliminarPerfil(Perfil perfil) {
+
+        LecturaUtilImpl lecturaUtilImpl = new LecturaUtilImpl();
+
+        LibroUtilImpl libroUtilImpl = new LibroUtilImpl();
+
+        // serian los libros que estan en esado de ledios o no leidos, es la forma que hice para guardar libros asociados a perfil y otros...
+        List<Lectura> lecturasLibros = lecturaUtilImpl.getListadoLibrosTerminadosYNoTermiandosPorPerfil(perfil.getId());
+
+        boolean existenLecturasParaEstePerfil = lecturaUtilImpl.existeAlgunaLecturaPorPerfil(perfil);
+
+        List<Perfil> perfiles = leerArchivo();
+
+        List<Perfil> perfilesFiltrados = perfiles.stream()
+                .distinct()
+                .filter(p -> !p.getId().equals(perfil.getId()))
+                .collect(Collectors.toList());
+
+        if (existenLecturasParaEstePerfil) {
+            lecturaUtilImpl.eliminarLecturasPorPerfil(perfil);
+        }
+
+        for (int i = 0; i < lecturasLibros.size(); i++) {
+            libroUtilImpl.eliminarLibro(lecturasLibros.get(i).getLibro());
+        }
+
+        crearArchivoPorLista(perfilesFiltrados, false);
+
     }
 
 }

@@ -1,4 +1,0 @@
-1,El Gato Negro,Edgar Allan Poe,150
-2,Quimica generalg,Changg,2001
-3,Algebra y geometria analiticao,juanchoo,5218
-4,El Libro Pequeño aburrido y caro,Juan Perez,21

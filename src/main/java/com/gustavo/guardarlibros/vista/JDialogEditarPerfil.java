@@ -6,6 +6,8 @@ package com.gustavo.guardarlibros.vista;
 
 import com.gustavo.guardarlibros.modelo.Perfil;
 import com.gustavo.guardarlibros.utils.PerfilUtilImpl;
+import com.gustavo.guardarlibros.vista.JDialogEliminarPerfil;
+import java.awt.Frame;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -77,6 +79,11 @@ public class JDialogEditarPerfil extends javax.swing.JDialog {
 
         btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/borrar-32.png"))); // NOI18N
         btnBorrar.setText("Eliminar Perfil");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelPrincipalLayout = new javax.swing.GroupLayout(jPanelPrincipal);
         jPanelPrincipal.setLayout(jPanelPrincipalLayout);
@@ -167,6 +174,18 @@ public class JDialogEditarPerfil extends javax.swing.JDialog {
             txtNombre.setText(perfilSeleccionado.getNombre().trim());
         }
     }//GEN-LAST:event_cbPerfilActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        // TODO add your handling code here:
+
+        if (perfilSeleccionado != null) {
+            JDialogEliminarPerfil jDialogEliminarPerfil = new JDialogEliminarPerfil((java.awt.Frame) this.getParent(), rootPaneCheckingEnabled, perfilSeleccionado);
+            jDialogEliminarPerfil.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un Perfil.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void cargarCbPerfil() {
 
