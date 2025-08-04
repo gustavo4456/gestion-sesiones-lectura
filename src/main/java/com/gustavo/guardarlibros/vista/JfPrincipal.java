@@ -432,13 +432,13 @@ public class JfPrincipal extends javax.swing.JFrame {
 
     private void jItemNuevoLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jItemNuevoLibroActionPerformed
         // TODO add your handling code here:
-        JDialogAgregarLibro jDialogAgregarLibro = new JDialogAgregarLibro(this, rootPaneCheckingEnabled);
+        JDialogAgregarLibro jDialogAgregarLibro = new JDialogAgregarLibro(this, true);
         jDialogAgregarLibro.setVisible(true);
     }//GEN-LAST:event_jItemNuevoLibroActionPerformed
 
     private void jItemNuevoPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jItemNuevoPerfilActionPerformed
         // TODO add your handling code here:
-        JDialogAgregarPerfil jDialogAgregarPerfil = new JDialogAgregarPerfil(this, rootPaneCheckingEnabled);
+        JDialogAgregarPerfil jDialogAgregarPerfil = new JDialogAgregarPerfil(this, true);
         jDialogAgregarPerfil.setVisible(true);
     }//GEN-LAST:event_jItemNuevoPerfilActionPerformed
 
@@ -475,7 +475,7 @@ public class JfPrincipal extends javax.swing.JFrame {
         }
 
         if (perfilSeleccionado != null && libroLecturaSeleccionada != null) {
-            JDialogAgregarLectura agregarLectura = new JDialogAgregarLectura(this, rootPaneCheckingEnabled, libroLecturaSeleccionada, perfilSeleccionado);
+            JDialogAgregarLectura agregarLectura = new JDialogAgregarLectura(this, true, libroLecturaSeleccionada, perfilSeleccionado);
             agregarLectura.setVisible(true);
             cargarElementos();
 
@@ -507,7 +507,7 @@ public class JfPrincipal extends javax.swing.JFrame {
         }
 
         if (perfilSeleccionado != null && libroLecturaTerminadasSeleccionada != null) {
-            JDialogEliminarLecturasDeLibroTerminado jDialogEliminarLecturasDeLibroTerminado = new JDialogEliminarLecturasDeLibroTerminado(this, rootPaneCheckingEnabled, libroLecturaTerminadasSeleccionada, perfilSeleccionado);
+            JDialogEliminarLecturasDeLibroTerminado jDialogEliminarLecturasDeLibroTerminado = new JDialogEliminarLecturasDeLibroTerminado(this, true, libroLecturaTerminadasSeleccionada, perfilSeleccionado);
 
             jDialogEliminarLecturasDeLibroTerminado.setVisible(true);
 
@@ -532,7 +532,7 @@ public class JfPrincipal extends javax.swing.JFrame {
         }
 
         if (perfilSeleccionado != null && libroEnEstadoLeyendoSeleccionada != null && libroLecturaSeleccionada != null) {
-            JDialogEditarLectura editarLectura = new JDialogEditarLectura(this, rootPaneCheckingEnabled, libroEnEstadoLeyendoSeleccionada, perfilSeleccionado, libroLecturaSeleccionada);
+            JDialogEditarLectura editarLectura = new JDialogEditarLectura(this, true, libroEnEstadoLeyendoSeleccionada, perfilSeleccionado, libroLecturaSeleccionada);
             editarLectura.setVisible(true);
             cargarElementos();
 
@@ -552,7 +552,7 @@ public class JfPrincipal extends javax.swing.JFrame {
         }
 
         if (perfilSeleccionado != null && libroEnEstadoLeyendoSeleccionada != null && libroLecturaTerminadasSeleccionada != null) {
-            JDialogEditarLecturaLibroTerminado editarLectura = new JDialogEditarLecturaLibroTerminado(this, rootPaneCheckingEnabled, libroEnEstadoLeyendoSeleccionada, perfilSeleccionado, libroLecturaTerminadasSeleccionada);
+            JDialogEditarLecturaLibroTerminado editarLectura = new JDialogEditarLecturaLibroTerminado(this, true, libroEnEstadoLeyendoSeleccionada, perfilSeleccionado, libroLecturaTerminadasSeleccionada);
             editarLectura.setVisible(true);
             cargarElementos();
 
@@ -567,7 +567,7 @@ public class JfPrincipal extends javax.swing.JFrame {
 
         if (cbPerfil.getSelectedItem() != null) {
             if (tbLibros.getRowCount() > 0 || tbLibrosTerminados.getRowCount() > 0) {
-                JDialogEstadisticaProgresoPorLibro jDialogEstadisticaProgresoPorLibro = new JDialogEstadisticaProgresoPorLibro(this, rootPaneCheckingEnabled, perfilSeleccionado);
+                JDialogEstadisticaProgresoPorLibro jDialogEstadisticaProgresoPorLibro = new JDialogEstadisticaProgresoPorLibro(this, true, perfilSeleccionado);
                 jDialogEstadisticaProgresoPorLibro.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "El perfil seleccionado no tiene libros agregados..", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -587,7 +587,7 @@ public class JfPrincipal extends javax.swing.JFrame {
 
         if (cbPerfil.getSelectedItem() != null) {
             if (tbLibros.getRowCount() > 0 || tbLibrosTerminados.getRowCount() > 0) {
-                JDialogEstadisticaActividadLectura jDialogEstadisticaAvanceLectura = new JDialogEstadisticaActividadLectura(this, rootPaneCheckingEnabled, perfilSeleccionado);
+                JDialogEstadisticaActividadLectura jDialogEstadisticaAvanceLectura = new JDialogEstadisticaActividadLectura(this, true, perfilSeleccionado);
                 jDialogEstadisticaAvanceLectura.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "El perfil seleccionado no tiene libros agregados..", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -604,7 +604,7 @@ public class JfPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (cbPerfil.getSelectedItem() != null) {
             if (tbLibros.getRowCount() > 0 || tbLibrosTerminados.getRowCount() > 0) {
-                JDialogEstadisticaEstadoDeMisLibros jDialogEstadisticaEstadoDeMisLibros = new JDialogEstadisticaEstadoDeMisLibros(this, rootPaneCheckingEnabled, perfilSeleccionado);
+                JDialogEstadisticaEstadoDeMisLibros jDialogEstadisticaEstadoDeMisLibros = new JDialogEstadisticaEstadoDeMisLibros(this, true, perfilSeleccionado);
                 jDialogEstadisticaEstadoDeMisLibros.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "El perfil seleccionado no tiene libros agregados..", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -621,7 +621,7 @@ public class JfPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (cbPerfil.getSelectedItem() != null) {
             if (tbLibros.getRowCount() > 0 || tbLibrosTerminados.getRowCount() > 0) {
-                JDialogEstadisticaLecturaPorAutor jDialogEstadisticaLecturaPorAutor = new JDialogEstadisticaLecturaPorAutor(this, rootPaneCheckingEnabled, perfilSeleccionado);
+                JDialogEstadisticaLecturaPorAutor jDialogEstadisticaLecturaPorAutor = new JDialogEstadisticaLecturaPorAutor(this, true, perfilSeleccionado);
                 jDialogEstadisticaLecturaPorAutor.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "El perfil seleccionado no tiene libros agregados..", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -639,7 +639,7 @@ public class JfPrincipal extends javax.swing.JFrame {
 
         if (cbPerfil.getSelectedItem() != null) {
             if (tbLibros.getRowCount() > 0 || tbLibrosTerminados.getRowCount() > 0) {
-                JDialogEstadisticaPaginaPorMinuto jDialogEstadisticaPaginaPorMinuto = new JDialogEstadisticaPaginaPorMinuto(this, rootPaneCheckingEnabled, perfilSeleccionado);
+                JDialogEstadisticaPaginaPorMinuto jDialogEstadisticaPaginaPorMinuto = new JDialogEstadisticaPaginaPorMinuto(this, true, perfilSeleccionado);
                 jDialogEstadisticaPaginaPorMinuto.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "El perfil seleccionado no tiene libros agregados..", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -657,7 +657,7 @@ public class JfPrincipal extends javax.swing.JFrame {
 
         if (cbPerfil.getSelectedItem() != null) {
             if (tbLibros.getRowCount() > 0 || tbLibrosTerminados.getRowCount() > 0) {
-                JDialogEstadisticaLecturasPorPeriodo jDialogEstadisticaLecturasPorPeriodo = new JDialogEstadisticaLecturasPorPeriodo(this, rootPaneCheckingEnabled, perfilSeleccionado);
+                JDialogEstadisticaLecturasPorPeriodo jDialogEstadisticaLecturasPorPeriodo = new JDialogEstadisticaLecturasPorPeriodo(this, true, perfilSeleccionado);
                 jDialogEstadisticaLecturasPorPeriodo.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "El perfil seleccionado no tiene libros agregados..", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -674,7 +674,7 @@ public class JfPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (cbPerfil.getSelectedItem() != null) {
             if (tbLibros.getRowCount() > 0 || tbLibrosTerminados.getRowCount() > 0) {
-                JDialogResumenGeneral jDialogResumenGeneral = new JDialogResumenGeneral(this, rootPaneCheckingEnabled, perfilSeleccionado);
+                JDialogResumenGeneral jDialogResumenGeneral = new JDialogResumenGeneral(this, true, perfilSeleccionado);
                 jDialogResumenGeneral.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "El perfil seleccionado no tiene libros agregados..", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -690,14 +690,14 @@ public class JfPrincipal extends javax.swing.JFrame {
     private void jItemMenuEditarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jItemMenuEditarPerfilActionPerformed
         // TODO add your handling code here:
 
-        JDialogEditarPerfil jDialogEditarPerfil = new JDialogEditarPerfil(this, rootPaneCheckingEnabled);
+        JDialogEditarPerfil jDialogEditarPerfil = new JDialogEditarPerfil(this, true);
         jDialogEditarPerfil.setVisible(true);
         cargarElementos();
     }//GEN-LAST:event_jItemMenuEditarPerfilActionPerformed
 
     private void jItemMenuEditarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jItemMenuEditarLibroActionPerformed
         // TODO add your handling code here:
-        JDialogEditarLibro jDialogEditarLibro = new JDialogEditarLibro(this, rootPaneCheckingEnabled);
+        JDialogEditarLibro jDialogEditarLibro = new JDialogEditarLibro(this, true);
         jDialogEditarLibro.setVisible(true);
     }//GEN-LAST:event_jItemMenuEditarLibroActionPerformed
 

@@ -179,7 +179,7 @@ public class JDialogEditarPerfil extends javax.swing.JDialog {
         // TODO add your handling code here:
 
         if (perfilSeleccionado != null) {
-            JDialogEliminarPerfil jDialogEliminarPerfil = new JDialogEliminarPerfil((java.awt.Frame) this.getParent(), rootPaneCheckingEnabled, perfilSeleccionado);
+            JDialogEliminarPerfil jDialogEliminarPerfil = new JDialogEliminarPerfil((java.awt.Frame) this.getParent(), true, perfilSeleccionado);
             jDialogEliminarPerfil.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un Perfil.", "Advertencia", JOptionPane.WARNING_MESSAGE);
