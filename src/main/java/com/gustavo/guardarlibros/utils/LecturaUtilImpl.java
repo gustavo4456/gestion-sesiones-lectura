@@ -630,4 +630,17 @@ public class LecturaUtilImpl implements ILecturaUtil {
 
     }
 
+    @Override
+    public void eliminarLecturasPorLibro(Libro libro) {
+        List<Lectura> lecturas = leerArchivo();
+
+        List<Lectura> lecturasFiltradas = lecturas.stream()
+                .distinct()
+                .filter(l -> !l.getLibro().getId().equals(libro.getId()))
+                .sorted(Comparator.comparing(Lectura::getFechaInicio).reversed())
+                .collect(Collectors.toList());
+
+        crearArchivoPorLista(lecturasFiltradas, false);
+    }
+
 }

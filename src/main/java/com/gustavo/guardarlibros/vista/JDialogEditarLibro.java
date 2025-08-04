@@ -62,6 +62,7 @@ public class JDialogEditarLibro extends javax.swing.JDialog {
         cbPerfil = new javax.swing.JComboBox<>();
         cbLibros = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
+        btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Actualizar Datos de un Libro");
@@ -132,6 +133,14 @@ public class JDialogEditarLibro extends javax.swing.JDialog {
 
         jLabel6.setText("Libro a Editar:");
 
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/borrar-32.png"))); // NOI18N
+        btnEliminar.setText("Eliminar Libro");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelPrincipalLayout = new javax.swing.GroupLayout(jPanelPrincipal);
         jPanelPrincipal.setLayout(jPanelPrincipalLayout);
         jPanelPrincipalLayout.setHorizontalGroup(
@@ -139,7 +148,6 @@ public class JDialogEditarLibro extends javax.swing.JDialog {
             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnGuardarLibro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbPerfil, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtCantidadDePaginas, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtAutor, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -153,7 +161,11 @@ public class JDialogEditarLibro extends javax.swing.JDialog {
                             .addComponent(jLabel5)
                             .addComponent(jLabel4)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanelPrincipalLayout.createSequentialGroup()
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnGuardarLibro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanelPrincipalLayout.setVerticalGroup(
@@ -182,7 +194,9 @@ public class JDialogEditarLibro extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(btnGuardarLibro)
+                .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnGuardarLibro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -307,6 +321,18 @@ public class JDialogEditarLibro extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbPerfilActionPerformed
 
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        Perfil perfilSeleccionado = (Perfil) cbPerfil.getSelectedItem();
+
+        if (libroSeleccionado != null && perfilSeleccionado != null) {
+            JDialogEliminarLibro jDialogEliminarLibro = new JDialogEliminarLibro((java.awt.Frame) this.getParent(), true, perfilSeleccionado, libroSeleccionado);
+            jDialogEliminarLibro.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un Libro.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -399,6 +425,7 @@ public class JDialogEditarLibro extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardarLibro;
     private javax.swing.JComboBox<String> cbLibros;
     private javax.swing.JComboBox<String> cbPerfil;

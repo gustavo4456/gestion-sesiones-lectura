@@ -83,4 +83,6 @@ public interface ILecturaUtil {
     void eliminarLecturasPorPerfil(Perfil perfil);
 
     boolean existeAlgunaLecturaPorPerfil(Perfil perfil);
+
+    void eliminarLecturasPorLibro(Libro libro);
 }
