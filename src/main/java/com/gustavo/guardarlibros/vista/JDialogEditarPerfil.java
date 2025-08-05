@@ -6,8 +6,7 @@ package com.gustavo.guardarlibros.vista;
 
 import com.gustavo.guardarlibros.modelo.Perfil;
 import com.gustavo.guardarlibros.utils.PerfilUtilImpl;
-import com.gustavo.guardarlibros.vista.JDialogEliminarPerfil;
-import java.awt.Frame;
+import com.gustavo.guardarlibros.utils.UtilIconos;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -30,7 +29,7 @@ public class JDialogEditarPerfil extends javax.swing.JDialog {
     public JDialogEditarPerfil(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
+        UtilIconos.aplicarIcono(this);
         cargarCbPerfil();
     }
 

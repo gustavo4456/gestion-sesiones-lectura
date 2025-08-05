@@ -5,8 +5,8 @@
 package com.gustavo.guardarlibros.vista;
 
 import com.gustavo.guardarlibros.modelo.Perfil;
-import com.gustavo.guardarlibros.utils.NombresArchivos;
 import com.gustavo.guardarlibros.utils.PerfilUtilImpl;
+import com.gustavo.guardarlibros.utils.UtilIconos;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -24,6 +24,7 @@ public class JDialogAgregarPerfil extends javax.swing.JDialog {
     public JDialogAgregarPerfil(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        UtilIconos.aplicarIcono(this);
     }
 
     /**

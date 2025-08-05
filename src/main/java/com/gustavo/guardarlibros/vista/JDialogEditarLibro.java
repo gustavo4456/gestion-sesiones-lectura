@@ -11,7 +11,7 @@ import com.gustavo.guardarlibros.modelo.Perfil;
 import com.gustavo.guardarlibros.utils.LecturaUtilImpl;
 import com.gustavo.guardarlibros.utils.LibroUtilImpl;
 import com.gustavo.guardarlibros.utils.PerfilUtilImpl;
-import java.time.LocalDate;
+import com.gustavo.guardarlibros.utils.UtilIconos;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -36,6 +36,7 @@ public class JDialogEditarLibro extends javax.swing.JDialog {
     public JDialogEditarLibro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        UtilIconos.aplicarIcono(this);
         cargarPerfiles();
         cargarCbLibros();
     }

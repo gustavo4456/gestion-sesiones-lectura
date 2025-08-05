@@ -4,12 +4,12 @@
  */
 package com.gustavo.guardarlibros.vista;
 
-import com.gustavo.guardarlibros.modelo.Estado;
 import com.gustavo.guardarlibros.modelo.Lectura;
 import com.gustavo.guardarlibros.modelo.Libro;
 import com.gustavo.guardarlibros.modelo.Perfil;
 import com.gustavo.guardarlibros.utils.LecturaUtilImpl;
 import com.gustavo.guardarlibros.utils.LibroUtilImpl;
+import com.gustavo.guardarlibros.utils.UtilIconos;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -38,6 +38,7 @@ public class JDialogEliminarLibro extends javax.swing.JDialog {
     public JDialogEliminarLibro(java.awt.Frame parent, boolean modal, Perfil perfilSeleccionado, Libro libroSeleccionado) {
         super(parent, modal);
         initComponents();
+        UtilIconos.aplicarIcono(this);
         this.perfilSeleccionado = perfilSeleccionado;
         this.libroSeleccionado = libroSeleccionado;
 

@@ -9,7 +9,7 @@ import com.gustavo.guardarlibros.modelo.Libro;
 import com.gustavo.guardarlibros.modelo.Perfil;
 import com.gustavo.guardarlibros.utils.DiaLectura;
 import com.gustavo.guardarlibros.utils.LecturaUtilImpl;
-import com.gustavo.guardarlibros.utils.LibroUtilImpl;
+import com.gustavo.guardarlibros.utils.UtilIconos;
 import java.awt.BorderLayout;
 import java.awt.RenderingHints;
 import java.text.SimpleDateFormat;
@@ -26,9 +26,7 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.DateAxis;
-import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.time.Day;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
@@ -58,7 +56,7 @@ public class JDialogEstadisticaPaginaPorMinuto extends javax.swing.JDialog {
     public JDialogEstadisticaPaginaPorMinuto(java.awt.Frame parent, boolean modal, Perfil perfil) {
         super(parent, modal);
         initComponents();
-
+        UtilIconos.aplicarIcono(this);
         this.perfil = perfil;
 
         lblPerfil.setText("Para el Perfil: " + this.perfil.getNombre());

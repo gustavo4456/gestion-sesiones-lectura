@@ -66,6 +66,7 @@ com\gustavo\guardarlibros\vista\JDialogEliminarLibro$2.class
 com\gustavo\guardarlibros\utils\ILibroUtil.class
 com\gustavo\guardarlibros\vista\JDialogAgregarPerfil$1.class
 com\gustavo\guardarlibros\vista\JDialogEliminarLecturasDeLibroTerminado$2.class
+com\gustavo\guardarlibros\utils\UtilIconos.class
 com\gustavo\guardarlibros\vista\JDialogAgregarLectura$2.class
 com\gustavo\guardarlibros\vista\JDialogEliminarPerfil$3$1.class
 com\gustavo\guardarlibros\vista\JDialogEditarLibro$2.class

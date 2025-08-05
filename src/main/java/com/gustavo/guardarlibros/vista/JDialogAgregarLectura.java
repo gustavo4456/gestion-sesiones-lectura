@@ -9,6 +9,7 @@ import com.gustavo.guardarlibros.modelo.Lectura;
 import com.gustavo.guardarlibros.modelo.Libro;
 import com.gustavo.guardarlibros.modelo.Perfil;
 import com.gustavo.guardarlibros.utils.LecturaUtilImpl;
+import com.gustavo.guardarlibros.utils.UtilIconos;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -40,6 +41,7 @@ public class JDialogAgregarLectura extends javax.swing.JDialog {
     public JDialogAgregarLectura(java.awt.Frame parent, boolean modal, Lectura lectura, Perfil perfil) {
         super(parent, modal);
         initComponents();
+        UtilIconos.aplicarIcono(this);
 
         this.libro = lectura.getLibro();
         this.perfil = perfil;

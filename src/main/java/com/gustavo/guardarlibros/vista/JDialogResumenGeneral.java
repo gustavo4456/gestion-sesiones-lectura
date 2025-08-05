@@ -8,6 +8,7 @@ import com.gustavo.guardarlibros.modelo.Lectura;
 import com.gustavo.guardarlibros.modelo.Libro;
 import com.gustavo.guardarlibros.modelo.Perfil;
 import com.gustavo.guardarlibros.utils.LecturaUtilImpl;
+import com.gustavo.guardarlibros.utils.UtilIconos;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -37,6 +38,7 @@ public class JDialogResumenGeneral extends javax.swing.JDialog {
     public JDialogResumenGeneral(java.awt.Frame parent, boolean modal, Perfil perfil) {
         super(parent, modal);
         initComponents();
+        UtilIconos.aplicarIcono(this);
         this.perfil = perfil;
 
         cargarCbLibros();

@@ -8,7 +8,7 @@ import com.gustavo.guardarlibros.modelo.Lectura;
 import com.gustavo.guardarlibros.modelo.Libro;
 import com.gustavo.guardarlibros.modelo.Perfil;
 import com.gustavo.guardarlibros.utils.LecturaUtilImpl;
-import com.gustavo.guardarlibros.utils.LibroUtilImpl;
+import com.gustavo.guardarlibros.utils.UtilIconos;
 import java.awt.BorderLayout;
 import java.util.Comparator;
 import java.util.List;
@@ -46,7 +46,7 @@ public class JDialogEstadisticaProgresoPorLibro extends javax.swing.JDialog {
     public JDialogEstadisticaProgresoPorLibro(java.awt.Frame parent, boolean modal, Perfil perfil) {
         super(parent, modal);
         initComponents();
-
+        UtilIconos.aplicarIcono(this);
         this.perfil = perfil;
 
         lblPerfil.setText("Para el Perfil: " + this.perfil.getNombre());

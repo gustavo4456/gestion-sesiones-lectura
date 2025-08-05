@@ -9,9 +9,9 @@ import com.gustavo.guardarlibros.modelo.Lectura;
 import com.gustavo.guardarlibros.modelo.Libro;
 import com.gustavo.guardarlibros.modelo.Perfil;
 import com.gustavo.guardarlibros.utils.LecturaUtilImpl;
+import com.gustavo.guardarlibros.utils.UtilIconos;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import javax.swing.JOptionPane;
 
 /**
@@ -41,7 +41,7 @@ public class JDialogEditarLectura extends javax.swing.JDialog {
     public JDialogEditarLectura(java.awt.Frame parent, boolean modal, Lectura lectura, Perfil perfil, Lectura lecturaLibroNoLeido) {
         super(parent, modal);
         initComponents();
-
+        UtilIconos.aplicarIcono(this);
         this.libro = lectura.getLibro();
         this.perfil = perfil;
         this.lectura = lectura;

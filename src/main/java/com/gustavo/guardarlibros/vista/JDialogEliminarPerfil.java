@@ -4,11 +4,11 @@
  */
 package com.gustavo.guardarlibros.vista;
 
-import com.gustavo.guardarlibros.modelo.Estado;
 import com.gustavo.guardarlibros.modelo.Lectura;
 import com.gustavo.guardarlibros.modelo.Perfil;
 import com.gustavo.guardarlibros.utils.LecturaUtilImpl;
 import com.gustavo.guardarlibros.utils.PerfilUtilImpl;
+import com.gustavo.guardarlibros.utils.UtilIconos;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -36,6 +36,7 @@ public class JDialogEliminarPerfil extends javax.swing.JDialog {
     public JDialogEliminarPerfil(java.awt.Frame parent, boolean modal, Perfil perfilSeleccionado) {
         super(parent, modal);
         initComponents();
+        UtilIconos.aplicarIcono(this);
         this.perfilSeleccionado = perfilSeleccionado;
 
         cargarElementos();

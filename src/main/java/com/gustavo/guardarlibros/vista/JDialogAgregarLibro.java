@@ -11,6 +11,7 @@ import com.gustavo.guardarlibros.modelo.Perfil;
 import com.gustavo.guardarlibros.utils.LecturaUtilImpl;
 import com.gustavo.guardarlibros.utils.LibroUtilImpl;
 import com.gustavo.guardarlibros.utils.PerfilUtilImpl;
+import com.gustavo.guardarlibros.utils.UtilIconos;
 import java.time.LocalDate;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -30,6 +31,7 @@ public class JDialogAgregarLibro extends javax.swing.JDialog {
     public JDialogAgregarLibro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        UtilIconos.aplicarIcono(this);
         cargarElementos();
     }
 

@@ -8,8 +8,7 @@ import com.gustavo.guardarlibros.modelo.Lectura;
 import com.gustavo.guardarlibros.modelo.Perfil;
 import com.gustavo.guardarlibros.utils.LecturaUtilImpl;
 import com.gustavo.guardarlibros.utils.PerfilUtilImpl;
-import java.awt.Image;
-import java.awt.Toolkit;
+import com.gustavo.guardarlibros.utils.UtilIconos;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -37,8 +36,7 @@ public class JfPrincipal extends javax.swing.JFrame {
         initComponents();
         cargarElementos();
 
-        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/librors.png"));
-        setIconImage(icon);
+        UtilIconos.aplicarIcono(this);
 
     }
 

@@ -4,20 +4,12 @@
  */
 package com.gustavo.guardarlibros.vista;
 
-import com.gustavo.guardarlibros.modelo.Lectura;
-import com.gustavo.guardarlibros.modelo.Libro;
 import com.gustavo.guardarlibros.modelo.Perfil;
 import com.gustavo.guardarlibros.utils.LecturaUtilImpl;
-import com.gustavo.guardarlibros.utils.LibroUtilImpl;
+import com.gustavo.guardarlibros.utils.UtilIconos;
 import java.awt.BorderLayout;
-import java.time.LocalDate;
-import java.util.Comparator;
 import java.util.IntSummaryStatistics;
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -49,7 +41,7 @@ public class JDialogEstadisticaLecturaPorAutor extends javax.swing.JDialog {
     public JDialogEstadisticaLecturaPorAutor(java.awt.Frame parent, boolean modal, Perfil perfil) {
         super(parent, modal);
         initComponents();
-
+        UtilIconos.aplicarIcono(this);
         this.perfil = perfil;
 
         lblPerfil.setText("Para el Perfil: " + this.perfil.getNombre());
