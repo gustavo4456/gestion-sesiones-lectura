@@ -6,6 +6,7 @@ package com.gustavo.guardarlibros.vista;
 
 import com.gustavo.guardarlibros.modelo.Lectura;
 import com.gustavo.guardarlibros.modelo.Perfil;
+import com.gustavo.guardarlibros.utils.EstiloTablaCompleto;
 import com.gustavo.guardarlibros.utils.LecturaUtilImpl;
 import com.gustavo.guardarlibros.utils.PerfilUtilImpl;
 import com.gustavo.guardarlibros.utils.UtilIconos;
@@ -37,6 +38,9 @@ public class JfPrincipal extends javax.swing.JFrame {
         cargarElementos();
 
         UtilIconos.aplicarIcono(this);
+        EstiloTablaCompleto.aplicarEstilo(tbLibros);
+        EstiloTablaCompleto.aplicarEstilo(tbLectura);
+        EstiloTablaCompleto.aplicarEstilo(tbLibrosTerminados);
 
     }
 
