@@ -34,4 +34,4 @@ Ver el archivo [LICENSE](Licencia) para más detalles.
 
 Desarrollado por Gustavo Francisco Silva Artaza  
 [GitHub](https://github.com/gustavo4456)
-[Gmail] (gustavofranciscosilvaartaza@gmail.com)
+[Gmail](mailto:gustavofranciscosilvaartaza@gmail.com)
