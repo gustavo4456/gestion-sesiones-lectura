@@ -52,7 +52,6 @@ public class JfPrincipal extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         grillaLibrosPorLeer1 = new com.gustavo.guardarlibros.vista.grillas.GrillaLibrosPorLeer();
         grillaLibrosTerminados1 = new com.gustavo.guardarlibros.vista.grillas.GrillaLibrosTerminados();
@@ -92,6 +91,8 @@ public class JfPrincipal extends javax.swing.JFrame {
         jItemPaginasPorMinuto = new javax.swing.JMenuItem();
         jItemLecturasPorPeriodo = new javax.swing.JMenuItem();
         jItemResumenGeneral = new javax.swing.JMenuItem();
+        jMenuAyuda = new javax.swing.JMenu();
+        jItemAcercaDe = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestión de Libros");
@@ -446,6 +447,13 @@ public class JfPrincipal extends javax.swing.JFrame {
         jMenuEstadisticas.add(jItemResumenGeneral);
 
         jMenuBarra.add(jMenuEstadisticas);
+
+        jMenuAyuda.setText("Ayuda");
+
+        jItemAcercaDe.setText("Acerca de");
+        jMenuAyuda.add(jItemAcercaDe);
+
+        jMenuBarra.add(jMenuAyuda);
 
         setJMenuBar(jMenuBarra);
 
@@ -876,6 +884,7 @@ public class JfPrincipal extends javax.swing.JFrame {
     private com.gustavo.guardarlibros.vista.grillas.GrillaLibrosEnLectura grillaLibrosEnLectura1;
     private com.gustavo.guardarlibros.vista.grillas.GrillaLibrosPorLeer grillaLibrosPorLeer1;
     private com.gustavo.guardarlibros.vista.grillas.GrillaLibrosTerminados grillaLibrosTerminados1;
+    private javax.swing.JMenuItem jItemAcercaDe;
     private javax.swing.JMenuItem jItemEstadisticaActividadDeLectura;
     private javax.swing.JMenuItem jItemEstadisticaEstadoDeMisLibros;
     private javax.swing.JMenuItem jItemEstadisticaLecturasPorAutor;
@@ -887,6 +896,7 @@ public class JfPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jItemNuevoPerfil;
     private javax.swing.JMenuItem jItemPaginasPorMinuto;
     private javax.swing.JMenuItem jItemResumenGeneral;
+    private javax.swing.JMenu jMenuAyuda;
     private javax.swing.JMenuBar jMenuBarra;
     private javax.swing.JMenu jMenuEditar;
     private javax.swing.JMenu jMenuEstadisticas;
