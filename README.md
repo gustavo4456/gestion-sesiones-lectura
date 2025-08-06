@@ -10,6 +10,7 @@ Podés agregar libros, registrar sesiones de lectura y marcar su estado como "te
 
 - java 21.0.7 2025-04-15 LTS
 - Swing (interfaz gráfica)
+- JFreeChart
 - IDE: NetBeans
 
 ---
