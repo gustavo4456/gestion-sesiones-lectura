@@ -1,0 +1,21 @@
+Licencia de Uso Personal y Educativo
+
+Copyright (c) 2025 Gustavo Francisco Silva Artaza
+
+Este software y su código fuente se proporcionan únicamente para fines personales y educativos.
+
+Se concede permiso para utilizar, copiar y modificar este software exclusivamente con fines:
+- Personales (uso privado, no comercial)
+- Educativos (aprendizaje, enseñanza, proyectos académicos)
+
+No se permite:
+- El uso comercial del software o cualquier derivado del mismo
+- La distribución o publicación del software, en forma total o parcial, con o sin modificaciones, sin autorización del autor
+- La reventa o integración en productos comerciales
+
+Este software se proporciona "tal cual", sin garantía de ningún tipo, expresa o implícita, incluyendo pero no limitado a garantías de comerciabilidad o adecuación a un propósito particular.
+
+Para consultas sobre otros usos o licencias, contactar al autor.
+
+Autor: Gustavo Francisco Silva Artaza
+Año: 2025

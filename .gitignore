@@ -1,0 +1,13 @@
+# Directorio de compilación de Maven
+/target/
+
+# Archivos de empaquetado
+*.jar
+*.war
+
+# Archivos de log y otros archivos de texto que no necesitas
+*.log
+*.txt
+
+# Excluir el archivo de licencia que sí necesitas
+!Licencia.txt
