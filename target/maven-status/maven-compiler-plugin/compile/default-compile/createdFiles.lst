@@ -94,6 +94,7 @@ com\gustavo\guardarlibros\utils\NombresArchivos.class
 com\gustavo\guardarlibros\vista\JDialogAgregarLibro.class
 com\gustavo\guardarlibros\vista\JfPrincipal$6.class
 com\gustavo\guardarlibros\vista\JDialogAgregarPerfil$2.class
+com\gustavo\guardarlibros\vista\JfPrincipal$20.class
 com\gustavo\guardarlibros\vista\JDialogEditarLectura$5.class
 com\gustavo\guardarlibros\vista\JDialogAgregarLibro$1.class
 com\gustavo\guardarlibros\vista\JDialogAgregarPerfil.class
@@ -104,6 +105,7 @@ com\gustavo\guardarlibros\vista\JDialogEditarLibro$4.class
 com\gustavo\guardarlibros\utils\EstiloTablaCompleto$1.class
 com\gustavo\guardarlibros\vista\JfPrincipal$7.class
 com\gustavo\guardarlibros\vista\JDialogEliminarLibro$3$1.class
+com\gustavo\guardarlibros\vista\JDialogAcercaDe$1.class
 com\gustavo\guardarlibros\vista\JDialogResumenGeneral$2.class
 com\gustavo\guardarlibros\vista\JDialogEliminarLecturasDeLibroTerminado$1.class
 com\gustavo\guardarlibros\vista\JDialogEditarLectura$4.class
@@ -117,6 +119,7 @@ com\gustavo\guardarlibros\vista\JDialogAgregarLectura$1.class
 com\gustavo\guardarlibros\vista\grillas\GrillaLibrosTerminados.class
 com\gustavo\guardarlibros\vista\JDialogEditarLibro$6$1.class
 com\gustavo\guardarlibros\utils\EstiloTablaCompleto$2.class
+com\gustavo\guardarlibros\vista\JDialogAcercaDe.class
 com\gustavo\guardarlibros\utils\DiaLectura.class
 com\gustavo\guardarlibros\vista\JDialogEstadisticaLecturasPorPeriodo$2.class
 com\gustavo\guardarlibros\vista\JfPrincipal$1.class

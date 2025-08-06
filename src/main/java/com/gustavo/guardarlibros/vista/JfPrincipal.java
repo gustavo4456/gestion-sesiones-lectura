@@ -451,6 +451,11 @@ public class JfPrincipal extends javax.swing.JFrame {
         jMenuAyuda.setText("Ayuda");
 
         jItemAcercaDe.setText("Acerca de");
+        jItemAcercaDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jItemAcercaDeActionPerformed(evt);
+            }
+        });
         jMenuAyuda.add(jItemAcercaDe);
 
         jMenuBarra.add(jMenuAyuda);
@@ -742,6 +747,12 @@ public class JfPrincipal extends javax.swing.JFrame {
         JDialogEditarLibro jDialogEditarLibro = new JDialogEditarLibro(this, true);
         jDialogEditarLibro.setVisible(true);
     }//GEN-LAST:event_jItemMenuEditarLibroActionPerformed
+
+    private void jItemAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jItemAcercaDeActionPerformed
+        // TODO add your handling code here:
+        JDialogAcercaDe jDialogAcercaDe = new JDialogAcercaDe(this, true);
+        jDialogAcercaDe.setVisible(true);
+    }//GEN-LAST:event_jItemAcercaDeActionPerformed
 
     private void cargarElementos() {
         grillaLibrosEnLectura1.clear();
