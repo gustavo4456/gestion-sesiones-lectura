@@ -25,8 +25,8 @@ Podés agregar libros, registrar sesiones de lectura y marcar su estado como "te
 
 ## 📝 Licencia
 
-Este software y su código fuente se proporcionan únicamente para fines personales y educativos. 
-Ver el archivo [LICENSE](Licencia) para más detalles.
+Este software y su código fuente se proporcionan únicamente para fines personales y educativos.
+Ver el archivo [Licencia.txt](Licencia.txt) para más detalles.
 
 ---
 
