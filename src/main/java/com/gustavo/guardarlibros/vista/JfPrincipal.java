@@ -59,8 +59,15 @@ public class JfPrincipal extends javax.swing.JFrame {
         grillaLibrosEnLectura1 = new com.gustavo.guardarlibros.vista.grillas.GrillaLibrosEnLectura();
         jPanelPrincipal = new javax.swing.JPanel();
         jPanelPerfil = new javax.swing.JPanel();
-        cbPerfil = new javax.swing.JComboBox<>();
         btnActualizar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        btnAgregarLectura = new javax.swing.JButton();
+        btnEditarLectura = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        btnEliminarLibroTerminado = new javax.swing.JButton();
+        btnEditarLecturaLibroTerminado = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        cbPerfil = new javax.swing.JComboBox<>();
         jPanelLibrosPorLeer = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbLibros = new javax.swing.JTable();
@@ -70,16 +77,6 @@ public class JfPrincipal extends javax.swing.JFrame {
         jPaneLibrosTerminados = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tbLibrosTerminados = new javax.swing.JTable();
-        jPaneLeerAEnLectura = new javax.swing.JPanel();
-        jPanelInternoDeLeerAEnLectura = new javax.swing.JPanel();
-        btnAgregarLectura = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        btnEditarLectura = new javax.swing.JButton();
-        jPanelEnLecturaATerminados = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        btnEliminarLibroTerminado = new javax.swing.JButton();
-        btnEditarLecturaLibroTerminado = new javax.swing.JButton();
         jMenuBarra = new javax.swing.JMenuBar();
         jMenuNuevo = new javax.swing.JMenu();
         jItemNuevoLibro = new javax.swing.JMenuItem();
@@ -99,13 +96,7 @@ public class JfPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestión de Libros");
 
-        jPanelPerfil.setBorder(javax.swing.BorderFactory.createTitledBorder("Selección del perfil"));
-
-        cbPerfil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbPerfilActionPerformed(evt);
-            }
-        });
+        jPanelPerfil.setBorder(javax.swing.BorderFactory.createTitledBorder("Funciones"));
 
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/actualizar.png"))); // NOI18N
         btnActualizar.setText("Actualizar");
@@ -115,28 +106,137 @@ public class JfPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones: Libros Por Leer"));
+
+        btnAgregarLectura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aniadirLectura.png"))); // NOI18N
+        btnAgregarLectura.setText("Agregar Lectura");
+        btnAgregarLectura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarLecturaActionPerformed(evt);
+            }
+        });
+
+        btnEditarLectura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/editarLectura.png"))); // NOI18N
+        btnEditarLectura.setText("Editar Lectura    ");
+        btnEditarLectura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarLecturaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnAgregarLectura, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnEditarLectura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAgregarLectura)
+                    .addComponent(btnEditarLectura))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones: Libros Terminados"));
+
+        btnEliminarLibroTerminado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/eliminarLibro.png"))); // NOI18N
+        btnEliminarLibroTerminado.setText("Eliminar Lecturas");
+        btnEliminarLibroTerminado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarLibroTerminadoActionPerformed(evt);
+            }
+        });
+
+        btnEditarLecturaLibroTerminado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/editarLectura.png"))); // NOI18N
+        btnEditarLecturaLibroTerminado.setText("Editar Lectura      ");
+        btnEditarLecturaLibroTerminado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarLecturaLibroTerminadoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnEliminarLibroTerminado)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnEditarLecturaLibroTerminado)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEliminarLibroTerminado)
+                    .addComponent(btnEditarLecturaLibroTerminado))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Selección del Perfil"));
+
+        cbPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbPerfilActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cbPerfil, 0, 216, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cbPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanelPerfilLayout = new javax.swing.GroupLayout(jPanelPerfil);
         jPanelPerfil.setLayout(jPanelPerfilLayout);
         jPanelPerfilLayout.setHorizontalGroup(
             jPanelPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPerfilLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cbPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnActualizar)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelPerfilLayout.setVerticalGroup(
             jPanelPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPerfilLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnActualizar))
-                .addContainerGap())
+            .addGroup(jPanelPerfilLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanelLibrosPorLeer.setBorder(javax.swing.BorderFactory.createTitledBorder("Libros por leer"));
+        jPanelLibrosPorLeer.setBorder(javax.swing.BorderFactory.createTitledBorder("Libros Por Leer"));
 
         tbLibros.setModel(grillaLibrosPorLeer1);
         tbLibros.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -154,13 +254,13 @@ public class JfPrincipal extends javax.swing.JFrame {
             jPanelLibrosPorLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLibrosPorLeerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelLibrosPorLeerLayout.setVerticalGroup(
             jPanelLibrosPorLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLibrosPorLeerLayout.createSequentialGroup()
-                .addComponent(jScrollPane3)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -175,19 +275,18 @@ public class JfPrincipal extends javax.swing.JFrame {
         jPanelEnLectura.setLayout(jPanelEnLecturaLayout);
         jPanelEnLecturaLayout.setHorizontalGroup(
             jPanelEnLecturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelEnLecturaLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEnLecturaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane4))
         );
         jPanelEnLecturaLayout.setVerticalGroup(
             jPanelEnLecturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelEnLecturaLayout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEnLecturaLayout.createSequentialGroup()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jPaneLibrosTerminados.setBorder(javax.swing.BorderFactory.createTitledBorder("Libros terminados"));
+        jPaneLibrosTerminados.setBorder(javax.swing.BorderFactory.createTitledBorder("Libros Terminados"));
 
         tbLibrosTerminados.setModel(grillaLibrosTerminados1);
         tbLibrosTerminados.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -205,82 +304,15 @@ public class JfPrincipal extends javax.swing.JFrame {
             jPaneLibrosTerminadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPaneLibrosTerminadosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPaneLibrosTerminadosLayout.setVerticalGroup(
             jPaneLibrosTerminadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPaneLibrosTerminadosLayout.createSequentialGroup()
-                .addComponent(jScrollPane5)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        jPaneLeerAEnLectura.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones: Libro no Leídos"));
-        jPaneLeerAEnLectura.setLayout(new java.awt.GridBagLayout());
-
-        jPanelInternoDeLeerAEnLectura.setLayout(new javax.swing.BoxLayout(jPanelInternoDeLeerAEnLectura, javax.swing.BoxLayout.Y_AXIS));
-
-        btnAgregarLectura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aniadirLectura.png"))); // NOI18N
-        btnAgregarLectura.setText("Agregar Lectura");
-        btnAgregarLectura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarLecturaActionPerformed(evt);
-            }
-        });
-        jPanelInternoDeLeerAEnLectura.add(btnAgregarLectura);
-
-        jLabel1.setMaximumSize(new java.awt.Dimension(0, 4));
-        jLabel1.setMinimumSize(new java.awt.Dimension(0, 4));
-        jLabel1.setName(""); // NOI18N
-        jLabel1.setPreferredSize(new java.awt.Dimension(15, 20));
-        jPanelInternoDeLeerAEnLectura.add(jLabel1);
-
-        btnEditarLectura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/editarLectura.png"))); // NOI18N
-        btnEditarLectura.setText("Editar Lectura    ");
-        btnEditarLectura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarLecturaActionPerformed(evt);
-            }
-        });
-        jPanelInternoDeLeerAEnLectura.add(btnEditarLectura);
-
-        jPaneLeerAEnLectura.add(jPanelInternoDeLeerAEnLectura, new java.awt.GridBagConstraints());
-
-        jPanelEnLecturaATerminados.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones: Libros Terminados"));
-        jPanelEnLecturaATerminados.setLayout(new java.awt.GridBagLayout());
-
-        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
-
-        jLabel2.setMaximumSize(new java.awt.Dimension(0, 4));
-        jLabel2.setMinimumSize(new java.awt.Dimension(0, 4));
-        jLabel2.setName(""); // NOI18N
-        jLabel2.setPreferredSize(new java.awt.Dimension(15, 20));
-        jPanel1.add(jLabel2);
-
-        btnEliminarLibroTerminado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/eliminarLibro.png"))); // NOI18N
-        btnEliminarLibroTerminado.setText("Eliminar Lecturas");
-        btnEliminarLibroTerminado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarLibroTerminadoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnEliminarLibroTerminado);
-
-        btnEditarLecturaLibroTerminado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/editarLectura.png"))); // NOI18N
-        btnEditarLecturaLibroTerminado.setText("Editar Lectura      ");
-        btnEditarLecturaLibroTerminado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarLecturaLibroTerminadoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnEditarLecturaLibroTerminado);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(135, 6, 161, 6);
-        jPanelEnLecturaATerminados.add(jPanel1, gridBagConstraints);
 
         javax.swing.GroupLayout jPanelPrincipalLayout = new javax.swing.GroupLayout(jPanelPrincipal);
         jPanelPrincipal.setLayout(jPanelPrincipalLayout);
@@ -293,11 +325,7 @@ public class JfPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                         .addComponent(jPanelLibrosPorLeer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPaneLeerAEnLectura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
                         .addComponent(jPanelEnLectura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanelEnLecturaATerminados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jPaneLibrosTerminados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -307,13 +335,11 @@ public class JfPrincipal extends javax.swing.JFrame {
             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanelPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelEnLectura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPaneLeerAEnLectura, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelLibrosPorLeer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPaneLibrosTerminados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelEnLecturaATerminados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanelLibrosPorLeer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPaneLibrosTerminados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -431,7 +457,7 @@ public class JfPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -861,18 +887,15 @@ public class JfPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jItemNuevoPerfil;
     private javax.swing.JMenuItem jItemPaginasPorMinuto;
     private javax.swing.JMenuItem jItemResumenGeneral;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBarra;
     private javax.swing.JMenu jMenuEditar;
     private javax.swing.JMenu jMenuEstadisticas;
     private javax.swing.JMenu jMenuNuevo;
-    private javax.swing.JPanel jPaneLeerAEnLectura;
     private javax.swing.JPanel jPaneLibrosTerminados;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelEnLectura;
-    private javax.swing.JPanel jPanelEnLecturaATerminados;
-    private javax.swing.JPanel jPanelInternoDeLeerAEnLectura;
     private javax.swing.JPanel jPanelLibrosPorLeer;
     private javax.swing.JPanel jPanelPerfil;
     private javax.swing.JPanel jPanelPrincipal;
